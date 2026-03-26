@@ -156,8 +156,122 @@ if (typeof motionPreference.addEventListener === "function") {
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     stopAmbientGlow();
+    stopDiscoverAutoplay();
     return;
   }
 
   startAmbientGlow();
+  startDiscoverAutoplay();
 });
+
+const discoverSection = document.querySelector(".discover-section");
+const discoverSlides = Array.from(document.querySelectorAll(".discover-slide"));
+const discoverDots = Array.from(document.querySelectorAll(".discover-dot"));
+const discoverSideItems = Array.from(
+  document.querySelectorAll(".discover-side-item")
+);
+const discoverPrevButton = document.querySelector(".discover-control--prev");
+const discoverNextButton = document.querySelector(".discover-control--next");
+let discoverActiveIndex = 0;
+let discoverAutoplay = null;
+
+function setDiscoverSlide(index) {
+  if (!discoverSlides.length) return;
+
+  discoverActiveIndex =
+    (index + discoverSlides.length) % discoverSlides.length;
+
+  discoverSlides.forEach((slide, slideIndex) => {
+    const isActive = slideIndex === discoverActiveIndex;
+    slide.classList.toggle("is-active", isActive);
+    slide.setAttribute("aria-hidden", String(!isActive));
+  });
+
+  discoverDots.forEach((dot, dotIndex) => {
+    const isActive = dotIndex === discoverActiveIndex;
+    dot.classList.toggle("is-active", isActive);
+    dot.setAttribute("aria-pressed", String(isActive));
+  });
+
+  let matchedSidebarItem = false;
+
+  discoverSideItems.forEach((item) => {
+    const shouldActivate =
+      !matchedSidebarItem &&
+      Number(item.dataset.slideTo) === discoverActiveIndex;
+
+    item.classList.toggle("is-active", shouldActivate);
+
+    if (shouldActivate) {
+      matchedSidebarItem = true;
+    }
+  });
+}
+
+function stopDiscoverAutoplay() {
+  if (!discoverAutoplay) return;
+
+  window.clearInterval(discoverAutoplay);
+  discoverAutoplay = null;
+}
+
+function startDiscoverAutoplay() {
+  stopDiscoverAutoplay();
+
+  if (!discoverSection || discoverSlides.length < 2 || motionPreference.matches) {
+    return;
+  }
+
+  discoverAutoplay = window.setInterval(() => {
+    setDiscoverSlide(discoverActiveIndex + 1);
+  }, 6500);
+}
+
+if (discoverSection && discoverSlides.length) {
+  const initialActiveSlide = discoverSlides.findIndex((slide) =>
+    slide.classList.contains("is-active")
+  );
+
+  setDiscoverSlide(initialActiveSlide >= 0 ? initialActiveSlide : 0);
+
+  if (discoverPrevButton) {
+    discoverPrevButton.addEventListener("click", () => {
+      setDiscoverSlide(discoverActiveIndex - 1);
+      startDiscoverAutoplay();
+    });
+  }
+
+  if (discoverNextButton) {
+    discoverNextButton.addEventListener("click", () => {
+      setDiscoverSlide(discoverActiveIndex + 1);
+      startDiscoverAutoplay();
+    });
+  }
+
+  discoverDots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      setDiscoverSlide(Number(dot.dataset.slideTo));
+      startDiscoverAutoplay();
+    });
+  });
+
+  discoverSideItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      setDiscoverSlide(Number(item.dataset.slideTo));
+      startDiscoverAutoplay();
+    });
+  });
+
+  discoverSection.addEventListener("mouseenter", stopDiscoverAutoplay);
+  discoverSection.addEventListener("mouseleave", startDiscoverAutoplay);
+  discoverSection.addEventListener("focusin", stopDiscoverAutoplay);
+  discoverSection.addEventListener("focusout", (event) => {
+    if (discoverSection.contains(event.relatedTarget)) {
+      return;
+    }
+
+    startDiscoverAutoplay();
+  });
+
+  startDiscoverAutoplay();
+}

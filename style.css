@@ -417,6 +417,546 @@ img {
     height: auto;
 }
 
+.discover-section {
+    padding: 34px 0 60px;
+}
+
+.discover-heading {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 26px;
+}
+
+.discover-heading-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.discover-heading-title {
+    margin: 0;
+    font-size: clamp(2rem, 2.8vw, 3rem);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.discover-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 28px;
+    align-items: start;
+}
+
+.discover-spotlight {
+    min-width: 0;
+}
+
+.discover-slider {
+    position: relative;
+}
+
+.discover-slides {
+    position: relative;
+    min-height: 620px;
+}
+
+.discover-slide {
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    overflow: hidden;
+    background: #0e0e0e;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 26px 48px rgba(0, 0, 0, 0.34);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.discover-slide.is-active {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.discover-slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.12) 34%, rgba(0, 0, 0, 0.7) 100%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0.08) 44%, rgba(0, 0, 0, 0.28) 100%);
+}
+
+.discover-slide-art {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    --art-primary: #405032;
+    --art-secondary: #111814;
+    --art-highlight: rgba(225, 255, 145, 0.44);
+    --art-brand: #d7ff1b;
+    background:
+        radial-gradient(circle at 72% 18%, var(--art-highlight) 0%, rgba(255, 255, 255, 0) 24%),
+        radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 16%),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0 1%, transparent 1% 100%),
+        linear-gradient(120deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.02) 36%, rgba(0, 0, 0, 0.42) 100%),
+        linear-gradient(180deg, var(--art-primary) 0%, var(--art-secondary) 100%);
+}
+
+.discover-slide-art-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    filter: saturate(1.04) contrast(1.02);
+}
+
+.discover-slide-art::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 80% 16%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 22%),
+        linear-gradient(100deg, rgba(255, 255, 255, 0) 20%, rgba(226, 255, 170, 0.16) 48%, rgba(255, 255, 255, 0) 72%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 60%);
+}
+
+.discover-slide-art::after {
+    content: "";
+    position: absolute;
+    inset: 18% 8% 12%;
+    background:
+        linear-gradient(90deg,
+            rgba(255, 255, 255, 0.08) 0%,
+            rgba(255, 255, 255, 0.08) 3%,
+            transparent 3%,
+            transparent 24%,
+            rgba(255, 255, 255, 0.05) 24%,
+            rgba(255, 255, 255, 0.05) 29%,
+            transparent 29%,
+            transparent 100%),
+        radial-gradient(circle at 16% 80%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 24%);
+    opacity: 0.55;
+}
+
+.discover-slide-art--marathon {
+    --art-primary: #556b33;
+    --art-secondary: #0b130d;
+    --art-highlight: rgba(220, 255, 148, 0.46);
+    --art-brand: #d2ff0e;
+}
+
+.discover-slide-art--forza {
+    --art-primary: #65271f;
+    --art-secondary: #140d10;
+    --art-highlight: rgba(255, 193, 150, 0.42);
+    --art-brand: #ffe6dc;
+}
+
+.discover-slide-art--bond {
+    --art-primary: #27405a;
+    --art-secondary: #0f1218;
+    --art-highlight: rgba(160, 205, 255, 0.36);
+    --art-brand: #f4f6fb;
+}
+
+.discover-slide-art--requiem {
+    --art-primary: #69575e;
+    --art-secondary: #110e11;
+    --art-highlight: rgba(255, 245, 245, 0.36);
+    --art-brand: #ffffff;
+}
+
+.discover-slide-art--death {
+    --art-primary: #5d321c;
+    --art-secondary: #110d0c;
+    --art-highlight: rgba(255, 175, 109, 0.34);
+    --art-brand: #ffd9c2;
+}
+
+.discover-slide-art--crimson {
+    --art-primary: #6a5047;
+    --art-secondary: #151110;
+    --art-highlight: rgba(255, 221, 207, 0.28);
+    --art-brand: #fff0ea;
+}
+
+.discover-slide-brand {
+    display: none;
+}
+
+.discover-slide-body {
+    position: relative;
+    z-index: 1;
+    min-height: 620px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 34px 58px 34px;
+}
+
+.discover-slide-title {
+    max-width: 74%;
+    margin: 0;
+    font-size: clamp(1.8rem, 2vw, 2.7rem);
+    font-weight: 500;
+    line-height: 1.22;
+}
+
+.discover-slide-copy {
+    max-width: 68%;
+    margin-top: 24px;
+    color: rgba(255, 255, 255, 0.94);
+    font-size: 1.08rem;
+    line-height: 1.55;
+}
+
+.discover-slide-copy p {
+    margin: 0 0 6px;
+}
+
+.discover-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 22px;
+}
+
+.discover-discount {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 68px;
+    height: 40px;
+    border-radius: 999px;
+    background: #f22222;
+    color: #ffffff;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.discover-old-price {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 1.2rem;
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+}
+
+.discover-new-price {
+    font-size: clamp(2rem, 2.3vw, 3.1rem);
+    font-weight: 800;
+    line-height: 1;
+}
+
+.discover-actions {
+    display: flex;
+    gap: 18px;
+    margin-top: 28px;
+}
+
+.discover-btn {
+    min-width: 180px;
+    min-height: 64px;
+    border-radius: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 30px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.discover-btn:hover,
+.discover-btn:focus-visible {
+    transform: translateY(-1px);
+}
+
+.discover-btn--primary {
+    background: #ffffff;
+    color: #101010;
+}
+
+.discover-btn--ghost {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    backdrop-filter: blur(10px);
+}
+
+.discover-control {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 58px;
+    height: 58px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(8, 8, 8, 0.28);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    backdrop-filter: blur(6px);
+}
+
+.discover-control:hover,
+.discover-control:focus-visible {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.discover-control i {
+    font-size: 2rem;
+}
+
+.discover-control--prev {
+    left: 10px;
+}
+
+.discover-control--next {
+    right: 10px;
+}
+
+.discover-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.discover-dot {
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.26);
+}
+
+.discover-dot.is-active {
+    background: #ffffff;
+    transform: scale(1.12);
+}
+
+.discover-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.discover-side-item {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    background: #151515;
+    padding: 14px;
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 16px;
+    align-items: center;
+    color: #ffffff;
+    text-align: left;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.discover-side-item:hover,
+.discover-side-item:focus-visible,
+.discover-side-item.is-active {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.16);
+    background: #1a1a1a;
+}
+
+.discover-side-thumb {
+    aspect-ratio: 1;
+    border-radius: 22px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    text-shadow: 0 4px 14px rgba(0, 0, 0, 0.32);
+    background:
+        radial-gradient(circle at 74% 22%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 26%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 55%),
+        linear-gradient(180deg, #303030 0%, #141414 100%);
+    overflow: hidden;
+    position: relative;
+}
+
+.discover-side-thumb-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.discover-side-thumb--marathon {
+    background:
+        radial-gradient(circle at 70% 18%, rgba(227, 255, 143, 0.28) 0%, rgba(255, 255, 255, 0) 26%),
+        linear-gradient(180deg, #688230 0%, #1d2917 100%);
+}
+
+.discover-side-thumb--forza {
+    background:
+        radial-gradient(circle at 70% 18%, rgba(255, 210, 171, 0.24) 0%, rgba(255, 255, 255, 0) 26%),
+        linear-gradient(180deg, #8d4a35 0%, #251214 100%);
+}
+
+.discover-side-thumb--bond {
+    background:
+        radial-gradient(circle at 70% 18%, rgba(180, 212, 255, 0.24) 0%, rgba(255, 255, 255, 0) 26%),
+        linear-gradient(180deg, #30506c 0%, #15171d 100%);
+}
+
+.discover-side-thumb--requiem {
+    background:
+        radial-gradient(circle at 70% 18%, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 26%),
+        linear-gradient(180deg, #897276 0%, #231c20 100%);
+}
+
+.discover-side-thumb--death {
+    background:
+        radial-gradient(circle at 70% 18%, rgba(255, 183, 122, 0.24) 0%, rgba(255, 255, 255, 0) 26%),
+        linear-gradient(180deg, #92552a 0%, #231510 100%);
+}
+
+.discover-side-thumb--crimson {
+    background:
+        radial-gradient(circle at 70% 18%, rgba(255, 223, 214, 0.24) 0%, rgba(255, 255, 255, 0) 26%),
+        linear-gradient(180deg, #8d6b60 0%, #231816 100%);
+}
+
+.discover-side-copy {
+    min-width: 0;
+    font-size: 1.12rem;
+    line-height: 1.38;
+    color: rgba(255, 255, 255, 0.94);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+@media (min-width: 992px) {
+    .discover-layout {
+        grid-template-columns: minmax(0, 1fr) 332px;
+        gap: 22px;
+        align-items: stretch;
+    }
+
+    .discover-slides {
+        min-height: 511px;
+    }
+
+    .discover-slide {
+        border-radius: 24px;
+    }
+
+    .discover-slide-body {
+        min-height: 511px;
+        padding: 28px 52px 26px;
+    }
+
+    .discover-slide-title {
+        max-width: 72%;
+        font-size: clamp(1.45rem, 1.7vw, 2.2rem);
+        line-height: 1.2;
+    }
+
+    .discover-slide-copy {
+        max-width: 64%;
+        margin-top: 16px;
+        font-size: 0.98rem;
+        line-height: 1.42;
+    }
+
+    .discover-slide-copy p {
+        margin-bottom: 4px;
+    }
+
+    .discover-price-row {
+        gap: 14px;
+        margin-top: 16px;
+    }
+
+    .discover-discount {
+        min-width: 60px;
+        height: 34px;
+        font-size: 1.1rem;
+    }
+
+    .discover-old-price {
+        font-size: 0.95rem;
+    }
+
+    .discover-new-price {
+        font-size: clamp(1.8rem, 2vw, 2.6rem);
+    }
+
+    .discover-actions {
+        gap: 14px;
+        margin-top: 20px;
+    }
+
+    .discover-btn {
+        min-width: 168px;
+        min-height: 56px;
+        border-radius: 16px;
+        padding: 0 22px;
+        font-size: 1.02rem;
+    }
+
+    .discover-control {
+        width: 52px;
+        height: 52px;
+    }
+
+    .discover-control--prev {
+        left: 8px;
+    }
+
+    .discover-control--next {
+        right: 8px;
+    }
+
+    .discover-sidebar {
+        height: 511px;
+        gap: 10px;
+    }
+
+    .discover-side-item {
+        flex: 1 1 0;
+        min-height: 0;
+        border-radius: 20px;
+        padding: 8px 10px;
+        grid-template-columns: 64px minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    .discover-side-thumb {
+        border-radius: 16px;
+    }
+
+    .discover-side-copy {
+        font-size: 0.92rem;
+        line-height: 1.24;
+        -webkit-line-clamp: 2;
+    }
+}
+
 .wide-nav-inner {
     min-height: 70px;
     display: flex;
@@ -773,6 +1313,31 @@ img {
     .hero-banner-link {
         border-radius: 18px;
     }
+
+    .discover-section {
+        padding: 30px 0 52px;
+    }
+
+    .discover-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .discover-sidebar {
+        display: none;
+    }
+
+    .discover-slides,
+    .discover-slide-body {
+        min-height: 540px;
+    }
+
+    .discover-slide-title {
+        max-width: 78%;
+    }
+
+    .discover-slide-copy {
+        max-width: 72%;
+    }
 }
 
 @media (max-width: 767.98px) {
@@ -811,6 +1376,96 @@ img {
     .hero-banner-link {
         border-radius: 14px;
         box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
+    }
+
+    .discover-section {
+        padding: 26px 0 44px;
+    }
+
+    .discover-heading {
+        gap: 14px;
+        margin-bottom: 18px;
+    }
+
+    .discover-heading-title {
+        font-size: clamp(1.5rem, 6vw, 2.2rem);
+    }
+
+    .discover-slides,
+    .discover-slide-body {
+        min-height: 420px;
+    }
+
+    .discover-slide {
+        border-radius: 24px;
+    }
+
+    .discover-slide-body {
+        padding: 22px 44px 18px;
+    }
+
+    .discover-slide-title {
+        max-width: 82%;
+        font-size: 1.3rem;
+        line-height: 1.3;
+    }
+
+    .discover-slide-copy {
+        display: none;
+    }
+
+    .discover-price-row {
+        gap: 12px;
+        margin-top: 14px;
+    }
+
+    .discover-discount {
+        min-width: 62px;
+        height: 36px;
+        font-size: 1.2rem;
+    }
+
+    .discover-old-price {
+        font-size: 1.05rem;
+    }
+
+    .discover-new-price {
+        font-size: 1.9rem;
+    }
+
+    .discover-actions {
+        gap: 12px;
+        margin-top: 18px;
+    }
+
+    .discover-btn {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 52px;
+        padding: 0 16px;
+        font-size: 1rem;
+        border-radius: 16px;
+    }
+
+    .discover-control {
+        width: 46px;
+        height: 46px;
+    }
+
+    .discover-control i {
+        font-size: 1.7rem;
+    }
+
+    .discover-control--prev {
+        left: 8px;
+    }
+
+    .discover-control--next {
+        right: 8px;
+    }
+
+    .discover-dots {
+        margin-top: 14px;
     }
 }
 
@@ -860,6 +1515,52 @@ img {
 
     .hero-banner-link {
         border-radius: 12px;
+    }
+
+    .discover-heading {
+        gap: 10px;
+    }
+
+    .discover-heading-title {
+        font-size: 1.35rem;
+        letter-spacing: 0.03em;
+    }
+
+    .discover-slides,
+    .discover-slide-body {
+        min-height: 348px;
+    }
+
+    .discover-slide {
+        border-radius: 18px;
+    }
+
+    .discover-slide-body {
+        padding: 18px 38px 16px;
+    }
+
+    .discover-slide-title {
+        max-width: 84%;
+        font-size: 1.15rem;
+    }
+
+    .discover-discount {
+        min-width: 56px;
+        height: 34px;
+        font-size: 1.05rem;
+    }
+
+    .discover-old-price {
+        font-size: 0.95rem;
+    }
+
+    .discover-new-price {
+        font-size: 1.6rem;
+    }
+
+    .discover-btn {
+        min-height: 48px;
+        font-size: 0.95rem;
     }
 
     .header-cart-link.mobile-cart {
