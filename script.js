@@ -170,10 +170,16 @@ const discoverDots = Array.from(document.querySelectorAll(".discover-dot"));
 const discoverSideItems = Array.from(
   document.querySelectorAll(".discover-side-item")
 );
+const discoverSlidesViewport = document.querySelector(".discover-slides");
 const discoverPrevButton = document.querySelector(".discover-control--prev");
 const discoverNextButton = document.querySelector(".discover-control--next");
 let discoverActiveIndex = 0;
 let discoverAutoplay = null;
+let discoverTouchStartX = 0;
+let discoverTouchStartY = 0;
+let discoverTouchCurrentX = 0;
+let discoverTouchCurrentY = 0;
+let discoverTouchActive = false;
 
 function setDiscoverSlide(index) {
   if (!discoverSlides.length) return;
@@ -227,6 +233,47 @@ function startDiscoverAutoplay() {
   }, 6500);
 }
 
+function handleDiscoverTouchStart(event) {
+  if (!event.touches.length) return;
+
+  const touch = event.touches[0];
+  discoverTouchStartX = touch.clientX;
+  discoverTouchStartY = touch.clientY;
+  discoverTouchCurrentX = touch.clientX;
+  discoverTouchCurrentY = touch.clientY;
+  discoverTouchActive = true;
+  stopDiscoverAutoplay();
+}
+
+function handleDiscoverTouchMove(event) {
+  if (!discoverTouchActive || !event.touches.length) return;
+
+  const touch = event.touches[0];
+  discoverTouchCurrentX = touch.clientX;
+  discoverTouchCurrentY = touch.clientY;
+}
+
+function handleDiscoverTouchEnd() {
+  if (!discoverTouchActive) return;
+
+  const deltaX = discoverTouchCurrentX - discoverTouchStartX;
+  const deltaY = discoverTouchCurrentY - discoverTouchStartY;
+  const horizontalDistance = Math.abs(deltaX);
+  const verticalDistance = Math.abs(deltaY);
+
+  discoverTouchActive = false;
+
+  if (horizontalDistance > 46 && horizontalDistance > verticalDistance * 1.15) {
+    if (deltaX < 0) {
+      setDiscoverSlide(discoverActiveIndex + 1);
+    } else {
+      setDiscoverSlide(discoverActiveIndex - 1);
+    }
+  }
+
+  startDiscoverAutoplay();
+}
+
 if (discoverSection && discoverSlides.length) {
   const initialActiveSlide = discoverSlides.findIndex((slide) =>
     slide.classList.contains("is-active")
@@ -272,6 +319,25 @@ if (discoverSection && discoverSlides.length) {
 
     startDiscoverAutoplay();
   });
+
+  if (discoverSlidesViewport) {
+    discoverSlidesViewport.addEventListener("touchstart", handleDiscoverTouchStart, {
+      passive: true,
+    });
+    discoverSlidesViewport.addEventListener("touchmove", handleDiscoverTouchMove, {
+      passive: true,
+    });
+    discoverSlidesViewport.addEventListener("touchend", handleDiscoverTouchEnd, {
+      passive: true,
+    });
+    discoverSlidesViewport.addEventListener(
+      "touchcancel",
+      handleDiscoverTouchEnd,
+      {
+        passive: true,
+      }
+    );
+  }
 
   startDiscoverAutoplay();
 }

@@ -404,7 +404,7 @@ img {
 
 .hero-banner-link {
     display: block;
-    border-radius: 22px;
+    border-radius: 12px;
     overflow: hidden;
     background: linear-gradient(180deg, #fff4d7 0%, #f7e9c4 100%);
     border: 1px solid rgba(255, 235, 201, 0.24);
@@ -456,17 +456,19 @@ img {
 
 .discover-slider {
     position: relative;
+    isolation: isolate;
 }
 
 .discover-slides {
     position: relative;
     min-height: 620px;
+    touch-action: pan-y;
 }
 
 .discover-slide {
     position: absolute;
     inset: 0;
-    border-radius: 28px;
+    border-radius: 12px;
     overflow: hidden;
     background: #0e0e0e;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -694,34 +696,50 @@ img {
     position: absolute;
     top: 50%;
     z-index: 2;
-    width: 58px;
-    height: 58px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(8, 8, 8, 0.28);
+    width: 46px;
+    height: 84px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    background:
+        linear-gradient(180deg, rgba(18, 18, 18, 0.88) 0%, rgba(9, 9, 9, 0.62) 100%);
     color: #ffffff;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     transform: translateY(-50%);
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 12px 24px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition:
+        transform 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
 }
 
 .discover-control:hover,
 .discover-control:focus-visible {
-    background: rgba(255, 255, 255, 0.16);
+    background:
+        linear-gradient(180deg, rgba(34, 34, 34, 0.92) 0%, rgba(14, 14, 14, 0.72) 100%);
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow:
+        0 16px 30px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform: translateY(-50%) scale(1.02);
 }
 
 .discover-control i {
-    font-size: 2rem;
+    font-size: 1.55rem;
 }
 
 .discover-control--prev {
-    left: 10px;
+    left: -22px;
 }
 
 .discover-control--next {
-    right: 10px;
+    right: -22px;
 }
 
 .discover-dots {
@@ -754,7 +772,7 @@ img {
 .discover-side-item {
     width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
+    border-radius: 12px;
     background: #151515;
     padding: 14px;
     display: grid;
@@ -776,7 +794,7 @@ img {
 
 .discover-side-thumb {
     aspect-ratio: 1;
-    border-radius: 22px;
+    border-radius: 12px;
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
@@ -862,7 +880,7 @@ img {
     }
 
     .discover-slide {
-        border-radius: 24px;
+        border-radius: 12px;
     }
 
     .discover-slide-body {
@@ -920,16 +938,16 @@ img {
     }
 
     .discover-control {
-        width: 52px;
-        height: 52px;
+        width: 44px;
+        height: 76px;
     }
 
     .discover-control--prev {
-        left: 8px;
+        left: -18px;
     }
 
     .discover-control--next {
-        right: 8px;
+        right: -18px;
     }
 
     .discover-sidebar {
@@ -940,14 +958,14 @@ img {
     .discover-side-item {
         flex: 1 1 0;
         min-height: 0;
-        border-radius: 20px;
+        border-radius: 12px;
         padding: 8px 10px;
         grid-template-columns: 64px minmax(0, 1fr);
         gap: 10px;
     }
 
     .discover-side-thumb {
-        border-radius: 16px;
+        border-radius: 12px;
     }
 
     .discover-side-copy {
@@ -1311,7 +1329,7 @@ img {
     }
 
     .hero-banner-link {
-        border-radius: 18px;
+        border-radius: 12px;
     }
 
     .discover-section {
@@ -1374,7 +1392,7 @@ img {
     }
 
     .hero-banner-link {
-        border-radius: 14px;
+        border-radius: 12px;
         box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
     }
 
@@ -1397,7 +1415,7 @@ img {
     }
 
     .discover-slide {
-        border-radius: 24px;
+        border-radius: 12px;
     }
 
     .discover-slide-body {
@@ -1448,24 +1466,21 @@ img {
     }
 
     .discover-control {
-        width: 46px;
-        height: 46px;
-    }
-
-    .discover-control i {
-        font-size: 1.7rem;
-    }
-
-    .discover-control--prev {
-        left: 8px;
-    }
-
-    .discover-control--next {
-        right: 8px;
+        display: none;
     }
 
     .discover-dots {
-        margin-top: 14px;
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .discover-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .discover-dot.is-active {
+        transform: scale(1.08);
     }
 }
 
@@ -1526,13 +1541,23 @@ img {
         letter-spacing: 0.02em;
     }
 
+    .discover-dots {
+        gap: 7px;
+        margin-top: 10px;
+    }
+
+    .discover-dot {
+        width: 7px;
+        height: 7px;
+    }
+
     .discover-slides,
     .discover-slide-body {
         min-height: 348px;
     }
 
     .discover-slide {
-        border-radius: 18px;
+        border-radius: 12px;
     }
 
     .discover-slide-body {
