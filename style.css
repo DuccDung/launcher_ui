@@ -242,6 +242,10 @@ img {
   display: none;
 }
 
+.show-on-mobile-search {
+  display: none;
+}
+
 .has-icon {
   display: flex;
   align-items: center;
@@ -380,6 +384,21 @@ img {
   border-bottom: 1px solid var(--line-soft);
 }
 
+.mobile-header-search {
+  background: #050507;
+}
+
+.mobile-header-search-inner {
+  padding-top: 14px;
+  padding-bottom: 12px;
+}
+
+.mobile-header-search-form {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
 .wide-nav-inner {
   min-height: 70px;
   display: flex;
@@ -489,6 +508,59 @@ img {
 .searchform-wrapper:focus-within {
   border-color: rgba(226, 132, 67, 0.45);
   background: #303030;
+}
+
+.mobile-header-search-shell {
+  width: 100%;
+  min-height: 54px;
+  border-radius: 999px;
+  background: #3b3b3b;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 48px;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px 0 16px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+.mobile-header-search-shell:focus-within {
+  background: #444444;
+  border-color: rgba(255, 214, 137, 0.3);
+}
+
+.mobile-header-search-input {
+  min-width: 0;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.mobile-header-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.94);
+  opacity: 1;
+}
+
+.mobile-header-search-button {
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.mobile-header-search-button i {
+  font-size: 28px;
 }
 
 .search-field {
@@ -678,12 +750,18 @@ img {
 }
 
 @media (max-width: 767.98px) {
+  .show-on-mobile-search {
+    display: block;
+  }
+
   .header-bottom {
     display: none;
   }
 
   .header-inner {
     min-height: 78px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .header_logo,
@@ -709,12 +787,36 @@ img {
 
   .header_logo,
   .header-logo {
-    width: 165px;
+    width: 172px;
   }
 
   .menu-toggle-btn {
     width: 40px;
     height: 40px;
+  }
+
+  .mobile-header-search-inner {
+    padding-top: 12px;
+    padding-bottom: 10px;
+  }
+
+  .mobile-header-search-shell {
+    min-height: 50px;
+    padding-left: 14px;
+    padding-right: 10px;
+  }
+
+  .mobile-header-search-input {
+    font-size: 15px;
+  }
+
+  .mobile-header-search-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .mobile-header-search-button i {
+    font-size: 24px;
   }
 
   .header-cart-link.mobile-cart {
