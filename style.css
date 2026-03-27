@@ -374,6 +374,36 @@ img {
     border-bottom: 1px solid var(--line-soft);
 }
 
+.header-bottom-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 990;
+    background: rgba(5, 5, 7, 0.94);
+    border-bottom: 1px solid var(--line-soft);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition:
+        transform 0.22s ease,
+        opacity 0.22s ease,
+        visibility 0s linear 0.22s;
+}
+
+.header-bottom-sticky.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition-delay: 0s;
+}
+
 .mobile-header-search {
     background: #050507;
 }

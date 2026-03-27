@@ -2,11 +2,22 @@ const mobileMenuToggle = document.getElementById("mobileMenuToggle");
 const mobileDrawer = document.getElementById("mobileDrawer");
 const mobileOverlay = document.getElementById("mobileOverlay");
 const closeDrawer = document.getElementById("closeDrawer");
+const headerBottom = document.querySelector(".header-bottom");
+const stickyHeaderBreakpoint = window.matchMedia("(min-width: 768px)");
+const headerBottomSticky = headerBottom ? headerBottom.cloneNode(true) : null;
 const mobileDropdownToggles = document.querySelectorAll(
   ".mobile-dropdown-toggle"
 );
 const mobileDrawerLinks = document.querySelectorAll(".mobile-drawer-nav a");
 const desktopBreakpoint = window.matchMedia("(min-width: 992px)");
+let stickyHeaderTicking = false;
+
+if (headerBottomSticky) {
+  headerBottomSticky.classList.remove("header-bottom");
+  headerBottomSticky.classList.add("header-bottom-sticky");
+  headerBottomSticky.setAttribute("aria-hidden", "true");
+  document.body.appendChild(headerBottomSticky);
+}
 
 function openDrawer() {
   if (!mobileDrawer || !mobileOverlay) return;
@@ -77,6 +88,52 @@ desktopBreakpoint.addEventListener("change", (event) => {
     closeMenu();
   }
 });
+
+function canUseStickyHeader() {
+  if (!headerBottom || !headerBottomSticky || !stickyHeaderBreakpoint.matches) {
+    return false;
+  }
+
+  return window.getComputedStyle(headerBottom).display !== "none";
+}
+
+function setStickyHeaderState(shouldStick) {
+  if (!headerBottomSticky) return;
+
+  headerBottomSticky.classList.toggle("is-visible", shouldStick);
+}
+
+function applyStickyHeader() {
+  if (!canUseStickyHeader()) {
+    setStickyHeaderState(false);
+    return;
+  }
+
+  const headerBottomTop = headerBottom.getBoundingClientRect().top;
+  const shouldStick = headerBottomTop <= 0;
+
+  setStickyHeaderState(shouldStick);
+}
+
+function handleStickyHeaderScroll() {
+  if (stickyHeaderTicking) return;
+
+  stickyHeaderTicking = true;
+  window.requestAnimationFrame(() => {
+    applyStickyHeader();
+    stickyHeaderTicking = false;
+  });
+}
+
+applyStickyHeader();
+window.addEventListener("scroll", handleStickyHeaderScroll, { passive: true });
+window.addEventListener("resize", applyStickyHeader);
+
+if (typeof stickyHeaderBreakpoint.addEventListener === "function") {
+  stickyHeaderBreakpoint.addEventListener("change", applyStickyHeader);
+} else if (typeof stickyHeaderBreakpoint.addListener === "function") {
+  stickyHeaderBreakpoint.addListener(applyStickyHeader);
+}
 
 const ambientGlow = document.querySelector(".ambient-glow");
 const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
