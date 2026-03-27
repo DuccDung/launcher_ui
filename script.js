@@ -398,3 +398,130 @@ if (discoverSection && discoverSlides.length) {
 
   startDiscoverAutoplay();
 }
+
+const productGalleries = document.querySelectorAll("[data-product-gallery]");
+
+productGalleries.forEach((gallery) => {
+  const mainFrame = gallery.querySelector(".product-gallery-main");
+  const mainImage = gallery.querySelector("[data-product-main-image]");
+  const thumbnails = Array.from(gallery.querySelectorAll("[data-product-thumb]"));
+  const prevButton = gallery.querySelector("[data-product-prev]");
+  const nextButton = gallery.querySelector("[data-product-next]");
+  const expandButton = gallery.querySelector(".product-gallery-expand");
+  const thumbsViewport = gallery.querySelector("[data-product-thumb-viewport]");
+  const thumbsTrack = gallery.querySelector("[data-product-thumb-track]");
+  const thumbsPrevButton = gallery.querySelector("[data-product-thumb-prev]");
+  const thumbsNextButton = gallery.querySelector("[data-product-thumb-next]");
+
+  if (!mainFrame || !mainImage || !thumbnails.length) return;
+
+  let activeIndex = Math.max(
+    0,
+    thumbnails.findIndex((thumb) => thumb.classList.contains("is-active"))
+  );
+  function scrollActiveThumbIntoView() {
+    const activeThumb = thumbnails[activeIndex];
+
+    if (!activeThumb || !thumbsViewport) return;
+
+    activeThumb.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }
+
+  function applyProductGallery(index) {
+    activeIndex = (index + thumbnails.length) % thumbnails.length;
+
+    thumbnails.forEach((thumb, thumbIndex) => {
+      const isActive = thumbIndex === activeIndex;
+      thumb.classList.toggle("is-active", isActive);
+      thumb.setAttribute("aria-pressed", String(isActive));
+    });
+
+    const activeThumb = thumbnails[activeIndex];
+    const fullSrc = activeThumb.dataset.fullSrc || activeThumb.querySelector("img")?.src;
+    const fullAlt =
+      activeThumb.dataset.fullAlt || activeThumb.querySelector("img")?.alt || "";
+    const mainPosition = activeThumb.dataset.mainPosition || "center center";
+
+    if (fullSrc) {
+      mainImage.src = fullSrc;
+    }
+
+    mainImage.alt = fullAlt;
+    mainImage.style.objectPosition = mainPosition;
+    scrollActiveThumbIntoView();
+  }
+
+  thumbnails.forEach((thumb, thumbIndex) => {
+    thumb.addEventListener("click", () => {
+      applyProductGallery(thumbIndex);
+    });
+  });
+
+  if (prevButton) {
+    prevButton.addEventListener("click", () => {
+      applyProductGallery(activeIndex - 1);
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", () => {
+      applyProductGallery(activeIndex + 1);
+    });
+  }
+
+  if (thumbsPrevButton) {
+    thumbsPrevButton.addEventListener("click", () => {
+      applyProductGallery(activeIndex - 1);
+    });
+  }
+
+  if (thumbsNextButton) {
+    thumbsNextButton.addEventListener("click", () => {
+      applyProductGallery(activeIndex + 1);
+    });
+  }
+
+  if (expandButton) {
+    expandButton.addEventListener("click", async () => {
+      const fullscreenElement =
+        document.fullscreenElement || document.webkitFullscreenElement;
+
+      if (fullscreenElement === mainFrame) {
+        if (document.exitFullscreen) {
+          await document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+        return;
+      }
+
+      if (mainFrame.requestFullscreen) {
+        await mainFrame.requestFullscreen();
+      } else if (mainFrame.webkitRequestFullscreen) {
+        mainFrame.webkitRequestFullscreen();
+      }
+    });
+  }
+
+  if (thumbsViewport && thumbsTrack) {
+    thumbsViewport.addEventListener(
+      "wheel",
+      (event) => {
+        if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+
+        thumbsViewport.scrollBy({
+          left: event.deltaY,
+          behavior: "smooth",
+        });
+        event.preventDefault();
+      },
+      { passive: false }
+    );
+  }
+
+  applyProductGallery(activeIndex);
+});
