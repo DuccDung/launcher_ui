@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Category & Content | NestG Admin</title>
+    <link rel="icon" type="image/png" href="./assets/img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&family=Sora:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+  <body class="admin-body">
+    <div class="admin-app-shell">
+      <aside class="admin-sidebar" data-admin-sidebar>
+        <div class="admin-sidebar__head">
+          <div class="admin-sidebar__brand">
+            <div class="admin-sidebar__brand-mark">
+              <img src="./assets/img/logo.png" alt="NestG" />
+            </div>
+            <div class="admin-sidebar__brand-copy">
+              <strong>NestG</strong>
+              <span>Taxonomy Studio</span>
+            </div>
+          </div>
+          <button
+            class="admin-icon-button admin-sidebar-close"
+            type="button"
+            aria-label="Đóng menu quản trị"
+            data-admin-sidebar-close
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="admin-sidebar__group">
+          <div class="admin-sidebar__label">Điều hướng</div>
+          <nav class="admin-nav">
+            <a href="./admin_dashboard.html"><i class="bi bi-grid-1x2-fill"></i>Dashboard</a>
+            <a href="./admin_games.html"><i class="bi bi-controller"></i>Game catalog</a>
+            <a href="./admin_game_editor.html"><i class="bi bi-pencil-square"></i>Game editor</a>
+            <a href="./admin_categories.html" class="is-active"><i class="bi bi-tags-fill"></i>Category & content</a>
+          </nav>
+        </div>
+
+        <div class="admin-sidebar__group">
+          <div class="admin-sidebar__label">Phạm vi dữ liệu</div>
+          <nav class="admin-nav">
+            <a href="#"><i class="bi bi-diagram-3-fill"></i>categories</a>
+            <a href="#"><i class="bi bi-journal-richtext"></i>articles</a>
+            <a href="#"><i class="bi bi-images"></i>media</a>
+            <a href="#"><i class="bi bi-star-half"></i>reviews</a>
+          </nav>
+        </div>
+
+        <div class="admin-sidebar-card">
+          <span class="admin-sidebar-card__eyebrow">Content Health</span>
+          <h3>91% category đã map đủ content</h3>
+          <p>
+            Dùng page này để nhìn taxonomy, nhóm game nổi bật, article coverage,
+            asset đi kèm và độ phủ storefront theo category.
+          </p>
+          <strong>58 category active</strong>
+        </div>
+      </aside>
+
+      <div class="admin-content-shell">
+        <header class="admin-topbar">
+          <div class="admin-topbar__left">
+            <button
+              class="admin-icon-button admin-sidebar-toggle"
+              type="button"
+              aria-label="Mở menu quản trị"
+              data-admin-sidebar-toggle
+            >
+              <i class="bi bi-list"></i>
+            </button>
+            <div class="admin-topbar__title">
+              <strong>Taxonomy, category và content mapping</strong>
+              <span>Quản trị danh mục storefront, bài viết và asset liên quan</span>
+            </div>
+          </div>
+
+          <div class="admin-topbar__right">
+            <div class="admin-topbar-search">
+              <input type="search" placeholder="Tìm category, article slug, asset..." />
+              <i class="bi bi-search"></i>
+            </div>
+          </div>
+        </header>
+
+        <main class="admin-main">
+          <section class="admin-page-intro">
+            <div>
+              <h1>Page phù hợp cho category, article và media relation</h1>
+              <p>
+                Dùng để kiểm soát nhóm thể loại, độ phủ content, mapping asset,
+                và mức truy cập theo từng category quan trọng trên storefront.
+              </p>
+            </div>
+            <div class="admin-page-intro__actions">
+              <a class="admin-button admin-button--secondary" href="./admin_games.html">
+                <i class="bi bi-controller"></i>
+                Về game catalog
+              </a>
+              <button class="admin-button admin-button--primary" type="button">
+                <i class="bi bi-plus-circle"></i>
+                Tạo category mới
+              </button>
+            </div>
+          </section>
+
+          <section class="admin-kpi-grid">
+            <article class="admin-kpi-card">
+              <div class="admin-kpi-card__head">
+                <span class="admin-kpi-card__label">Category active</span>
+                <span class="admin-kpi-card__icon"><i class="bi bi-tags"></i></span>
+              </div>
+              <strong>58</strong>
+              <div class="admin-kpi-card__meta">
+                <span class="admin-trend is-up"><i class="bi bi-arrow-up-right"></i> 6 mới</span>
+                <span>Trong quý này</span>
+              </div>
+            </article>
+
+            <article class="admin-kpi-card">
+              <div class="admin-kpi-card__head">
+                <span class="admin-kpi-card__label">Game đã map category</span>
+                <span class="admin-kpi-card__icon"><i class="bi bi-diagram-3"></i></span>
+              </div>
+              <strong>176</strong>
+              <div class="admin-kpi-card__meta">
+                <span class="admin-trend is-up"><i class="bi bi-arrow-up-right"></i> 94.6%</span>
+                <span>Tỷ lệ phủ relation</span>
+              </div>
+            </article>
+
+            <article class="admin-kpi-card">
+              <div class="admin-kpi-card__head">
+                <span class="admin-kpi-card__label">Article coverage</span>
+                <span class="admin-kpi-card__icon"><i class="bi bi-journal-richtext"></i></span>
+              </div>
+              <strong>142</strong>
+              <div class="admin-kpi-card__meta">
+                <span class="admin-trend is-up"><i class="bi bi-arrow-up-right"></i> 15 draft</span>
+                <span>Còn chưa publish</span>
+              </div>
+            </article>
+
+            <article class="admin-kpi-card">
+              <div class="admin-kpi-card__head">
+                <span class="admin-kpi-card__label">Media asset linked</span>
+                <span class="admin-kpi-card__icon"><i class="bi bi-images"></i></span>
+              </div>
+              <strong>624</strong>
+              <div class="admin-kpi-card__meta">
+                <span class="admin-trend is-down"><i class="bi bi-arrow-down-right"></i> 11 missing</span>
+                <span>alt / cover / hero</span>
+              </div>
+            </article>
+
+            <article class="admin-kpi-card">
+              <div class="admin-kpi-card__head">
+                <span class="admin-kpi-card__label">Top category</span>
+                <span class="admin-kpi-card__icon"><i class="bi bi-graph-up"></i></span>
+              </div>
+              <strong>Hành động</strong>
+              <div class="admin-kpi-card__meta">
+                <span class="admin-trend is-up"><i class="bi bi-arrow-up-right"></i> 34%</span>
+                <span>Tỷ trọng traffic</span>
+              </div>
+            </article>
+          </section>
+
+          <section class="admin-grid admin-grid--bottom">
+            <article class="admin-panel admin-panel--span-2">
+              <div class="admin-panel__head">
+                <div>
+                  <h2 class="admin-panel__title">Danh mục storefront</h2>
+                  <span class="admin-panel__subtitle">
+                    Nhìn nhanh game count, article count và tỉ trọng traffic của từng category
+                  </span>
+                </div>
+                <span class="admin-panel__pill">categories</span>
+              </div>
+
+              <div class="admin-record-grid">
+                <article class="admin-record-card">
+                  <div class="admin-record-card__thumb">
+                    <img src="./assets/img/g_item_04.png" alt="Action category" />
+                  </div>
+                  <div class="admin-record-card__body">
+                    <span class="admin-record-card__eyebrow">Top traffic</span>
+                    <h3 class="admin-record-card__title">Hành động</h3>
+                    <span class="admin-record-card__sub">slug: hanh-dong | 64 game | 22 article</span>
+                    <div class="admin-metric-list">
+                      <div>
+                        <div class="admin-metric-row">
+                          <strong>Tỷ trọng truy cập</strong>
+                          <span>34%</span>
+                        </div>
+                        <div class="admin-progress-track"><div class="admin-progress-bar" style="width:34%"></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="admin-record-card">
+                  <div class="admin-record-card__thumb">
+                    <img src="./assets/img/g_item_02.png" alt="RPG category" />
+                  </div>
+                  <div class="admin-record-card__body">
+                    <span class="admin-record-card__eyebrow">High value</span>
+                    <h3 class="admin-record-card__title">Nhập vai</h3>
+                    <span class="admin-record-card__sub">slug: nhap-vai | 39 game | 17 article</span>
+                    <div class="admin-metric-list">
+                      <div>
+                        <div class="admin-metric-row">
+                          <strong>Tỷ trọng truy cập</strong>
+                          <span>22%</span>
+                        </div>
+                        <div class="admin-progress-track"><div class="admin-progress-bar" style="width:22%"></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="admin-record-card">
+                  <div class="admin-record-card__thumb">
+                    <img src="./assets/img/g_item_01.png" alt="Racing category" />
+                  </div>
+                  <div class="admin-record-card__body">
+                    <span class="admin-record-card__eyebrow">Seasonal</span>
+                    <h3 class="admin-record-card__title">Đua xe</h3>
+                    <span class="admin-record-card__sub">slug: dua-xe | 11 game | 4 article</span>
+                    <div class="admin-metric-list">
+                      <div>
+                        <div class="admin-metric-row">
+                          <strong>Tỷ trọng truy cập</strong>
+                          <span>9%</span>
+                        </div>
+                        <div class="admin-progress-track"><div class="admin-progress-bar" style="width:9%"></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="admin-record-card">
+                  <div class="admin-record-card__thumb">
+                    <img src="./assets/img/g_item_06.png" alt="Open world category" />
+                  </div>
+                  <div class="admin-record-card__body">
+                    <span class="admin-record-card__eyebrow">Emerging</span>
+                    <h3 class="admin-record-card__title">Open world</h3>
+                    <span class="admin-record-card__sub">slug: open-world | 14 game | 8 article</span>
+                    <div class="admin-metric-list">
+                      <div>
+                        <div class="admin-metric-row">
+                          <strong>Tỷ trọng truy cập</strong>
+                          <span>12%</span>
+                        </div>
+                        <div class="admin-progress-track"><div class="admin-progress-bar" style="width:12%"></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </article>
+
+            <article class="admin-panel">
+              <div class="admin-panel__head">
+                <div>
+                  <h2 class="admin-panel__title">Checklist mapping</h2>
+                  <span class="admin-panel__subtitle">Theo dõi độ phủ taxonomy</span>
+                </div>
+              </div>
+
+              <div class="admin-mini-stack admin-list-scroll">
+                <article class="admin-mini-card">
+                  <strong>12 game chưa gắn category chính</strong>
+                  <span>Ưu tiên các record pre-order mới tạo trong 7 ngày qua.</span>
+                </article>
+                <article class="admin-mini-card">
+                  <strong>8 article thiếu game_id</strong>
+                  <span>Phần lớn là guide draft cho nhóm hành động và soulslike.</span>
+                </article>
+                <article class="admin-mini-card">
+                  <strong>11 media thiếu alt text</strong>
+                  <span>Nên bổ sung để đồng bộ SEO và storefront accessibility.</span>
+                </article>
+              </div>
+            </article>
+          </section>
+
+          <section class="admin-grid admin-grid--bottom">
+            <article class="admin-panel admin-panel--span-2">
+              <div class="admin-panel__head">
+                <div>
+                  <h2 class="admin-panel__title">Article pipeline theo category</h2>
+                  <span class="admin-panel__subtitle">
+                    Dùng cho bảng articles và relation tới game/category
+                  </span>
+                </div>
+                <span class="admin-panel__pill">articles</span>
+              </div>
+
+              <div class="admin-article-grid admin-list-scroll">
+                <article class="admin-article-card">
+                  <div class="admin-article-card__body">
+                    <p class="admin-card-title">Top 5 game hành động đáng mua trong tháng 4</p>
+                    <span class="admin-card-subtitle">status: draft | category: Hành động | mapped games: 5</span>
+                  </div>
+                </article>
+                <article class="admin-article-card">
+                  <div class="admin-article-card__body">
+                    <p class="admin-card-title">Cách chọn phiên bản Deluxe hay Ultimate phù hợp</p>
+                    <span class="admin-card-subtitle">status: published | category: Guide | mapped games: 12</span>
+                  </div>
+                </article>
+                <article class="admin-article-card">
+                  <div class="admin-article-card__body">
+                    <p class="admin-card-title">Bộ sưu tập game soulslike đang được truy cập mạnh</p>
+                    <span class="admin-card-subtitle">status: queued | category: Soulslike | mapped games: 7</span>
+                  </div>
+                </article>
+              </div>
+            </article>
+
+            <article class="admin-panel">
+              <div class="admin-panel__head">
+                <div>
+                  <h2 class="admin-panel__title">Media spotlight</h2>
+                  <span class="admin-panel__subtitle">Asset nổi bật theo category</span>
+                </div>
+              </div>
+
+              <div class="admin-media-grid admin-list-scroll">
+                <article class="admin-media-card">
+                  <div class="admin-media-card__thumb">
+                    <img src="./assets/img/g_item_04.png" alt="Action banner" />
+                  </div>
+                  <div class="admin-media-card__body">
+                    <p class="admin-card-title">Hero - Hành động</p>
+                    <span class="admin-card-subtitle">asset_id: CAT-ACT-HERO-01</span>
+                  </div>
+                </article>
+                <article class="admin-media-card">
+                  <div class="admin-media-card__thumb">
+                    <img src="./assets/img/g_item_02.png" alt="RPG banner" />
+                  </div>
+                  <div class="admin-media-card__body">
+                    <p class="admin-card-title">Hero - Nhập vai</p>
+                    <span class="admin-card-subtitle">asset_id: CAT-RPG-HERO-02</span>
+                  </div>
+                </article>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="admin-sidebar-backdrop" data-admin-sidebar-backdrop></div>
+    <script src="./admin.js"></script>
+  </body>
+</html>

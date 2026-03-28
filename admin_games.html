@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Catalog | NestG Admin</title>
+    <link rel="icon" type="image/png" href="./assets/img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&family=Sora:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+  <body class="admin-body">
+    <div class="admin-app-shell">
+      <aside class="admin-sidebar" data-admin-sidebar>
+        <div class="admin-sidebar__head">
+          <div class="admin-sidebar__brand">
+            <div class="admin-sidebar__brand-mark">
+              <img src="./assets/img/logo.png" alt="NestG" />
+            </div>
+            <div class="admin-sidebar__brand-copy">
+              <strong>NestG</strong>
+              <span>Game Ops</span>
+            </div>
+          </div>
+          <button
+            class="admin-icon-button admin-sidebar-close"
+            type="button"
+            aria-label="Đóng menu quản trị"
+            data-admin-sidebar-close
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="admin-sidebar__group">
+          <div class="admin-sidebar__label">Điều hướng</div>
+          <nav class="admin-nav">
+            <a href="./admin_dashboard.html"><i class="bi bi-grid-1x2-fill"></i>Dashboard</a>
+            <a href="./admin_games.html" class="is-active"><i class="bi bi-controller"></i>Game catalog</a>
+            <a href="./admin_game_editor.html"><i class="bi bi-pencil-square"></i>Game editor</a>
+            <a href="./admin_categories.html"><i class="bi bi-tags-fill"></i>Category & content</a>
+          </nav>
+        </div>
+
+        <div class="admin-sidebar__group">
+          <div class="admin-sidebar__label">Bảng liên quan</div>
+          <nav class="admin-nav">
+            <a href="#"><i class="bi bi-box-seam"></i>games</a>
+            <a href="#"><i class="bi bi-layers"></i>game_versions</a>
+            <a href="#"><i class="bi bi-hdd-stack"></i>game_files</a>
+            <a href="#"><i class="bi bi-star-half"></i>reviews</a>
+          </nav>
+        </div>
+
+        <div class="admin-sidebar-card">
+          <span class="admin-sidebar-card__eyebrow">Schema Focus</span>
+          <h3>Kho game đang có 186 record</h3>
+          <p>
+            Bộ giao diện này được tối ưu để nhìn nhanh mối liên hệ giữa game,
+            version, file, media, article và review trong cùng một luồng quản trị.
+          </p>
+          <strong>Index ready</strong>
+        </div>
+      </aside>
+
+      <div class="admin-content-shell">
+        <header class="admin-topbar">
+          <div class="admin-topbar__left">
+            <button
+              class="admin-icon-button admin-sidebar-toggle"
+              type="button"
+              aria-label="Mở menu quản trị"
+              data-admin-sidebar-toggle
+            >
+              <i class="bi bi-list"></i>
+            </button>
+            <div class="admin-topbar__title">
+              <strong>Quản lý game catalog</strong>
+              <span>Danh sách game, version, file cài đặt và tín hiệu review</span>
+            </div>
+          </div>
+
+          <div class="admin-topbar__right">
+            <div class="admin-topbar-search">
+              <input type="search" placeholder="Tìm theo tên game, slug, asset id..." />
+              <i class="bi bi-search"></i>
+            </div>
+          </div>
+        </header>
+
+        <main class="admin-main">
+          <section class="admin-page-intro">
+            <div>
+              <h1>Kho game & version đang vận hành</h1>
+              <p>
+                Giao diện này phù hợp với các bảng `games`, `game_versions`,
+                `game_files`, `reviews`, `media`, `articles` và `game_configs`.
+              </p>
+            </div>
+            <div class="admin-page-intro__actions">
+              <a class="admin-button admin-button--secondary" href="./admin_categories.html">
+                <i class="bi bi-diagram-3"></i>
+                Mở taxonomy
+              </a>
+              <a class="admin-button admin-button--primary" href="./admin_game_editor.html">
+                <i class="bi bi-plus-circle"></i>
+                Tạo game mới
+              </a>
+            </div>
+          </section>
+
+          <section class="admin-kpi-grid">
+            <article class="admin-kpi-card">
+              <div class="admin-kpi-card__head">
+                <span class="admin-kpi-card__label">Tổng số game</span>
+                <span class="admin-kpi-card__icon"><i class="bi bi-controller"></i></span>
+              </div>
+              <strong>186</strong>
+              <div class="admin-kpi-card__meta">
+                <span class="admin-trend is-up"><i class="bi bi-arrow-up-right"></i> 12 mới</span>
+                <span>Trong 30 ngày</span>
+              </div>
+            </article>
+
+            <article class="admin-kpi-card">
+              <div class="admin-kpi-card__head">
+                <span class="admin-kpi-card__label">Version đang bán</span>
+                <span class="admin-kpi-card__icon"><i class="bi bi-layers-fill"></i></span>
+              </div>
+              <strong>428</strong>
+              <div class="admin-kpi-card__meta">
+                <span class="admin-trend is-up"><i class="bi bi-arrow-up-right"></i> 38 active</span>
+                <span>Gắn account_id đầy đủ</span>
+              </div>
+            </article>
+
+            <article class="admin-kpi-card">
+              <div class="admin-kpi-card__head">
+                <span class="admin-kpi-card__label">File package</span>
+                <span class="admin-kpi-card__icon"><i class="bi bi-folder2-open"></i></span>
+              </div>
+              <strong>924</strong>
+              <div class="admin-kpi-card__meta">
+                <span class="admin-trend is-down"><i class="bi bi-arrow-down-right"></i> 9 lỗi</span>
+                <span>Checksum cần rà lại</span>
+              </div>
+            </article>
+
+            <article class="admin-kpi-card">
+              <div class="admin-kpi-card__head">
+                <span class="admin-kpi-card__label">Review chờ duyệt</span>
+                <span class="admin-kpi-card__icon"><i class="bi bi-chat-left-text"></i></span>
+              </div>
+              <strong>37</strong>
+              <div class="admin-kpi-card__meta">
+                <span class="admin-trend is-up"><i class="bi bi-arrow-up-right"></i> 6 mới</span>
+                <span>Trong 24 giờ</span>
+              </div>
+            </article>
+
+            <article class="admin-kpi-card">
+              <div class="admin-kpi-card__head">
+                <span class="admin-kpi-card__label">Article liên kết</span>
+                <span class="admin-kpi-card__icon"><i class="bi bi-journal-richtext"></i></span>
+              </div>
+              <strong>142</strong>
+              <div class="admin-kpi-card__meta">
+                <span class="admin-trend is-up"><i class="bi bi-arrow-up-right"></i> 91%</span>
+                <span>Đã map game_id</span>
+              </div>
+            </article>
+          </section>
+
+          <section class="admin-page-toolbar">
+            <div class="admin-toolbar-filters">
+              <button class="admin-filter-chip is-active" type="button">Tất cả</button>
+              <button class="admin-filter-chip" type="button">Đang bán</button>
+              <button class="admin-filter-chip" type="button">Sắp ra mắt</button>
+              <button class="admin-filter-chip" type="button">Review thấp</button>
+            </div>
+            <div class="admin-toolbar-actions">
+              <select class="admin-select" aria-label="Lọc theo category">
+                <option>Category: Tất cả</option>
+                <option>Hành động</option>
+                <option>Phiêu lưu</option>
+                <option>Soulslike</option>
+              </select>
+              <select class="admin-select" aria-label="Lọc theo trạng thái">
+                <option>Trạng thái: Tất cả</option>
+                <option>Published</option>
+                <option>Draft</option>
+                <option>Archived</option>
+              </select>
+            </div>
+          </section>
+
+          <section class="admin-grid admin-grid--bottom">
+            <article class="admin-panel admin-panel--span-2">
+              <div class="admin-panel__head">
+                <div>
+                  <h2 class="admin-panel__title">Danh sách game theo catalog</h2>
+                  <span class="admin-panel__subtitle">
+                    Mỗi card gom nhanh `game_id`, version count, file count, review và media map
+                  </span>
+                </div>
+                <span class="admin-panel__pill">games</span>
+              </div>
+
+              <div class="admin-record-grid">
+                <article class="admin-record-card">
+                  <div class="admin-record-card__thumb">
+                    <img src="./assets/img/g_item_02.png" alt="Black Myth Wukong" />
+                  </div>
+                  <div class="admin-record-card__body">
+                    <span class="admin-record-card__eyebrow">Published</span>
+                    <h3 class="admin-record-card__title">Black Myth: Wukong</h3>
+                    <span class="admin-record-card__sub">slug: black-myth-wukong | game_id: 2048</span>
+                    <div class="admin-record-meta">
+                      <span class="admin-inline-stat">4 versions</span>
+                      <span class="admin-inline-stat">12 files</span>
+                      <span class="admin-inline-stat">8 media</span>
+                      <span class="admin-inline-stat">286 reviews</span>
+                    </div>
+                    <div class="admin-chip-row">
+                      <span class="admin-soft-chip is-active">Nhập vai</span>
+                      <span class="admin-soft-chip">Phiêu lưu</span>
+                      <span class="admin-soft-chip">Soulslike</span>
+                    </div>
+                    <div class="admin-record-footer">
+                      <small>Cập nhật 18 phút trước</small>
+                      <a class="admin-button admin-button--secondary" href="./admin_game_editor.html">Mở editor</a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="admin-record-card">
+                  <div class="admin-record-card__thumb">
+                    <img src="./assets/img/g_item_01.png" alt="Forza Horizon 6" />
+                  </div>
+                  <div class="admin-record-card__body">
+                    <span class="admin-record-card__eyebrow">Pre-order</span>
+                    <h3 class="admin-record-card__title">Forza Horizon 6</h3>
+                    <span class="admin-record-card__sub">slug: forza-horizon-6 | game_id: 1986</span>
+                    <div class="admin-record-meta">
+                      <span class="admin-inline-stat">3 versions</span>
+                      <span class="admin-inline-stat">7 files</span>
+                      <span class="admin-inline-stat">5 media</span>
+                      <span class="admin-inline-stat">41 reviews</span>
+                    </div>
+                    <div class="admin-chip-row">
+                      <span class="admin-soft-chip is-active">Đua xe</span>
+                      <span class="admin-soft-chip">Open world</span>
+                    </div>
+                    <div class="admin-record-footer">
+                      <small>Lên lịch publish 30/03</small>
+                      <a class="admin-button admin-button--secondary" href="./admin_game_editor.html">Mở editor</a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="admin-record-card">
+                  <div class="admin-record-card__thumb">
+                    <img src="./assets/img/g_item_04.png" alt="Ghost of Tsushima" />
+                  </div>
+                  <div class="admin-record-card__body">
+                    <span class="admin-record-card__eyebrow">Published</span>
+                    <h3 class="admin-record-card__title">Ghost of Tsushima Director's Cut</h3>
+                    <span class="admin-record-card__sub">slug: ghost-of-tsushima-directors-cut | game_id: 1662</span>
+                    <div class="admin-record-meta">
+                      <span class="admin-inline-stat">5 versions</span>
+                      <span class="admin-inline-stat">14 files</span>
+                      <span class="admin-inline-stat">9 media</span>
+                      <span class="admin-inline-stat">402 reviews</span>
+                    </div>
+                    <div class="admin-chip-row">
+                      <span class="admin-soft-chip is-active">Hành động</span>
+                      <span class="admin-soft-chip">Single Player</span>
+                    </div>
+                    <div class="admin-record-footer">
+                      <small>2 account_id cần kiểm kho</small>
+                      <a class="admin-button admin-button--secondary" href="./admin_game_editor.html">Mở editor</a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="admin-record-card">
+                  <div class="admin-record-card__thumb">
+                    <img src="./assets/img/g_item_06.png" alt="Crimson Desert" />
+                  </div>
+                  <div class="admin-record-card__body">
+                    <span class="admin-record-card__eyebrow">Draft</span>
+                    <h3 class="admin-record-card__title">Crimson Desert</h3>
+                    <span class="admin-record-card__sub">slug: crimson-desert | game_id: 2217</span>
+                    <div class="admin-record-meta">
+                      <span class="admin-inline-stat">2 versions</span>
+                      <span class="admin-inline-stat">3 files</span>
+                      <span class="admin-inline-stat">4 media</span>
+                      <span class="admin-inline-stat">0 reviews</span>
+                    </div>
+                    <div class="admin-chip-row">
+                      <span class="admin-soft-chip is-active">AAA</span>
+                      <span class="admin-soft-chip">Open world</span>
+                    </div>
+                    <div class="admin-record-footer">
+                      <small>Chờ article launch</small>
+                      <a class="admin-button admin-button--secondary" href="./admin_game_editor.html">Mở editor</a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </article>
+
+            <article class="admin-panel">
+              <div class="admin-panel__head">
+                <div>
+                  <h2 class="admin-panel__title">Version cần chú ý</h2>
+                  <span class="admin-panel__subtitle">Các record có dấu hiệu thiếu dữ liệu</span>
+                </div>
+                <span class="admin-panel__pill">game_versions</span>
+              </div>
+
+              <div class="admin-mini-stack admin-list-scroll">
+                <article class="admin-mini-card">
+                  <strong>Wukong Ultimate Edition</strong>
+                  <span>account_id trống, giá đã set 249.000 đ, cần link inventory trước khi publish.</span>
+                </article>
+                <article class="admin-mini-card">
+                  <strong>Forza Horizon 6 Deluxe</strong>
+                  <span>release window đã có nhưng article pre-order chưa map game_id.</span>
+                </article>
+                <article class="admin-mini-card">
+                  <strong>Ghost of Tsushima Standard</strong>
+                  <span>stock account còn 3, nên tạo cảnh báo refill trước giờ cao điểm.</span>
+                </article>
+                <article class="admin-mini-card">
+                  <strong>Crimson Desert Premium</strong>
+                  <span>thiếu media hero và chưa sync file package bản cài đầu tiên.</span>
+                </article>
+              </div>
+            </article>
+          </section>
+
+          <section class="admin-grid admin-grid--bottom">
+            <article class="admin-panel">
+              <div class="admin-panel__head">
+                <div>
+                  <h2 class="admin-panel__title">Tín hiệu review</h2>
+                  <span class="admin-panel__subtitle">Ưu tiên các game có rating giảm</span>
+                </div>
+              </div>
+              <div class="admin-metric-list">
+                <div>
+                  <div class="admin-metric-row">
+                    <strong>Black Myth: Wukong</strong>
+                    <span>4.9 / 5</span>
+                  </div>
+                  <div class="admin-progress-track"><div class="admin-progress-bar" style="width:98%"></div></div>
+                </div>
+                <div>
+                  <div class="admin-metric-row">
+                    <strong>Ghost of Tsushima</strong>
+                    <span>4.8 / 5</span>
+                  </div>
+                  <div class="admin-progress-track"><div class="admin-progress-bar" style="width:96%"></div></div>
+                </div>
+                <div>
+                  <div class="admin-metric-row">
+                    <strong>Forza Horizon 6</strong>
+                    <span>4.3 / 5</span>
+                  </div>
+                  <div class="admin-progress-track"><div class="admin-progress-bar" style="width:86%"></div></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="admin-panel">
+              <div class="admin-panel__head">
+                <div>
+                  <h2 class="admin-panel__title">Articles & media</h2>
+                  <span class="admin-panel__subtitle">Đồng bộ nội dung đi kèm game</span>
+                </div>
+              </div>
+              <div class="admin-mini-stack">
+                <article class="admin-mini-card">
+                  <strong>articles mapped</strong>
+                  <span>127 bài đã nối `game_id`, còn 15 draft cần gắn lại relation.</span>
+                </article>
+                <article class="admin-mini-card">
+                  <strong>media asset sync</strong>
+                  <span>06 asset đang dùng chung cho 2 storefront block, nên rà `asset_id` duplicate.</span>
+                </article>
+              </div>
+            </article>
+
+            <article class="admin-panel">
+              <div class="admin-panel__head">
+                <div>
+                  <h2 class="admin-panel__title">Link nhanh</h2>
+                  <span class="admin-panel__subtitle">Đi tới các page quản lý liên quan</span>
+                </div>
+              </div>
+              <div class="admin-mini-stack">
+                <a class="admin-button admin-button--secondary" href="./admin_game_editor.html">
+                  <i class="bi bi-pencil-square"></i>
+                  Editor game chi tiết
+                </a>
+                <a class="admin-button admin-button--secondary" href="./admin_categories.html">
+                  <i class="bi bi-tags"></i>
+                  Category & content
+                </a>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="admin-sidebar-backdrop" data-admin-sidebar-backdrop></div>
+    <script src="./admin.js"></script>
+  </body>
+</html>
