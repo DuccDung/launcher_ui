@@ -419,6 +419,9 @@ productGalleries.forEach((gallery) => {
     0,
     thumbnails.findIndex((thumb) => thumb.classList.contains("is-active"))
   );
+  let productTouchStartX = 0;
+  let productTouchStartY = 0;
+
   function scrollActiveThumbIntoView() {
     const activeThumb = thumbnails[activeIndex];
 
@@ -507,6 +510,29 @@ productGalleries.forEach((gallery) => {
     });
   }
 
+  function handleProductTouchStart(event) {
+    const touch = event.changedTouches?.[0];
+    if (!touch) return;
+
+    productTouchStartX = touch.clientX;
+    productTouchStartY = touch.clientY;
+  }
+
+  function handleProductTouchEnd(event) {
+    const touch = event.changedTouches?.[0];
+    if (!touch) return;
+
+    const deltaX = touch.clientX - productTouchStartX;
+    const deltaY = touch.clientY - productTouchStartY;
+
+    if (Math.abs(deltaX) > 44 && Math.abs(deltaX) > Math.abs(deltaY) * 1.15) {
+      applyProductGallery(activeIndex + (deltaX < 0 ? 1 : -1));
+    }
+
+    productTouchStartX = 0;
+    productTouchStartY = 0;
+  }
+
   if (thumbsViewport && thumbsTrack) {
     thumbsViewport.addEventListener(
       "wheel",
@@ -523,5 +549,50 @@ productGalleries.forEach((gallery) => {
     );
   }
 
+  if (mainFrame) {
+    mainFrame.addEventListener("touchstart", handleProductTouchStart, {
+      passive: true,
+    });
+    mainFrame.addEventListener("touchend", handleProductTouchEnd, {
+      passive: true,
+    });
+    mainFrame.addEventListener("touchcancel", handleProductTouchEnd, {
+      passive: true,
+    });
+  }
+
   applyProductGallery(activeIndex);
+});
+
+const editionSwitchers = document.querySelectorAll("[data-edition-switcher]");
+
+editionSwitchers.forEach((switcher) => {
+  const editionButtons = Array.from(
+    switcher.querySelectorAll("[data-edition-option]")
+  );
+  const editionNote = switcher.querySelector("[data-edition-note]");
+
+  if (!editionButtons.length || !editionNote) return;
+
+  function applyEdition(activeButton) {
+    editionButtons.forEach((button) => {
+      const isActive = button === activeButton;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+
+    editionNote.textContent = activeButton.dataset.editionNote || "";
+  }
+
+  editionButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      applyEdition(button);
+    });
+  });
+
+  const initiallyActiveButton =
+    editionButtons.find((button) => button.classList.contains("is-active")) ||
+    editionButtons[0];
+
+  applyEdition(initiallyActiveButton);
 });
