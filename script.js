@@ -596,3 +596,43 @@ editionSwitchers.forEach((switcher) => {
 
   applyEdition(initiallyActiveButton);
 });
+
+const relatedCarousels = document.querySelectorAll("[data-related-carousel]");
+
+relatedCarousels.forEach((carousel) => {
+  const viewport = carousel.querySelector("[data-related-viewport]");
+  const prevButton = carousel.querySelector("[data-related-prev]");
+  const nextButton = carousel.querySelector("[data-related-next]");
+  const firstCard = carousel.querySelector(".product-related-card");
+  const track = carousel.querySelector(".product-related-track");
+
+  if (!viewport || !firstCard) return;
+
+  function getScrollAmount() {
+    const gap = track
+      ? Number.parseFloat(window.getComputedStyle(track).columnGap) ||
+        Number.parseFloat(window.getComputedStyle(track).gap) ||
+        24
+      : 24;
+    return firstCard.getBoundingClientRect().width + gap;
+  }
+
+  function scrollRelated(direction) {
+    viewport.scrollBy({
+      left: getScrollAmount() * direction * 2,
+      behavior: "smooth",
+    });
+  }
+
+  if (prevButton) {
+    prevButton.addEventListener("click", () => {
+      scrollRelated(-1);
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", () => {
+      scrollRelated(1);
+    });
+  }
+});
