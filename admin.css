@@ -2666,6 +2666,7 @@ body.admin-auth-body {
   padding: 0 14px;
   font-size: 0.76rem;
   border-radius: 12px;
+  text-align: center;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
@@ -2783,6 +2784,7 @@ body.admin-auth-body {
   padding: 0 12px;
   font-size: 0.74rem;
   border-radius: 12px;
+  text-align: center;
 }
 
 .admin-crud-item-actions .admin-button--secondary {
@@ -2805,9 +2807,16 @@ body.admin-auth-body {
 }
 
 .admin-crud-panel--list .admin-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 28px;
+  min-width: 96px;
   padding: 0 12px;
   font-size: 0.66rem;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
 }
 
 @media (max-width: 1199.98px) {

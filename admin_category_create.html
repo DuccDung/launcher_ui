@@ -44,18 +44,30 @@
         <div class="admin-sidebar__group">
           <div class="admin-sidebar__label">Điều hướng</div>
           <nav class="admin-nav">
-            <a href="./admin_dashboard.html"><i class="bi bi-grid-1x2-fill"></i>Dashboard</a>
-            <a href="./admin_games.html"><i class="bi bi-controller"></i>Game catalog</a>
-            <a href="./admin_game_editor.html"><i class="bi bi-pencil-square"></i>Game editor</a>
-            <a href="./admin_categories.html" class="is-active"><i class="bi bi-tags-fill"></i>Category & content</a>
+            <a href="./admin_dashboard.html"
+              ><i class="bi bi-grid-1x2-fill"></i>Dashboard</a
+            >
+            <a href="./admin_games.html"
+              ><i class="bi bi-controller"></i>Game catalog</a
+            >
+            <a href="./admin_game_editor.html"
+              ><i class="bi bi-pencil-square"></i>Game editor</a
+            >
+            <a href="./admin_categories.html" class="is-active"
+              ><i class="bi bi-tags-fill"></i>Category & content</a
+            >
           </nav>
         </div>
 
         <div class="admin-sidebar__group">
           <div class="admin-sidebar__label">CRUD</div>
           <nav class="admin-nav">
-            <a href="#" class="is-active"><i class="bi bi-plus-square-fill"></i>Tạo category</a>
-            <a href="./admin_categories.html"><i class="bi bi-list-ul"></i>Danh sách category</a>
+            <a href="#" class="is-active"
+              ><i class="bi bi-plus-square-fill"></i>Tạo category</a
+            >
+            <a href="./admin_categories.html"
+              ><i class="bi bi-list-ul"></i>Danh sách category</a
+            >
             <a href="#"><i class="bi bi-diagram-3-fill"></i>Parent tree</a>
           </nav>
         </div>
@@ -64,8 +76,8 @@
           <span class="admin-sidebar-card__eyebrow">Simple CRUD</span>
           <h3>Chỉ giữ các thao tác cần thiết</h3>
           <p>
-            Màn hình này chỉ dùng để thêm, sửa, xóa và xem nhanh category.
-            Không có SEO, media hay mapping nội dung để thao tác nhanh hơn.
+            Màn hình này chỉ dùng để thêm, sửa, xóa và xem nhanh category. Không
+            có SEO, media hay mapping nội dung để thao tác nhanh hơn.
           </p>
           <strong>18 category đang hoạt động</strong>
         </div>
@@ -84,13 +96,19 @@
             </button>
             <div class="admin-topbar__title">
               <strong>CRUD category</strong>
-              <span>Tạo mới, chỉnh sửa và xóa category trong cùng một màn hình</span>
+              <span
+                >Tạo mới, chỉnh sửa và xóa category trong cùng một màn
+                hình</span
+              >
             </div>
           </div>
 
           <div class="admin-topbar__right">
             <div class="admin-topbar-search">
-              <input type="search" placeholder="Tìm category theo tên hoặc slug..." />
+              <input
+                type="search"
+                placeholder="Tìm category theo tên hoặc slug..."
+              />
               <i class="bi bi-search"></i>
             </div>
           </div>
@@ -101,12 +119,17 @@
             <div>
               <h1>Category CRUD</h1>
               <p>
-                Giao diện tối giản dành riêng cho thao tác tạo mới, cập nhật và xóa
-                category. Mọi thứ được gom về một màn hình để xử lý nhanh hơn.
+                Tạo mới, cập nhật và xóa thể loại game một cách nhanh chóng và
+                dễ dàng. Chọn một category từ danh sách để chỉnh sửa hoặc xóa,
+                hoặc sử dụng form bên cạnh để thêm category mới. Các thay đổi sẽ
+                được cập nhật ngay lập tức trên store sau khi bạn lưu.
               </p>
             </div>
             <div class="admin-page-intro__actions">
-              <a class="admin-button admin-button--secondary" href="./admin_categories.html">
+              <a
+                class="admin-button admin-button--secondary"
+                href="./admin_categories.html"
+              >
                 <i class="bi bi-arrow-left"></i>
                 Về danh sách
               </a>
@@ -137,7 +160,9 @@
           </section>
 
           <section class="admin-builder-grid admin-builder-grid--crud">
-            <article class="admin-panel admin-crud-panel admin-crud-panel--form">
+            <article
+              class="admin-panel admin-crud-panel admin-crud-panel--form"
+            >
               <div class="admin-panel__head">
                 <div>
                   <h2 class="admin-panel__title">Form category</h2>
@@ -151,20 +176,19 @@
               <div class="admin-form-grid">
                 <div class="admin-field">
                   <label for="category-name">Tên category</label>
-                  <input id="category-name" type="text" value="Soulslike Việt hóa" />
+                  <input
+                    id="category-name"
+                    type="text"
+                    value="Soulslike Việt hóa"
+                  />
                 </div>
                 <div class="admin-field">
                   <label for="category-slug">Slug</label>
-                  <input id="category-slug" type="text" value="soulslike-viet-hoa" />
-                </div>
-                <div class="admin-field">
-                  <label for="category-parent">Category cha</label>
-                  <select id="category-parent">
-                    <option>Không có category cha</option>
-                    <option selected>Nhập vai</option>
-                    <option>Hành động</option>
-                    <option>Indie</option>
-                  </select>
+                  <input
+                    id="category-slug"
+                    type="text"
+                    value="soulslike-viet-hoa"
+                  />
                 </div>
                 <div class="admin-field">
                   <label for="category-status">Trạng thái</label>
@@ -178,22 +202,26 @@
                   <label for="category-order">Thứ tự hiển thị</label>
                   <input id="category-order" type="number" value="7" />
                 </div>
-                <div class="admin-field">
-                  <label for="category-id">Category ID</label>
-                  <input id="category-id" type="text" value="CAT-058" />
-                </div>
                 <div class="admin-field admin-field--full">
                   <label for="category-description">Mô tả ngắn</label>
-                  <textarea id="category-description">Nhóm game có độ khó cao, nhịp chiến đấu nặng và tập trung nhiều vào boss fight.</textarea>
+                  <textarea id="category-description">
+Nhóm game có độ khó cao, nhịp chiến đấu nặng và tập trung nhiều vào boss fight.</textarea
+                  >
                 </div>
               </div>
 
               <div class="admin-toolbar-actions admin-crud-actions">
-                <button class="admin-button admin-button--primary" type="button">
+                <button
+                  class="admin-button admin-button--primary"
+                  type="button"
+                >
                   <i class="bi bi-plus-circle"></i>
                   Thêm category
                 </button>
-                <button class="admin-button admin-button--secondary" type="button">
+                <button
+                  class="admin-button admin-button--secondary"
+                  type="button"
+                >
                   <i class="bi bi-pencil-square"></i>
                   Cập nhật
                 </button>
@@ -201,29 +229,13 @@
                   <i class="bi bi-trash3"></i>
                   Xóa
                 </button>
-                <button class="admin-button admin-button--secondary" type="button">
+                <button
+                  class="admin-button admin-button--secondary"
+                  type="button"
+                >
                   <i class="bi bi-arrow-clockwise"></i>
                   Làm mới
                 </button>
-              </div>
-
-              <div class="admin-crud-summary-grid">
-                <article class="admin-crud-summary-card">
-                  <span>Category đang chọn</span>
-                  <strong>Soulslike Việt hóa</strong>
-                </article>
-                <article class="admin-crud-summary-card">
-                  <span>Parent</span>
-                  <strong>Nhập vai</strong>
-                </article>
-                <article class="admin-crud-summary-card">
-                  <span>Game đang map</span>
-                  <strong>12 game</strong>
-                </article>
-                <article class="admin-crud-summary-card">
-                  <span>Sort order</span>
-                  <strong>#07</strong>
-                </article>
               </div>
             </article>
 
@@ -241,7 +253,11 @@
               <div class="admin-crud-filter-row">
                 <div class="admin-field">
                   <label for="category-keyword">Từ khóa</label>
-                  <input id="category-keyword" type="search" placeholder="Ví dụ: nhập vai, soulslike..." />
+                  <input
+                    id="category-keyword"
+                    type="search"
+                    placeholder="Ví dụ: nhập vai, soulslike..."
+                  />
                 </div>
                 <div class="admin-field">
                   <label for="category-filter-status">Lọc trạng thái</label>
@@ -267,8 +283,18 @@
                     <span class="admin-soft-chip">Order: #01</span>
                   </div>
                   <div class="admin-toolbar-actions admin-crud-item-actions">
-                    <button class="admin-button admin-button--secondary" type="button">Sửa</button>
-                    <button class="admin-button admin-button--danger" type="button">Xóa</button>
+                    <button
+                      class="admin-button admin-button--secondary"
+                      type="button"
+                    >
+                      Sửa
+                    </button>
+                    <button
+                      class="admin-button admin-button--danger"
+                      type="button"
+                    >
+                      Xóa
+                    </button>
                   </div>
                 </article>
 
@@ -284,8 +310,18 @@
                     <span class="admin-soft-chip">Order: #02</span>
                   </div>
                   <div class="admin-toolbar-actions admin-crud-item-actions">
-                    <button class="admin-button admin-button--secondary" type="button">Sửa</button>
-                    <button class="admin-button admin-button--danger" type="button">Xóa</button>
+                    <button
+                      class="admin-button admin-button--secondary"
+                      type="button"
+                    >
+                      Sửa
+                    </button>
+                    <button
+                      class="admin-button admin-button--danger"
+                      type="button"
+                    >
+                      Xóa
+                    </button>
                   </div>
                 </article>
 
@@ -296,13 +332,25 @@
                   </div>
                   <div class="admin-crud-record__slug">/soulslike-viet-hoa</div>
                   <div class="admin-chip-row admin-crud-meta">
-                    <span class="admin-soft-chip is-active">Parent: nhập vai</span>
+                    <span class="admin-soft-chip is-active"
+                      >Parent: nhập vai</span
+                    >
                     <span class="admin-soft-chip">12 game</span>
                     <span class="admin-soft-chip">Order: #07</span>
                   </div>
                   <div class="admin-toolbar-actions admin-crud-item-actions">
-                    <button class="admin-button admin-button--secondary" type="button">Sửa</button>
-                    <button class="admin-button admin-button--danger" type="button">Xóa</button>
+                    <button
+                      class="admin-button admin-button--secondary"
+                      type="button"
+                    >
+                      Sửa
+                    </button>
+                    <button
+                      class="admin-button admin-button--danger"
+                      type="button"
+                    >
+                      Xóa
+                    </button>
                   </div>
                 </article>
 
@@ -318,8 +366,18 @@
                     <span class="admin-soft-chip">Order: #09</span>
                   </div>
                   <div class="admin-toolbar-actions admin-crud-item-actions">
-                    <button class="admin-button admin-button--secondary" type="button">Sửa</button>
-                    <button class="admin-button admin-button--danger" type="button">Xóa</button>
+                    <button
+                      class="admin-button admin-button--secondary"
+                      type="button"
+                    >
+                      Sửa
+                    </button>
+                    <button
+                      class="admin-button admin-button--danger"
+                      type="button"
+                    >
+                      Xóa
+                    </button>
                   </div>
                 </article>
 
@@ -335,8 +393,18 @@
                     <span class="admin-soft-chip">Order: #11</span>
                   </div>
                   <div class="admin-toolbar-actions admin-crud-item-actions">
-                    <button class="admin-button admin-button--secondary" type="button">Sửa</button>
-                    <button class="admin-button admin-button--danger" type="button">Xóa</button>
+                    <button
+                      class="admin-button admin-button--secondary"
+                      type="button"
+                    >
+                      Sửa
+                    </button>
+                    <button
+                      class="admin-button admin-button--danger"
+                      type="button"
+                    >
+                      Xóa
+                    </button>
                   </div>
                 </article>
 
@@ -352,8 +420,18 @@
                     <span class="admin-soft-chip">Order: #14</span>
                   </div>
                   <div class="admin-toolbar-actions admin-crud-item-actions">
-                    <button class="admin-button admin-button--secondary" type="button">Sửa</button>
-                    <button class="admin-button admin-button--danger" type="button">Xóa</button>
+                    <button
+                      class="admin-button admin-button--secondary"
+                      type="button"
+                    >
+                      Sửa
+                    </button>
+                    <button
+                      class="admin-button admin-button--danger"
+                      type="button"
+                    >
+                      Xóa
+                    </button>
                   </div>
                 </article>
               </div>
