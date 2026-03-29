@@ -734,11 +734,16 @@ img {
 .admin-trend {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
+  min-height: 28px;
   padding: 6px 8px;
   border-radius: 999px;
   font-size: 0.74rem;
   font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .admin-trend.is-up {
@@ -800,13 +805,20 @@ img {
 }
 
 .admin-panel__pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
   padding: 7px 10px;
   border-radius: 999px;
   background: rgba(90, 140, 255, 0.12);
   color: #a5c4ff;
   font-size: 0.72rem;
   font-weight: 700;
+  line-height: 1;
+  text-align: center;
   letter-spacing: 0.08em;
+  white-space: nowrap;
   text-transform: uppercase;
 }
 
@@ -879,13 +891,25 @@ img {
   overflow-wrap: anywhere;
 }
 
-.admin-queue-card span {
+.admin-queue-card > span {
   display: block;
   margin-top: 6px;
   color: var(--admin-text-soft);
   font-size: 0.8rem;
   line-height: 1.45;
   overflow-wrap: anywhere;
+}
+
+.admin-queue-card__head .admin-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  min-width: 102px;
+  min-height: 30px;
+  padding: 0 12px;
+  line-height: 1;
+  text-align: center;
 }
 
 .admin-status {
@@ -897,6 +921,8 @@ img {
   border-radius: 999px;
   font-size: 0.72rem;
   font-weight: 700;
+  line-height: 1;
+  text-align: center;
   white-space: nowrap;
 }
 
