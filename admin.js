@@ -261,8 +261,37 @@ function initAdminCharts() {
   }
 }
 
+function slugifyCategoryName(value) {
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .replace(/-{2,}/g, "-");
+}
+
+function initCategorySlugSync() {
+  const categoryNameInput = document.getElementById("category-name");
+  const categorySlugInput = document.getElementById("category-slug");
+
+  if (!categoryNameInput || !categorySlugInput) return;
+
+  const syncSlug = () => {
+    categorySlugInput.value = slugifyCategoryName(categoryNameInput.value);
+  };
+
+  syncSlug();
+  categoryNameInput.addEventListener("input", syncSlug);
+}
+
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initAdminCharts);
+  document.addEventListener("DOMContentLoaded", () => {
+    initAdminCharts();
+    initCategorySlugSync();
+  });
 } else {
   initAdminCharts();
+  initCategorySlugSync();
 }
