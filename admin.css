@@ -3424,6 +3424,16 @@ body.admin-auth-body {
   gap: 8px;
 }
 
+.admin-json-helper a {
+  color: #a8c6ff;
+  text-decoration: none;
+}
+
+.admin-json-helper a:hover {
+  color: #dce8ff;
+  text-decoration: underline;
+}
+
 .admin-article-builder-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3873,5 +3883,315 @@ body.admin-auth-body {
   .admin-article-block p,
   .admin-article-list li {
     font-size: 0.9rem;
+  }
+}
+
+.admin-user-ops-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(360px, 0.88fr);
+  gap: 16px;
+}
+
+.admin-user-ops-panel--wide {
+  grid-column: 1 / -1;
+}
+
+.admin-payment-quickstats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.admin-quickstat {
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(118, 137, 176, 0.16);
+  background:
+    linear-gradient(180deg, rgba(15, 22, 37, 0.98) 0%, rgba(10, 15, 26, 0.92) 100%);
+}
+
+.admin-quickstat strong {
+  display: block;
+  color: #f4f8ff;
+  font-family: "Sora", sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.admin-quickstat span {
+  display: block;
+  margin-top: 6px;
+  color: rgba(214, 225, 243, 0.72);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
+
+.admin-user-flow-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 16px;
+}
+
+.admin-user-ops-list,
+.admin-support-list,
+.admin-voucher-studio {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-user-ops-card {
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(118, 137, 176, 0.16);
+  background:
+    linear-gradient(180deg, rgba(16, 24, 40, 0.98) 0%, rgba(9, 14, 24, 0.94) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 14px 24px rgba(5, 10, 20, 0.18);
+}
+
+.admin-user-ops-card.is-active,
+.admin-user-ops-detail,
+.admin-voucher-preview {
+  border-radius: 18px;
+  border: 1px solid rgba(111, 158, 255, 0.26);
+  background:
+    radial-gradient(circle at top right, rgba(111, 158, 255, 0.08), transparent 30%),
+    linear-gradient(180deg, rgba(18, 29, 49, 0.98) 0%, rgba(10, 17, 31, 0.94) 100%);
+}
+
+.admin-user-ops-card__head,
+.admin-voucher-preview__head,
+.admin-user-ops-detail__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.admin-user-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.admin-user-avatar {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(111, 158, 255, 0.9) 0%, rgba(79, 117, 255, 0.84) 100%);
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.admin-user-ops-card__title {
+  margin: 0;
+  color: #f5f9ff;
+  font-size: 0.96rem;
+  line-height: 1.45;
+}
+
+.admin-user-ops-card__sub,
+.admin-user-ops-card__note,
+.admin-user-ops-detail__head span,
+.admin-proof-card__meta,
+.admin-support-card__message,
+.admin-voucher-preview p {
+  margin: 0;
+  color: rgba(214, 225, 243, 0.74);
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+.admin-user-ops-card__meta,
+.admin-user-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.admin-user-ops-card__stat,
+.admin-user-detail-item {
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(118, 137, 176, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.admin-user-ops-card__stat span,
+.admin-user-detail-item span {
+  display: block;
+  color: rgba(214, 225, 243, 0.62);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.admin-user-ops-card__stat strong,
+.admin-user-detail-item strong {
+  display: block;
+  margin-top: 8px;
+  color: #f5f9ff;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.admin-user-ops-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.admin-user-ops-detail,
+.admin-voucher-preview {
+  padding: 16px;
+}
+
+.admin-proof-card {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(118, 137, 176, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.admin-proof-card__preview {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  min-height: 180px;
+  border-radius: 14px;
+  border: 1px dashed rgba(111, 158, 255, 0.24);
+  background:
+    radial-gradient(circle at top center, rgba(111, 158, 255, 0.08), transparent 46%),
+    rgba(8, 13, 24, 0.94);
+  color: rgba(214, 225, 243, 0.72);
+}
+
+.admin-proof-card__preview i {
+  font-size: 2rem;
+}
+
+.admin-proof-card__meta {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.admin-support-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.admin-support-card__tags span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(227, 236, 249, 0.82);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.admin-voucher-preview__code {
+  margin-top: 16px;
+  color: #ffffff;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.26rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.admin-voucher-preview__rows {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.admin-voucher-preview__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(224, 234, 247, 0.82);
+  font-size: 0.78rem;
+}
+
+.admin-voucher-preview__row strong {
+  color: #ffffff;
+}
+
+.admin-voucher-preview__row.is-total {
+  background: rgba(73, 215, 168, 0.1);
+}
+
+.admin-voucher-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.admin-voucher-meter {
+  position: relative;
+  margin-top: 14px;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.admin-voucher-meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background:
+    linear-gradient(90deg, rgba(255, 179, 89, 0.96) 0%, rgba(255, 111, 65, 0.92) 100%);
+}
+
+@media (max-width: 1399.98px) {
+  .admin-user-ops-grid,
+  .admin-user-flow-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-voucher-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 991.98px) {
+  .admin-payment-quickstats,
+  .admin-user-ops-card__meta,
+  .admin-user-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .admin-voucher-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-user-ops-card__actions .admin-button {
+    width: 100%;
+  }
+
+  .admin-user-ops-card__head,
+  .admin-voucher-preview__head,
+  .admin-user-ops-detail__head {
+    flex-direction: column;
   }
 }

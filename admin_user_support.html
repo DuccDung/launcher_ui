@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Support | NestG Admin</title>
+    <link rel="icon" type="image/png" href="./assets/img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&family=Sora:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+  <body class="admin-body admin-user-ops-page">
+    <div class="admin-app-shell">
+      <aside class="admin-sidebar" data-admin-sidebar>
+        <div class="admin-sidebar__head">
+          <div class="admin-sidebar__brand">
+            <div class="admin-sidebar__brand-mark"><img src="./assets/img/logo.png" alt="NestG" /></div>
+            <div class="admin-sidebar__brand-copy"><strong>NestG</strong><span>User Support</span></div>
+          </div>
+          <button class="admin-icon-button admin-sidebar-close" type="button" aria-label="Đóng menu quản trị" data-admin-sidebar-close>
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="admin-sidebar__group">
+          <div class="admin-sidebar__label">Điều hướng</div>
+          <nav class="admin-nav">
+            <a href="./admin_dashboard.html"><i class="bi bi-grid-1x2-fill"></i>Dashboard</a>
+            <a href="./admin_games.html"><i class="bi bi-controller"></i>Game catalog</a>
+            <a href="./admin_game_workspace.html"><i class="bi bi-bezier2"></i>Game workspace</a>
+            <a href="./admin_user_payments.html"><i class="bi bi-bank2"></i>User payments</a>
+            <a href="./admin_user_support.html" class="is-active"><i class="bi bi-headset"></i>User support</a>
+            <a href="./admin_vouchers.html"><i class="bi bi-ticket-perforated"></i>Vouchers</a>
+            <a href="./admin_categories.html"><i class="bi bi-tags-fill"></i>Category & content</a>
+          </nav>
+        </div>
+
+        <div class="admin-sidebar__group">
+          <div class="admin-sidebar__label">Support flow</div>
+          <nav class="admin-nav">
+            <a href="#ticket-queue" class="is-active"><i class="bi bi-life-preserver"></i>Ticket queue</a>
+            <a href="#support-macros"><i class="bi bi-chat-dots"></i>Macro phản hồi</a>
+            <a href="./admin_user_payments.html"><i class="bi bi-bank2"></i>Mở payment</a>
+            <a href="./admin_vouchers.html"><i class="bi bi-ticket-perforated"></i>Mở voucher</a>
+          </nav>
+        </div>
+
+        <div class="admin-sidebar-card">
+          <span class="admin-sidebar-card__eyebrow">Support desk</span>
+          <h3>Tách riêng ticket hỗ trợ để đội vận hành trả lời nhanh hơn</h3>
+          <p>Trang này tập trung vào user cần trợ giúp, escalation, macro phản hồi và các case liên quan account, file, thanh toán, voucher.</p>
+          <strong>Reply-first workflow</strong>
+        </div>
+      </aside>
+
+      <div class="admin-content-shell">
+        <header class="admin-topbar">
+          <div class="admin-topbar__left">
+            <button class="admin-icon-button admin-sidebar-toggle" type="button" aria-label="Mở menu quản trị" data-admin-sidebar-toggle>
+              <i class="bi bi-list"></i>
+            </button>
+            <div class="admin-topbar__title">
+              <strong>User support queue</strong>
+              <span>Chăm sóc ticket về file tải, account, payment mismatch, voucher và quyền lợi VIP.</span>
+            </div>
+          </div>
+          <div class="admin-topbar__right">
+            <div class="admin-topbar-search">
+              <input type="search" placeholder="Tìm ticket, email, user_id, nội dung chat..." />
+              <i class="bi bi-search"></i>
+            </div>
+          </div>
+        </header>
+
+        <main class="admin-main">
+          <section class="admin-page-intro">
+            <div>
+              <h1>Trang riêng cho user cần trợ giúp</h1>
+              <p>Đưa ticket hỗ trợ sang màn riêng giúp team chăm sóc user tập trung vào SLA, ưu tiên, escalation và xử lý sau mua hàng.</p>
+            </div>
+            <div class="admin-page-intro__actions">
+              <a class="admin-button admin-button--secondary" href="./admin_user_payments.html"><i class="bi bi-bank2"></i>Sang payment</a>
+              <a class="admin-button admin-button--primary" href="./admin_vouchers.html"><i class="bi bi-ticket-perforated-fill"></i>Sang voucher</a>
+            </div>
+          </section>
+
+          <section class="admin-kpi-grid">
+            <article class="admin-kpi-card"><div class="admin-kpi-card__head"><span class="admin-kpi-card__label">Ticket mở</span><span class="admin-kpi-card__icon"><i class="bi bi-headset"></i></span></div><strong>11</strong><div class="admin-kpi-card__meta"><span class="admin-trend is-up"><i class="bi bi-arrow-up-right"></i> 3 khẩn</span><span>Ca hiện tại</span></div></article>
+            <article class="admin-kpi-card"><div class="admin-kpi-card__head"><span class="admin-kpi-card__label">Phản hồi đầu tiên</span><span class="admin-kpi-card__icon"><i class="bi bi-chat-square-heart"></i></span></div><strong>07m</strong><div class="admin-kpi-card__meta"><span class="admin-trend is-ok"><i class="bi bi-check2"></i> đạt SLA</span><span>Mục tiêu dưới 10 phút</span></div></article>
+            <article class="admin-kpi-card"><div class="admin-kpi-card__head"><span class="admin-kpi-card__label">Case account</span><span class="admin-kpi-card__icon"><i class="bi bi-person-vcard"></i></span></div><strong>4</strong><div class="admin-kpi-card__meta"><span class="admin-trend is-check"><i class="bi bi-arrow-repeat"></i> cần reset</span><span>Liên quan đổi pass</span></div></article>
+            <article class="admin-kpi-card"><div class="admin-kpi-card__head"><span class="admin-kpi-card__label">Case payment</span><span class="admin-kpi-card__icon"><i class="bi bi-wallet2"></i></span></div><strong>3</strong><div class="admin-kpi-card__meta"><span class="admin-trend is-progress"><i class="bi bi-shuffle"></i> đang nối team</span><span>Đang cần payment team</span></div></article>
+            <article class="admin-kpi-card"><div class="admin-kpi-card__head"><span class="admin-kpi-card__label">VIP user</span><span class="admin-kpi-card__icon"><i class="bi bi-gem"></i></span></div><strong>2</strong><div class="admin-kpi-card__meta"><span class="admin-trend is-up"><i class="bi bi-star-fill"></i> ưu tiên</span><span>Phản hồi trước</span></div></article>
+          </section>
+
+          <section class="admin-user-ops-grid">
+            <article class="admin-panel admin-user-ops-panel admin-user-ops-panel--wide" id="ticket-queue">
+              <div class="admin-panel__head">
+                <div><h2 class="admin-panel__title">Danh sách ticket hỗ trợ</h2><span class="admin-panel__subtitle">Ưu tiên theo mức khẩn, nguồn chat và giá trị đơn hàng.</span></div>
+                <span class="admin-panel__pill">support</span>
+              </div>
+              <div class="admin-support-list">
+                <article class="admin-user-ops-card admin-support-card">
+                  <div class="admin-user-ops-card__head"><div class="admin-user-chip"><span class="admin-user-avatar">MT</span><div><h3 class="admin-user-ops-card__title">Không nhận được file sau thanh toán</h3><p class="admin-user-ops-card__sub">minhthu@icloud.com • Ticket #SP-1922</p></div></div><span class="admin-status is-open">Khẩn</span></div>
+                  <div class="admin-support-card__tags"><span>Website chat</span><span>Game file</span><span>Đã trả tiền</span></div>
+                  <p class="admin-support-card__message">"Em đã chuyển khoản 20 phút trước nhưng chưa thấy link tải và chưa có account trong mail."</p>
+                  <div class="admin-user-ops-card__actions"><button class="admin-button admin-button--secondary" type="button"><i class="bi bi-link-45deg"></i>Mở payment</button><button class="admin-button admin-button--primary" type="button"><i class="bi bi-reply-fill"></i>Trả lời nhanh</button><button class="admin-button admin-button--secondary" type="button"><i class="bi bi-person-vcard"></i>Gắn account</button></div>
+                </article>
+                <article class="admin-user-ops-card admin-support-card">
+                  <div class="admin-user-ops-card__head"><div class="admin-user-chip"><span class="admin-user-avatar">DA</span><div><h3 class="admin-user-ops-card__title">Voucher hết hiệu lực khi checkout</h3><p class="admin-user-ops-card__sub">ducanh@gmail.com • Ticket #SP-1914</p></div></div><span class="admin-status is-progress">Đang xử lý</span></div>
+                  <div class="admin-support-card__tags"><span>Discord</span><span>Voucher</span><span>VIP user</span></div>
+                  <p class="admin-support-card__message">User nhập mã <strong>SPRINGGOLD</strong> nhưng hệ thống báo không đủ điều kiện dù đơn trên 500k.</p>
+                  <div class="admin-user-ops-card__actions"><button class="admin-button admin-button--secondary" type="button"><i class="bi bi-ticket-perforated"></i>Mở voucher</button><button class="admin-button admin-button--secondary" type="button"><i class="bi bi-chat-left-dots"></i>Log nội bộ</button></div>
+                </article>
+                <article class="admin-user-ops-card admin-support-card">
+                  <div class="admin-user-ops-card__head"><div class="admin-user-chip"><span class="admin-user-avatar">HP</span><div><h3 class="admin-user-ops-card__title">Account game bị đổi mật khẩu</h3><p class="admin-user-ops-card__sub">hoapham@proton.me • Ticket #SP-1909</p></div></div><span class="admin-status is-check">Cần xác minh</span></div>
+                  <div class="admin-support-card__tags"><span>Zalo</span><span>Account</span><span>Bảo hành</span></div>
+                  <p class="admin-support-card__message">Có dấu hiệu user khác đã truy cập account được cấp. Cần kiểm tra log và cấp lại pass sạch.</p>
+                  <div class="admin-user-ops-card__actions"><button class="admin-button admin-button--secondary" type="button"><i class="bi bi-key"></i>Reset account</button><button class="admin-button admin-button--primary" type="button"><i class="bi bi-shield-lock"></i>Escalate</button></div>
+                </article>
+              </div>
+            </article>
+
+            <article class="admin-panel admin-user-ops-panel" id="support-macros">
+              <div class="admin-panel__head"><div><h2 class="admin-panel__title">Macro trả lời nhanh</h2><span class="admin-panel__subtitle">Các mẫu dùng nhiều nhất trong ca trực.</span></div><span class="admin-panel__pill">macros</span></div>
+              <div class="admin-json-helper">
+                <strong>File chưa gửi xong</strong>
+                <span>Bên em đã nhận giao dịch và đang kiểm tra link tải/account, dự kiến phản hồi lại trong ít phút tới.</span>
+                <strong>Payment lệch tiền</strong>
+                <span>Bên em thấy giao dịch lệch số tiền so với order. Anh/chị vui lòng gửi lại biên lai hoặc xác nhận mã giảm giá đã dùng.</span>
+                <strong>Voucher không áp được</strong>
+                <span>Nhờ anh/chị chụp lại màn checkout, mã voucher đã nhập và giá trị giỏ hàng để bên em kiểm tra rule áp mã.</span>
+              </div>
+            </article>
+
+            <article class="admin-panel admin-user-ops-panel">
+              <div class="admin-panel__head"><div><h2 class="admin-panel__title">Quy tắc escalation</h2><span class="admin-panel__subtitle">Khi nào cần chuyển ca hoặc mở thêm module khác.</span></div><span class="admin-panel__pill">ops notes</span></div>
+              <div class="admin-json-helper">
+                <strong>Liên quan giao dịch tiền</strong>
+                <span>Chuyển qua <a href="./admin_user_payments.html">User payments</a> nếu ticket cần đối soát biên lai hoặc số tiền.</span>
+                <strong>Liên quan mã giảm giá</strong>
+                <span>Chuyển qua <a href="./admin_vouchers.html">Vouchers</a> khi cần sửa rule, gia hạn hoặc kiểm tra quota mã.</span>
+                <strong>Liên quan account/file</strong>
+                <span>Nếu cần cấp lại account hoặc file game, kết hợp kiểm tra thêm ở workspace game tương ứng.</span>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="admin-sidebar-backdrop" data-admin-sidebar-backdrop></div>
+    <script src="./admin.js"></script>
+  </body>
+</html>

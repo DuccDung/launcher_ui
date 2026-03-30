@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vouchers | NestG Admin</title>
+    <link rel="icon" type="image/png" href="./assets/img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&family=Sora:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+  <body class="admin-body admin-user-ops-page">
+    <div class="admin-app-shell">
+      <aside class="admin-sidebar" data-admin-sidebar>
+        <div class="admin-sidebar__head">
+          <div class="admin-sidebar__brand">
+            <div class="admin-sidebar__brand-mark"><img src="./assets/img/logo.png" alt="NestG" /></div>
+            <div class="admin-sidebar__brand-copy"><strong>NestG</strong><span>Voucher Studio</span></div>
+          </div>
+          <button class="admin-icon-button admin-sidebar-close" type="button" aria-label="Đóng menu quản trị" data-admin-sidebar-close>
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="admin-sidebar__group">
+          <div class="admin-sidebar__label">Điều hướng</div>
+          <nav class="admin-nav">
+            <a href="./admin_dashboard.html"><i class="bi bi-grid-1x2-fill"></i>Dashboard</a>
+            <a href="./admin_games.html"><i class="bi bi-controller"></i>Game catalog</a>
+            <a href="./admin_game_workspace.html"><i class="bi bi-bezier2"></i>Game workspace</a>
+            <a href="./admin_user_payments.html"><i class="bi bi-bank2"></i>User payments</a>
+            <a href="./admin_user_support.html"><i class="bi bi-headset"></i>User support</a>
+            <a href="./admin_vouchers.html" class="is-active"><i class="bi bi-ticket-perforated"></i>Vouchers</a>
+            <a href="./admin_categories.html"><i class="bi bi-tags-fill"></i>Category & content</a>
+          </nav>
+        </div>
+
+        <div class="admin-sidebar__group">
+          <div class="admin-sidebar__label">Voucher flow</div>
+          <nav class="admin-nav">
+            <a href="#voucher-create" class="is-active"><i class="bi bi-plus-square"></i>Tạo voucher</a>
+            <a href="#voucher-list"><i class="bi bi-stars"></i>Kho chiến dịch</a>
+            <a href="./admin_user_payments.html"><i class="bi bi-bank2"></i>Kiểm tra payment</a>
+            <a href="./admin_user_support.html"><i class="bi bi-headset"></i>Kiểm tra support</a>
+          </nav>
+        </div>
+
+        <div class="admin-sidebar-card">
+          <span class="admin-sidebar-card__eyebrow">Voucher campaigns</span>
+          <h3>Tạo, preview và theo dõi hiệu quả voucher ở page riêng</h3>
+          <p>Trang này dành riêng cho mã giảm giá, target user, rule áp dụng, quota, thời gian chạy và hiệu quả sử dụng.</p>
+          <strong>Campaign-first workflow</strong>
+        </div>
+      </aside>
+
+      <div class="admin-content-shell">
+        <header class="admin-topbar">
+          <div class="admin-topbar__left">
+            <button class="admin-icon-button admin-sidebar-toggle" type="button" aria-label="Mở menu quản trị" data-admin-sidebar-toggle>
+              <i class="bi bi-list"></i>
+            </button>
+            <div class="admin-topbar__title">
+              <strong>Voucher studio</strong>
+              <span>Tạo mã giảm giá, preview cách hiển thị và theo dõi conversion theo chiến dịch.</span>
+            </div>
+          </div>
+          <div class="admin-topbar__right">
+            <div class="admin-topbar-search">
+              <input type="search" placeholder="Tìm mã voucher, campaign, target, rule..." />
+              <i class="bi bi-search"></i>
+            </div>
+          </div>
+        </header>
+
+        <main class="admin-main">
+          <section class="admin-page-intro">
+            <div>
+              <h1>Trang riêng cho tạo voucher</h1>
+              <p>Tách riêng khu voucher để dễ làm campaign, quản lý quota, xem preview và theo dõi các mã đang chạy hoặc sắp hết hạn.</p>
+            </div>
+            <div class="admin-page-intro__actions">
+              <a class="admin-button admin-button--secondary" href="./admin_user_payments.html"><i class="bi bi-bank2"></i>Sang payment</a>
+              <a class="admin-button admin-button--secondary" href="./admin_user_support.html"><i class="bi bi-headset"></i>Sang support</a>
+              <button class="admin-button admin-button--primary" type="button"><i class="bi bi-send-check"></i>Publish campaign</button>
+            </div>
+          </section>
+
+          <section class="admin-kpi-grid">
+            <article class="admin-kpi-card"><div class="admin-kpi-card__head"><span class="admin-kpi-card__label">Voucher đang chạy</span><span class="admin-kpi-card__icon"><i class="bi bi-ticket-perforated"></i></span></div><strong>9</strong><div class="admin-kpi-card__meta"><span class="admin-trend is-up"><i class="bi bi-arrow-up-right"></i> 2 mới</span><span>Trong 7 ngày</span></div></article>
+            <article class="admin-kpi-card"><div class="admin-kpi-card__head"><span class="admin-kpi-card__label">Lượt dùng</span><span class="admin-kpi-card__icon"><i class="bi bi-bag-check"></i></span></div><strong>128</strong><div class="admin-kpi-card__meta"><span class="admin-trend is-up"><i class="bi bi-graph-up-arrow"></i> conversion tốt</span><span>SPRINGGOLD đang dẫn đầu</span></div></article>
+            <article class="admin-kpi-card"><div class="admin-kpi-card__head"><span class="admin-kpi-card__label">Mã sắp hết hạn</span><span class="admin-kpi-card__icon"><i class="bi bi-alarm"></i></span></div><strong>2</strong><div class="admin-kpi-card__meta"><span class="admin-trend is-check"><i class="bi bi-hourglass"></i> cần rà</span><span>Còn dưới 48 giờ</span></div></article>
+            <article class="admin-kpi-card"><div class="admin-kpi-card__head"><span class="admin-kpi-card__label">User mới dùng mã</span><span class="admin-kpi-card__icon"><i class="bi bi-person-plus"></i></span></div><strong>46%</strong><div class="admin-kpi-card__meta"><span class="admin-trend is-up"><i class="bi bi-stars"></i> tốt</span><span>Tăng theo campaign đầu tháng</span></div></article>
+            <article class="admin-kpi-card"><div class="admin-kpi-card__head"><span class="admin-kpi-card__label">Lỗi áp mã</span><span class="admin-kpi-card__icon"><i class="bi bi-bug"></i></span></div><strong>3</strong><div class="admin-kpi-card__meta"><span class="admin-trend is-down"><i class="bi bi-arrow-down-right"></i> đã giảm</span><span>Đa số do rule min order</span></div></article>
+          </section>
+
+          <section class="admin-user-ops-grid">
+            <article class="admin-panel admin-user-ops-panel" id="voucher-create">
+              <div class="admin-panel__head"><div><h2 class="admin-panel__title">Khu tạo voucher</h2><span class="admin-panel__subtitle">Tạo mã giảm giá cho user mới, VIP, game cụ thể hoặc campaign theo dịp.</span></div><span class="admin-panel__pill">create</span></div>
+              <div class="admin-voucher-studio">
+                <div class="admin-form-grid admin-form-grid--triple">
+                  <div class="admin-field"><label for="voucher-code">Mã voucher</label><input id="voucher-code" type="text" value="SPRINGGOLD" /></div>
+                  <div class="admin-field"><label for="voucher-type">Loại ưu đãi</label><select id="voucher-type"><option>Giảm theo %</option><option>Giảm số tiền cố định</option><option>Tặng VIP</option></select></div>
+                  <div class="admin-field"><label for="voucher-value">Giá trị</label><input id="voucher-value" type="text" value="15%" /></div>
+                  <div class="admin-field"><label for="voucher-min-order">Đơn tối thiểu</label><input id="voucher-min-order" type="text" value="500000" /></div>
+                  <div class="admin-field"><label for="voucher-max-use">Số lượt dùng tối đa</label><input id="voucher-max-use" type="text" value="300" /></div>
+                  <div class="admin-field"><label for="voucher-target">Tệp user</label><select id="voucher-target"><option>All users</option><option>New users</option><option>VIP users</option><option>User từng mở ticket</option></select></div>
+                  <div class="admin-field admin-field--full"><label for="voucher-note">Ghi chú nội bộ</label><textarea id="voucher-note">Campaign đẩy game mới, ưu tiên user đã add wishlist và user vừa chat hỗ trợ nhưng chưa mua.</textarea></div>
+                </div>
+                <div class="admin-user-ops-card__actions"><button class="admin-button admin-button--primary" type="button"><i class="bi bi-plus-circle"></i>Tạo voucher</button><button class="admin-button admin-button--secondary" type="button"><i class="bi bi-files"></i>Lưu nháp</button><button class="admin-button admin-button--secondary" type="button"><i class="bi bi-clipboard"></i>Sao chép mẫu</button></div>
+              </div>
+            </article>
+
+            <article class="admin-panel admin-user-ops-panel">
+              <div class="admin-panel__head"><div><h2 class="admin-panel__title">Preview voucher</h2><span class="admin-panel__subtitle">Xem trước cách mã giảm giá hiển thị ở storefront.</span></div><span class="admin-panel__pill">preview</span></div>
+              <div class="admin-voucher-preview">
+                <div class="admin-voucher-preview__head"><strong>Preview cách voucher hiển thị</strong><span class="admin-status is-progress">Draft</span></div>
+                <div class="admin-voucher-preview__code">SPRINGGOLD</div>
+                <p>Giảm <strong>15%</strong> cho đơn từ <strong>500.000 đ</strong>, tối đa <strong>300 lượt dùng</strong>, áp dụng toàn storefront.</p>
+                <div class="admin-voucher-preview__rows">
+                  <div class="admin-voucher-preview__row"><span>Ví dụ đơn hàng</span><strong>890.000 đ</strong></div>
+                  <div class="admin-voucher-preview__row"><span>Mức giảm</span><strong>-133.500 đ</strong></div>
+                  <div class="admin-voucher-preview__row is-total"><span>Giá sau giảm</span><strong>756.500 đ</strong></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="admin-panel admin-user-ops-panel admin-user-ops-panel--wide" id="voucher-list">
+              <div class="admin-panel__head"><div><h2 class="admin-panel__title">Kho voucher và chiến dịch đang chạy</h2><span class="admin-panel__subtitle">Theo dõi hiệu quả mã giảm giá, quota, thời gian chạy và độ phủ campaign.</span></div><span class="admin-panel__pill">campaigns</span></div>
+              <div class="admin-voucher-grid">
+                <article class="admin-user-ops-card admin-voucher-card"><div class="admin-user-ops-card__head"><div><h3 class="admin-user-ops-card__title">SPRINGGOLD</h3><p class="admin-user-ops-card__sub">15% toàn storefront • min 500k</p></div><span class="admin-status is-progress">Running</span></div><div class="admin-voucher-meter"><span style="width: 42%"></span></div><div class="admin-user-ops-card__note">126 / 300 lượt dùng • còn 8 ngày</div><div class="admin-user-ops-card__actions"><button class="admin-button admin-button--secondary" type="button"><i class="bi bi-pencil"></i>Sửa</button><button class="admin-button admin-button--secondary" type="button"><i class="bi bi-pause-circle"></i>Tạm dừng</button></div></article>
+                <article class="admin-user-ops-card admin-voucher-card"><div class="admin-user-ops-card__head"><div><h3 class="admin-user-ops-card__title">VIPBACK50</h3><p class="admin-user-ops-card__sub">Giảm 50.000 đ cho user VIP</p></div><span class="admin-status is-ok">Healthy</span></div><div class="admin-voucher-meter"><span style="width: 21%"></span></div><div class="admin-user-ops-card__note">42 / 200 lượt dùng • conversion ổn định</div><div class="admin-user-ops-card__actions"><button class="admin-button admin-button--secondary" type="button"><i class="bi bi-copy"></i>Nhân bản</button><button class="admin-button admin-button--secondary" type="button"><i class="bi bi-graph-up-arrow"></i>Hiệu quả</button></div></article>
+                <article class="admin-user-ops-card admin-voucher-card"><div class="admin-user-ops-card__head"><div><h3 class="admin-user-ops-card__title">WELCOME2026</h3><p class="admin-user-ops-card__sub">10% cho user mới • đơn đầu tiên</p></div><span class="admin-status is-check">Sắp hết hạn</span></div><div class="admin-voucher-meter"><span style="width: 78%"></span></div><div class="admin-user-ops-card__note">390 / 500 lượt dùng • còn 36 giờ</div><div class="admin-user-ops-card__actions"><button class="admin-button admin-button--secondary" type="button"><i class="bi bi-arrow-repeat"></i>Gia hạn</button><button class="admin-button admin-button--secondary" type="button"><i class="bi bi-exclamation-diamond"></i>Tăng quota</button></div></article>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="admin-sidebar-backdrop" data-admin-sidebar-backdrop></div>
+    <script src="./admin.js"></script>
+  </body>
+</html>
