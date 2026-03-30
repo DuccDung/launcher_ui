@@ -30,6 +30,14 @@ namespace UI_Desktop
         private void InitializeComponent()
         {
             shellPanel = new Panel();
+            topBarPanel = new Panel();
+            toolbarInfoLabel = new Label();
+            toolbarModeLabel = new Label();
+            closeWindowButton = new Button();
+            minimizeWindowButton = new Button();
+            appSubtitleLabel = new Label();
+            appNameLabel = new Label();
+            brandLogoPictureBox = new PictureBox();
             contentPanel = new Panel();
             showcasePanel = new Panel();
             supportCardPanel = new Panel();
@@ -72,6 +80,8 @@ namespace UI_Desktop
             loginSecurityChipLabel = new Label();
             loginTagChipLabel = new Label();
             shellPanel.SuspendLayout();
+            topBarPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)brandLogoPictureBox).BeginInit();
             contentPanel.SuspendLayout();
             showcasePanel.SuspendLayout();
             supportCardPanel.SuspendLayout();
@@ -85,6 +95,7 @@ namespace UI_Desktop
             // shellPanel
             // 
             shellPanel.BackColor = Color.FromArgb(6, 8, 12);
+            shellPanel.Controls.Add(topBarPanel);
             shellPanel.Controls.Add(contentPanel);
             shellPanel.Dock = DockStyle.Fill;
             shellPanel.Location = new Point(0, 0);
@@ -93,12 +104,106 @@ namespace UI_Desktop
             shellPanel.TabIndex = 0;
             shellPanel.Paint += shellPanel_Paint;
             // 
+            // topBarPanel
+            // 
+            topBarPanel.BackColor = Color.FromArgb(12, 15, 21);
+            topBarPanel.Controls.Add(toolbarInfoLabel);
+            topBarPanel.Controls.Add(toolbarModeLabel);
+            topBarPanel.Controls.Add(closeWindowButton);
+            topBarPanel.Controls.Add(minimizeWindowButton);
+            topBarPanel.Controls.Add(appSubtitleLabel);
+            topBarPanel.Controls.Add(appNameLabel);
+            topBarPanel.Controls.Add(brandLogoPictureBox);
+            topBarPanel.Location = new Point(100, 26);
+            topBarPanel.Name = "topBarPanel";
+            topBarPanel.Size = new Size(1240, 64);
+            topBarPanel.TabIndex = 1;
+            topBarPanel.Paint += surfacePanel_Paint;
+            // 
+            // toolbarInfoLabel
+            // 
+            toolbarInfoLabel.AutoSize = true;
+            toolbarInfoLabel.ForeColor = Color.FromArgb(185, 185, 185);
+            toolbarInfoLabel.Location = new Point(608, 23);
+            toolbarInfoLabel.Name = "toolbarInfoLabel";
+            toolbarInfoLabel.Size = new Size(156, 20);
+            toolbarInfoLabel.TabIndex = 6;
+            toolbarInfoLabel.Text = "Secure desktop access";
+            // 
+            // toolbarModeLabel
+            // 
+            toolbarModeLabel.BackColor = Color.FromArgb(32, 40, 36);
+            toolbarModeLabel.ForeColor = Color.FromArgb(146, 228, 180);
+            toolbarModeLabel.Location = new Point(854, 17);
+            toolbarModeLabel.Name = "toolbarModeLabel";
+            toolbarModeLabel.Size = new Size(108, 30);
+            toolbarModeLabel.TabIndex = 5;
+            toolbarModeLabel.Text = "Player Mode";
+            toolbarModeLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // closeWindowButton
+            // 
+            closeWindowButton.BackColor = Color.FromArgb(159, 49, 49);
+            closeWindowButton.FlatAppearance.BorderSize = 0;
+            closeWindowButton.FlatStyle = FlatStyle.Flat;
+            closeWindowButton.ForeColor = Color.White;
+            closeWindowButton.Location = new Point(1188, 12);
+            closeWindowButton.Name = "closeWindowButton";
+            closeWindowButton.Size = new Size(36, 36);
+            closeWindowButton.TabIndex = 4;
+            closeWindowButton.Text = "X";
+            closeWindowButton.UseVisualStyleBackColor = false;
+            // 
+            // minimizeWindowButton
+            // 
+            minimizeWindowButton.BackColor = Color.FromArgb(37, 43, 57);
+            minimizeWindowButton.FlatAppearance.BorderSize = 0;
+            minimizeWindowButton.FlatStyle = FlatStyle.Flat;
+            minimizeWindowButton.ForeColor = Color.White;
+            minimizeWindowButton.Location = new Point(1146, 12);
+            minimizeWindowButton.Name = "minimizeWindowButton";
+            minimizeWindowButton.Size = new Size(36, 36);
+            minimizeWindowButton.TabIndex = 3;
+            minimizeWindowButton.Text = "_";
+            minimizeWindowButton.UseVisualStyleBackColor = false;
+            // 
+            // appSubtitleLabel
+            // 
+            appSubtitleLabel.AutoSize = true;
+            appSubtitleLabel.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            appSubtitleLabel.ForeColor = Color.FromArgb(138, 161, 255);
+            appSubtitleLabel.Location = new Point(72, 43);
+            appSubtitleLabel.Name = "appSubtitleLabel";
+            appSubtitleLabel.Size = new Size(88, 17);
+            appSubtitleLabel.TabIndex = 2;
+            appSubtitleLabel.Text = "User launcher";
+            // 
+            // appNameLabel
+            // 
+            appNameLabel.AutoSize = true;
+            appNameLabel.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold);
+            appNameLabel.ForeColor = Color.White;
+            appNameLabel.Location = new Point(72, 8);
+            appNameLabel.Name = "appNameLabel";
+            appNameLabel.Size = new Size(84, 35);
+            appNameLabel.TabIndex = 1;
+            appNameLabel.Text = "NestG";
+            // 
+            // brandLogoPictureBox
+            // 
+            brandLogoPictureBox.Location = new Point(18, 12);
+            brandLogoPictureBox.Name = "brandLogoPictureBox";
+            brandLogoPictureBox.Size = new Size(40, 40);
+            brandLogoPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            brandLogoPictureBox.TabIndex = 0;
+            brandLogoPictureBox.TabStop = false;
+            // 
             // contentPanel
             // 
             contentPanel.BackColor = Color.FromArgb(12, 15, 21);
             contentPanel.Controls.Add(showcasePanel);
             contentPanel.Controls.Add(loginCardPanel);
-            contentPanel.Location = new Point(100, 90);
+            contentPanel.Location = new Point(100, 106);
             contentPanel.Name = "contentPanel";
             contentPanel.Size = new Size(1240, 720);
             contentPanel.TabIndex = 0;
@@ -118,9 +223,9 @@ namespace UI_Desktop
             showcasePanel.Controls.Add(launcherChipLabel);
             showcasePanel.Controls.Add(brandChipLabel);
             showcasePanel.Controls.Add(showcaseFooterLabel);
-            showcasePanel.Location = new Point(34, 28);
+            showcasePanel.Location = new Point(27, 28);
             showcasePanel.Name = "showcasePanel";
-            showcasePanel.Size = new Size(720, 664);
+            showcasePanel.Size = new Size(727, 664);
             showcasePanel.TabIndex = 0;
             // 
             // supportCardPanel
@@ -141,8 +246,7 @@ namespace UI_Desktop
             supportDescriptionLabel.Name = "supportDescriptionLabel";
             supportDescriptionLabel.Size = new Size(634, 34);
             supportDescriptionLabel.TabIndex = 1;
-            supportDescriptionLabel.Text = "Neu user quen mat khau hoac can tro giup, ban co the noi tiep flow OTP" +
-    " va ticket ho tro ngay tai day.";
+            supportDescriptionLabel.Text = "Neu user quen mat khau hoac can tro giup, ban co the noi tiep flow OTP va ticket ho tro ngay tai day.";
             // 
             // supportTitleLabel
             // 
@@ -203,8 +307,7 @@ namespace UI_Desktop
             featureDescriptionLabel.Name = "featureDescriptionLabel";
             featureDescriptionLabel.Size = new Size(620, 42);
             featureDescriptionLabel.TabIndex = 1;
-            featureDescriptionLabel.Text = "Form dang nhap nay duoc viet lai theo theme dark premium cua web" +
-    "\r\nnhung toi uu de launcher desktop hien ro rang va de thao tac.";
+            featureDescriptionLabel.Text = "Form dang nhap nay duoc viet lai theo theme dark premium cua web\r\nnhung toi uu de launcher desktop hien ro rang va de thao tac.";
             // 
             // featureTitleLabel
             // 
@@ -219,7 +322,6 @@ namespace UI_Desktop
             // 
             // supportChipLabel
             // 
-            supportChipLabel.AutoSize = false;
             supportChipLabel.BackColor = Color.FromArgb(32, 40, 36);
             supportChipLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             supportChipLabel.ForeColor = Color.FromArgb(146, 228, 180);
@@ -232,7 +334,6 @@ namespace UI_Desktop
             // 
             // securityChipLabel
             // 
-            securityChipLabel.AutoSize = false;
             securityChipLabel.BackColor = Color.FromArgb(31, 39, 55);
             securityChipLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             securityChipLabel.ForeColor = Color.FromArgb(152, 193, 255);
@@ -245,7 +346,6 @@ namespace UI_Desktop
             // 
             // speedChipLabel
             // 
-            speedChipLabel.AutoSize = false;
             speedChipLabel.BackColor = Color.FromArgb(45, 34, 23);
             speedChipLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             speedChipLabel.ForeColor = Color.FromArgb(255, 184, 125);
@@ -263,8 +363,7 @@ namespace UI_Desktop
             showcaseDescriptionLabel.Name = "showcaseDescriptionLabel";
             showcaseDescriptionLabel.Size = new Size(640, 54);
             showcaseDescriptionLabel.TabIndex = 4;
-            showcaseDescriptionLabel.Text = "Dang nhap de vao kho game, account va uu dai cua ban tren mot giao" +
-    "\r\ndien desktop ro rang, dam chat gaming premium.";
+            showcaseDescriptionLabel.Text = "Dang nhap de vao kho game, account va uu dai cua ban tren mot giao\r\ndien desktop ro rang, dam chat gaming premium.";
             // 
             // showcaseTitleLabel
             // 
@@ -298,7 +397,7 @@ namespace UI_Desktop
             launcherChipLabel.Padding = new Padding(14, 8, 14, 8);
             launcherChipLabel.Size = new Size(135, 36);
             launcherChipLabel.TabIndex = 1;
-            launcherChipLabel.Text = "Desktop Login";
+            launcherChipLabel.Text = "User Launcher";
             // 
             // brandChipLabel
             // 
@@ -309,9 +408,9 @@ namespace UI_Desktop
             brandChipLabel.Location = new Point(0, 0);
             brandChipLabel.Name = "brandChipLabel";
             brandChipLabel.Padding = new Padding(14, 8, 14, 8);
-            brandChipLabel.Size = new Size(155, 36);
+            brandChipLabel.Size = new Size(82, 36);
             brandChipLabel.TabIndex = 0;
-            brandChipLabel.Text = "DELUXE GAMING";
+            brandChipLabel.Text = "NESTG";
             // 
             // showcaseFooterLabel
             // 
@@ -319,9 +418,8 @@ namespace UI_Desktop
             showcaseFooterLabel.ForeColor = Color.FromArgb(130, 136, 149);
             showcaseFooterLabel.Location = new Point(0, 644);
             showcaseFooterLabel.Name = "showcaseFooterLabel";
-            showcaseFooterLabel.Size = new Size(432, 20);
+            showcaseFooterLabel.Size = new Size(0, 20);
             showcaseFooterLabel.TabIndex = 10;
-            showcaseFooterLabel.Text = "Theme lay tu index.html: nen toi, glow am va card auth dam net.";
             // 
             // loginCardPanel
             // 
@@ -354,7 +452,7 @@ namespace UI_Desktop
             registerLink.AutoSize = true;
             registerLink.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
             registerLink.LinkColor = Color.FromArgb(93, 157, 255);
-            registerLink.Location = new Point(160, 626);
+            registerLink.Location = new Point(176, 623);
             registerLink.Name = "registerLink";
             registerLink.Size = new Size(137, 21);
             registerLink.TabIndex = 15;
@@ -543,14 +641,13 @@ namespace UI_Desktop
             // 
             // loginTitleLabel
             // 
-            loginTitleLabel.AutoSize = false;
             loginTitleLabel.Font = new Font("Segoe UI Semibold", 22F, FontStyle.Bold);
             loginTitleLabel.ForeColor = Color.White;
             loginTitleLabel.Location = new Point(36, 74);
             loginTitleLabel.Name = "loginTitleLabel";
             loginTitleLabel.Size = new Size(320, 44);
             loginTitleLabel.TabIndex = 2;
-            loginTitleLabel.Text = "Chao mung tro lai";
+            loginTitleLabel.Text = "Chao mung den NestG";
             loginTitleLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // loginSecurityChipLabel
@@ -585,17 +682,20 @@ namespace UI_Desktop
             BackColor = Color.FromArgb(6, 8, 12);
             ClientSize = new Size(1440, 900);
             Controls.Add(shellPanel);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Deluxe Gaming | Dang nhap";
+            Text = "NestG";
             shellPanel.ResumeLayout(false);
+            topBarPanel.ResumeLayout(false);
+            topBarPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)brandLogoPictureBox).EndInit();
             contentPanel.ResumeLayout(false);
             showcasePanel.ResumeLayout(false);
             showcasePanel.PerformLayout();
             supportCardPanel.ResumeLayout(false);
             supportCardPanel.PerformLayout();
             featureCardPanel.ResumeLayout(false);
-            featureCardPanel.PerformLayout();
             loginCardPanel.ResumeLayout(false);
             loginCardPanel.PerformLayout();
             securityNotePanel.ResumeLayout(false);
@@ -610,6 +710,14 @@ namespace UI_Desktop
         #endregion
 
         private Panel shellPanel;
+        private Panel topBarPanel;
+        private Label toolbarInfoLabel;
+        private Label toolbarModeLabel;
+        private Button closeWindowButton;
+        private Button minimizeWindowButton;
+        private Label appSubtitleLabel;
+        private Label appNameLabel;
+        private PictureBox brandLogoPictureBox;
         private Panel contentPanel;
         private Panel showcasePanel;
         private Panel supportCardPanel;

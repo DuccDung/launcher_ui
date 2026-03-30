@@ -1,10 +1,13 @@
 using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
 
 namespace UI_Desktop
 {
     public partial class Form1 : Form
     {
-        private readonly List<(Control Control, int Radius)> roundedControls = new();
+        private const int WmNclButtonDown = 0xA1;
+        private const int HtCaption = 0x2;
+
         private readonly Color formBackColor = Color.FromArgb(6, 8, 12);
         private readonly Color fieldIdleColor = Color.FromArgb(31, 35, 43);
         private readonly Color fieldFocusColor = Color.FromArgb(40, 46, 58);
@@ -22,28 +25,18 @@ namespace UI_Desktop
             BackColor = formBackColor;
             Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             MinimumSize = new Size(1360, 860);
+            FormBorderStyle = FormBorderStyle.None;
+            Text = "NestG";
 
-            roundedControls.Clear();
-            RegisterRounded(contentPanel, 28);
-            RegisterRounded(featureCardPanel, 22);
-            RegisterRounded(supportCardPanel, 18);
-            RegisterRounded(loginCardPanel, 22);
-            RegisterRounded(emailFieldPanel, 14);
-            RegisterRounded(passwordFieldPanel, 14);
-            RegisterRounded(loginButton, 14);
-            RegisterRounded(otpButton, 14);
-            RegisterRounded(securityNotePanel, 18);
-
-            CenterContentPanel();
-            ApplyRoundedShapes();
+            ApplyBranding();
+            LayoutShell();
         }
 
         private void ConfigureInteractions()
         {
             Resize += (_, _) =>
             {
-                CenterContentPanel();
-                ApplyRoundedShapes();
+                LayoutShell();
             };
 
             Shown += (_, _) => emailTextBox.Focus();
@@ -62,14 +55,50 @@ namespace UI_Desktop
             otpButton.Click += OtpButton_Click;
             forgotPasswordLink.LinkClicked += ForgotPasswordLink_LinkClicked;
             registerLink.LinkClicked += RegisterLink_LinkClicked;
+            minimizeWindowButton.Click += (_, _) => WindowState = FormWindowState.Minimized;
+            closeWindowButton.Click += (_, _) => Close();
+
+            AttachDragHandlers(topBarPanel);
+            AttachDragHandlers(brandLogoPictureBox);
+            AttachDragHandlers(appNameLabel);
+            AttachDragHandlers(appSubtitleLabel);
+            AttachDragHandlers(toolbarInfoLabel);
+            AttachDragHandlers(toolbarModeLabel);
+
             AcceptButton = loginButton;
         }
 
-        private void CenterContentPanel()
+        private void ApplyBranding()
         {
-            var x = Math.Max(24, (ClientSize.Width - contentPanel.Width) / 2);
-            var y = Math.Max(24, (ClientSize.Height - contentPanel.Height) / 2);
-            contentPanel.Location = new Point(x, y);
+            appNameLabel.Text = "NestG";
+            appSubtitleLabel.Text = "User launcher";
+            toolbarInfoLabel.Text = "Secure desktop access";
+            toolbarModeLabel.Text = "Player Mode";
+            brandChipLabel.Text = "NESTG";
+            launcherChipLabel.Text = "User Launcher";
+            loginTagChipLabel.Text = "NESTG USER";
+            showcaseTitleLabel.Text = "Dang nhap vao NestG,\r\nquan ly game va account cua ban.";
+            showcaseDescriptionLabel.Text = "NestG gom dang nhap, don mua, account game va uu dai vao mot giao dien" +
+                "\r\ndesktop ro rang, gon va de su dung.";
+            featureDescriptionLabel.Text = "NestG giu chat dark premium cua web nhung toi uu lai cho launcher" +
+                "\r\ndesktop de thao tac nhanh va nhin chac chan hon.";
+            supportDescriptionLabel.Text = "Neu user quen mat khau hoac can tro giup, ban co the noi tiep flow OTP" +
+                "\r\nva ticket ho tro ngay tai day.";
+            loginTitleLabel.Text = "Chao mung den NestG";
+            loginDescriptionLabel.Text = "Dang nhap de quan ly tai khoan,\r\ndon mua, account game va uu dai rieng cua ban.";
+            showcaseFooterLabel.Text = "NestG launcher duoc dong bo tu asset logo va theme dark cua he thong.";
+
+            LoadBrandLogo();
+        }
+
+        private void LayoutShell()
+        {
+            var topBarX = Math.Max(20, (ClientSize.Width - topBarPanel.Width) / 2);
+            topBarPanel.Location = new Point(topBarX, 26);
+
+            var contentX = Math.Max(20, (ClientSize.Width - contentPanel.Width) / 2);
+            var contentY = topBarPanel.Bottom + 16;
+            contentPanel.Location = new Point(contentX, contentY);
         }
 
         private void SetFieldState(Panel shell, TextBox input, bool isFocused)
@@ -140,9 +169,8 @@ namespace UI_Desktop
             }
 
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            using var path = BuildRoundedPath(new Rectangle(0, 0, control.Width - 1, control.Height - 1), 20);
             using var pen = new Pen(Color.FromArgb(28, 255, 255, 255), 1F);
-            e.Graphics.DrawPath(pen, path);
+            e.Graphics.DrawRectangle(pen, 0, 0, control.Width - 1, control.Height - 1);
         }
 
         private static void DrawGlow(Graphics graphics, Rectangle bounds, Color centerColor)
@@ -159,39 +187,46 @@ namespace UI_Desktop
             graphics.FillPath(brush, path);
         }
 
-        private void ApplyRoundedShapes()
+        private void LoadBrandLogo()
         {
-            foreach (var (control, radius) in roundedControls)
+            try
             {
-                if (control.Width <= 0 || control.Height <= 0)
+                var assetPath = Path.Combine(AppContext.BaseDirectory, "Assets", "logo.png");
+                if (!File.Exists(assetPath))
                 {
-                    continue;
+                    return;
                 }
 
-                control.Region?.Dispose();
-                using var path = BuildRoundedPath(new Rectangle(Point.Empty, control.Size), radius);
-                control.Region = new Region(path);
+                using var original = Image.FromFile(assetPath);
+                brandLogoPictureBox.Image = new Bitmap(original);
+            }
+            catch
+            {
+                // Keep the launcher usable even if the image asset is unavailable.
             }
         }
 
-        private void RegisterRounded(Control control, int radius)
+        private void AttachDragHandlers(Control control)
         {
-            roundedControls.Add((control, radius));
+            control.MouseDown += TopBarDrag_MouseDown;
         }
 
-        private static GraphicsPath BuildRoundedPath(Rectangle bounds, int radius)
+        private void TopBarDrag_MouseDown(object? sender, MouseEventArgs e)
         {
-            var safeRadius = Math.Min(radius, Math.Min(bounds.Width, bounds.Height) / 2);
-            var diameter = Math.Max(2, safeRadius * 2);
+            if (e.Button != MouseButtons.Left)
+            {
+                return;
+            }
 
-            var path = new GraphicsPath();
-            path.StartFigure();
-            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90);
-            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90);
-            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90);
-            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90);
-            path.CloseFigure();
-            return path;
+            ReleaseCapture();
+            SendMessage(Handle, WmNclButtonDown, HtCaption, 0);
         }
+
+        [DllImport("user32.dll")]
+        private static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        private static extern nint SendMessage(nint hWnd, int msg, int wParam, int lParam);
+
     }
 }
