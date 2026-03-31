@@ -128,7 +128,7 @@ namespace UI_Desktop
             toolbarInfoLabel.Name = "toolbarInfoLabel";
             toolbarInfoLabel.Size = new Size(156, 20);
             toolbarInfoLabel.TabIndex = 6;
-            toolbarInfoLabel.Text = "Secure desktop access";
+            toolbarInfoLabel.Text = "Đăng nhập nhanh và an toàn";
             // 
             // toolbarModeLabel
             // 
@@ -138,7 +138,7 @@ namespace UI_Desktop
             toolbarModeLabel.Name = "toolbarModeLabel";
             toolbarModeLabel.Size = new Size(108, 30);
             toolbarModeLabel.TabIndex = 5;
-            toolbarModeLabel.Text = "Player Mode";
+            toolbarModeLabel.Text = "Người dùng";
             toolbarModeLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // closeWindowButton
@@ -176,7 +176,7 @@ namespace UI_Desktop
             appSubtitleLabel.Name = "appSubtitleLabel";
             appSubtitleLabel.Size = new Size(88, 17);
             appSubtitleLabel.TabIndex = 2;
-            appSubtitleLabel.Text = "User launcher";
+            appSubtitleLabel.Text = "Trình khởi chạy người dùng";
             // 
             // appNameLabel
             // 
@@ -246,7 +246,7 @@ namespace UI_Desktop
             supportDescriptionLabel.Name = "supportDescriptionLabel";
             supportDescriptionLabel.Size = new Size(634, 34);
             supportDescriptionLabel.TabIndex = 1;
-            supportDescriptionLabel.Text = "Neu user quen mat khau hoac can tro giup, ban co the noi tiep flow OTP va ticket ho tro ngay tai day.";
+            supportDescriptionLabel.Text = "Nếu cần hỗ trợ, hãy dùng mục quên mật khẩu hoặc liên hệ bộ phận chăm sóc khách hàng.";
             // 
             // supportTitleLabel
             // 
@@ -257,7 +257,7 @@ namespace UI_Desktop
             supportTitleLabel.Name = "supportTitleLabel";
             supportTitleLabel.Size = new Size(142, 30);
             supportTitleLabel.TabIndex = 0;
-            supportTitleLabel.Text = "Can tro giup?";
+            supportTitleLabel.Text = "Hỗ trợ tài khoản";
             // 
             // featureCardPanel
             // 
@@ -280,7 +280,7 @@ namespace UI_Desktop
             featureItemThreeLabel.Name = "featureItemThreeLabel";
             featureItemThreeLabel.Size = new Size(620, 22);
             featureItemThreeLabel.TabIndex = 4;
-            featureItemThreeLabel.Text = "- San sang mo rong cho OTP, dang ky va xac minh thiet bi ve sau.";
+            featureItemThreeLabel.Text = "- Nhận ưu đãi và thông báo dành riêng cho tài khoản của bạn.";
             // 
             // featureItemTwoLabel
             // 
@@ -289,7 +289,7 @@ namespace UI_Desktop
             featureItemTwoLabel.Name = "featureItemTwoLabel";
             featureItemTwoLabel.Size = new Size(620, 22);
             featureItemTwoLabel.TabIndex = 3;
-            featureItemTwoLabel.Text = "- Nhan thong bao don mua, giao dich va voucher ngay khi mo launcher.";
+            featureItemTwoLabel.Text = "- Quản lý tài khoản game và thông tin liên quan tại một nơi.";
             // 
             // featureItemOneLabel
             // 
@@ -298,7 +298,7 @@ namespace UI_Desktop
             featureItemOneLabel.Name = "featureItemOneLabel";
             featureItemOneLabel.Size = new Size(620, 22);
             featureItemOneLabel.TabIndex = 2;
-            featureItemOneLabel.Text = "- Dang nhap vao kho game, don mua va lich su account tren mot giao dien thong nhat.";
+            featureItemOneLabel.Text = "- Xem đơn hàng và trạng thái xử lý ngay trong launcher.";
             // 
             // featureDescriptionLabel
             // 
@@ -307,17 +307,17 @@ namespace UI_Desktop
             featureDescriptionLabel.Name = "featureDescriptionLabel";
             featureDescriptionLabel.Size = new Size(620, 42);
             featureDescriptionLabel.TabIndex = 1;
-            featureDescriptionLabel.Text = "Form dang nhap nay duoc viet lai theo theme dark premium cua web\r\nnhung toi uu de launcher desktop hien ro rang va de thao tac.";
+            featureDescriptionLabel.Text = "Các thao tác quan trọng đã được gom lại để người dùng xử lý nhanh hơn,\r\nkhông cần qua nhiều bước không cần thiết.";
             // 
             // featureTitleLabel
             // 
             featureTitleLabel.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold);
             featureTitleLabel.ForeColor = Color.White;
-            featureTitleLabel.Location = new Point(24, 18);
+            featureTitleLabel.Location = new Point(24, 14);
             featureTitleLabel.Name = "featureTitleLabel";
             featureTitleLabel.Size = new Size(360, 30);
             featureTitleLabel.TabIndex = 0;
-            featureTitleLabel.Text = "Tai sao user nen dang nhap?";
+            featureTitleLabel.Text = "Sau khi đăng nhập";
             featureTitleLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // supportChipLabel
@@ -329,7 +329,7 @@ namespace UI_Desktop
             supportChipLabel.Name = "supportChipLabel";
             supportChipLabel.Size = new Size(112, 36);
             supportChipLabel.TabIndex = 7;
-            supportChipLabel.Text = "Ho tro 24/7";
+            supportChipLabel.Text = "Hỗ trợ 24/7";
             supportChipLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // securityChipLabel
@@ -341,7 +341,7 @@ namespace UI_Desktop
             securityChipLabel.Name = "securityChipLabel";
             securityChipLabel.Size = new Size(128, 36);
             securityChipLabel.TabIndex = 6;
-            securityChipLabel.Text = "Bao mat 2 lop";
+            securityChipLabel.Text = "Bảo mật 2 lớp";
             securityChipLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // speedChipLabel
@@ -353,7 +353,7 @@ namespace UI_Desktop
             speedChipLabel.Name = "speedChipLabel";
             speedChipLabel.Size = new Size(136, 36);
             speedChipLabel.TabIndex = 5;
-            speedChipLabel.Text = "Kich hoat nhanh";
+            speedChipLabel.Text = "Kích hoạt nhanh";
             speedChipLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // showcaseDescriptionLabel
@@ -363,7 +363,7 @@ namespace UI_Desktop
             showcaseDescriptionLabel.Name = "showcaseDescriptionLabel";
             showcaseDescriptionLabel.Size = new Size(640, 54);
             showcaseDescriptionLabel.TabIndex = 4;
-            showcaseDescriptionLabel.Text = "Dang nhap de vao kho game, account va uu dai cua ban tren mot giao\r\ndien desktop ro rang, dam chat gaming premium.";
+            showcaseDescriptionLabel.Text = "Truy cập tài khoản, đơn mua và kho game của bạn trên một giao diện\r\ndesktop gọn gàng, rõ ràng và dễ dùng.";
             // 
             // showcaseTitleLabel
             // 
@@ -373,7 +373,7 @@ namespace UI_Desktop
             showcaseTitleLabel.Name = "showcaseTitleLabel";
             showcaseTitleLabel.Size = new Size(660, 108);
             showcaseTitleLabel.TabIndex = 3;
-            showcaseTitleLabel.Text = "Dang nhap de vao kho game,\r\naccount va uu dai cua ban.";
+            showcaseTitleLabel.Text = "Đăng nhập để sử dụng\r\nhệ thống NestG.";
             // 
             // overlineLabel
             // 
@@ -384,7 +384,7 @@ namespace UI_Desktop
             overlineLabel.Name = "overlineLabel";
             overlineLabel.Size = new Size(172, 21);
             overlineLabel.TabIndex = 2;
-            overlineLabel.Text = "TRUY CAP TAI KHOAN";
+            overlineLabel.Text = "TRUY CẬP TÀI KHOẢN";
             // 
             // launcherChipLabel
             // 
@@ -397,7 +397,7 @@ namespace UI_Desktop
             launcherChipLabel.Padding = new Padding(14, 8, 14, 8);
             launcherChipLabel.Size = new Size(135, 36);
             launcherChipLabel.TabIndex = 1;
-            launcherChipLabel.Text = "User Launcher";
+            launcherChipLabel.Text = "Cổng người dùng";
             // 
             // brandChipLabel
             // 
@@ -457,7 +457,7 @@ namespace UI_Desktop
             registerLink.Size = new Size(137, 21);
             registerLink.TabIndex = 15;
             registerLink.TabStop = true;
-            registerLink.Text = "Tao tai khoan moi";
+            registerLink.Text = "Tạo tài khoản mới";
             registerLink.VisitedLinkColor = Color.FromArgb(93, 157, 255);
             // 
             // registerPromptLabel
@@ -468,7 +468,7 @@ namespace UI_Desktop
             registerPromptLabel.Name = "registerPromptLabel";
             registerPromptLabel.Size = new Size(134, 20);
             registerPromptLabel.TabIndex = 14;
-            registerPromptLabel.Text = "Chua co tai khoan?";
+            registerPromptLabel.Text = "Chưa có tài khoản?";
             // 
             // securityNotePanel
             // 
@@ -488,7 +488,7 @@ namespace UI_Desktop
             securityNoteBodyLabel.Name = "securityNoteBodyLabel";
             securityNoteBodyLabel.Size = new Size(332, 34);
             securityNoteBodyLabel.TabIndex = 1;
-            securityNoteBodyLabel.Text = "San sang noi OTP, canh bao thiet bi la va xac minh\r\ndang nhap ve sau.";
+            securityNoteBodyLabel.Text = "Thông tin đăng nhập sẽ được giữ gọn gàng để bạn quay lại nhanh hơn.";
             // 
             // securityNoteTitleLabel
             // 
@@ -499,7 +499,7 @@ namespace UI_Desktop
             securityNoteTitleLabel.Name = "securityNoteTitleLabel";
             securityNoteTitleLabel.Size = new Size(187, 28);
             securityNoteTitleLabel.TabIndex = 0;
-            securityNoteTitleLabel.Text = "Dang nhap an toan";
+            securityNoteTitleLabel.Text = "Thiết bị tin cậy";
             // 
             // otpButton
             // 
@@ -512,7 +512,7 @@ namespace UI_Desktop
             otpButton.Name = "otpButton";
             otpButton.Size = new Size(122, 46);
             otpButton.TabIndex = 12;
-            otpButton.Text = "Nhan OTP";
+            otpButton.Text = "Nhận OTP";
             otpButton.UseVisualStyleBackColor = false;
             // 
             // loginButton
@@ -526,7 +526,7 @@ namespace UI_Desktop
             loginButton.Name = "loginButton";
             loginButton.Size = new Size(226, 46);
             loginButton.TabIndex = 11;
-            loginButton.Text = "Dang nhap";
+            loginButton.Text = "Đăng nhập";
             loginButton.UseVisualStyleBackColor = false;
             // 
             // showPasswordCheckBox
@@ -538,7 +538,7 @@ namespace UI_Desktop
             showPasswordCheckBox.Name = "showPasswordCheckBox";
             showPasswordCheckBox.Size = new Size(123, 24);
             showPasswordCheckBox.TabIndex = 10;
-            showPasswordCheckBox.Text = "Hien mat khau";
+            showPasswordCheckBox.Text = "Hiển thị mật khẩu";
             showPasswordCheckBox.UseVisualStyleBackColor = true;
             // 
             // forgotPasswordLink
@@ -552,7 +552,7 @@ namespace UI_Desktop
             forgotPasswordLink.Size = new Size(126, 21);
             forgotPasswordLink.TabIndex = 9;
             forgotPasswordLink.TabStop = true;
-            forgotPasswordLink.Text = "Quen mat khau?";
+            forgotPasswordLink.Text = "Quên mật khẩu?";
             forgotPasswordLink.VisitedLinkColor = Color.FromArgb(93, 157, 255);
             // 
             // rememberMeCheckBox
@@ -564,7 +564,7 @@ namespace UI_Desktop
             rememberMeCheckBox.Name = "rememberMeCheckBox";
             rememberMeCheckBox.Size = new Size(156, 24);
             rememberMeCheckBox.TabIndex = 8;
-            rememberMeCheckBox.Text = "Ghi nho thiet bi nay";
+            rememberMeCheckBox.Text = "Ghi nhớ thiết bị này";
             rememberMeCheckBox.UseVisualStyleBackColor = true;
             // 
             // passwordFieldPanel
@@ -583,7 +583,7 @@ namespace UI_Desktop
             passwordTextBox.ForeColor = Color.White;
             passwordTextBox.Location = new Point(16, 16);
             passwordTextBox.Name = "passwordTextBox";
-            passwordTextBox.PlaceholderText = "Nhap mat khau";
+            passwordTextBox.PlaceholderText = "Nhập mật khẩu";
             passwordTextBox.Size = new Size(332, 20);
             passwordTextBox.TabIndex = 0;
             passwordTextBox.UseSystemPasswordChar = true;
@@ -597,7 +597,7 @@ namespace UI_Desktop
             passwordCaptionLabel.Name = "passwordCaptionLabel";
             passwordCaptionLabel.Size = new Size(84, 23);
             passwordCaptionLabel.TabIndex = 6;
-            passwordCaptionLabel.Text = "Mat khau";
+            passwordCaptionLabel.Text = "Mật khẩu";
             // 
             // emailFieldPanel
             // 
@@ -615,7 +615,7 @@ namespace UI_Desktop
             emailTextBox.ForeColor = Color.White;
             emailTextBox.Location = new Point(16, 16);
             emailTextBox.Name = "emailTextBox";
-            emailTextBox.PlaceholderText = "Nhap email hoac so dien thoai";
+            emailTextBox.PlaceholderText = "Nhập email hoặc số điện thoại";
             emailTextBox.Size = new Size(332, 20);
             emailTextBox.TabIndex = 0;
             // 
@@ -628,7 +628,7 @@ namespace UI_Desktop
             emailCaptionLabel.Name = "emailCaptionLabel";
             emailCaptionLabel.Size = new Size(197, 23);
             emailCaptionLabel.TabIndex = 4;
-            emailCaptionLabel.Text = "Email hoac so dien thoai";
+            emailCaptionLabel.Text = "Email hoặc số điện thoại";
             // 
             // loginDescriptionLabel
             // 
@@ -637,7 +637,7 @@ namespace UI_Desktop
             loginDescriptionLabel.Name = "loginDescriptionLabel";
             loginDescriptionLabel.Size = new Size(364, 52);
             loginDescriptionLabel.TabIndex = 3;
-            loginDescriptionLabel.Text = "Dang nhap de quan ly tai khoan,\r\ndon mua, account game va uu dai danh rieng cho ban.";
+            loginDescriptionLabel.Text = "Đăng nhập để quản lý tài khoản,\r\nđơn mua và các ưu đãi dành cho bạn.";
             // 
             // loginTitleLabel
             // 
@@ -645,9 +645,9 @@ namespace UI_Desktop
             loginTitleLabel.ForeColor = Color.White;
             loginTitleLabel.Location = new Point(36, 74);
             loginTitleLabel.Name = "loginTitleLabel";
-            loginTitleLabel.Size = new Size(320, 44);
+            loginTitleLabel.Size = new Size(364, 88);
             loginTitleLabel.TabIndex = 2;
-            loginTitleLabel.Text = "Chao mung den NestG";
+            loginTitleLabel.Text = "Chào mừng đến với NestG";
             loginTitleLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // loginSecurityChipLabel
@@ -661,7 +661,7 @@ namespace UI_Desktop
             loginSecurityChipLabel.Padding = new Padding(14, 8, 14, 8);
             loginSecurityChipLabel.Size = new Size(131, 36);
             loginSecurityChipLabel.TabIndex = 1;
-            loginSecurityChipLabel.Text = "Bao mat 2 lop";
+            loginSecurityChipLabel.Text = "Bảo mật 2 lớp";
             // 
             // loginTagChipLabel
             // 
@@ -674,7 +674,7 @@ namespace UI_Desktop
             loginTagChipLabel.Padding = new Padding(14, 8, 14, 8);
             loginTagChipLabel.Size = new Size(121, 36);
             loginTagChipLabel.TabIndex = 0;
-            loginTagChipLabel.Text = "USER LOGIN";
+            loginTagChipLabel.Text = "ĐĂNG NHẬP";
             // 
             // Form1
             // 

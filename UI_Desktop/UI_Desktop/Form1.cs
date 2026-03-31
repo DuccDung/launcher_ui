@@ -1,3 +1,4 @@
+﻿using System.ComponentModel;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 
@@ -29,6 +30,11 @@ namespace UI_Desktop
             Text = "NestG";
 
             ApplyBranding();
+            if (!IsInDesignMode())
+            {
+                SimplifyForUsers();
+            }
+
             LayoutShell();
         }
 
@@ -52,9 +58,7 @@ namespace UI_Desktop
             };
 
             loginButton.Click += LoginButton_Click;
-            otpButton.Click += OtpButton_Click;
             forgotPasswordLink.LinkClicked += ForgotPasswordLink_LinkClicked;
-            registerLink.LinkClicked += RegisterLink_LinkClicked;
             minimizeWindowButton.Click += (_, _) => WindowState = FormWindowState.Minimized;
             closeWindowButton.Click += (_, _) => Close();
 
@@ -70,25 +74,30 @@ namespace UI_Desktop
 
         private void ApplyBranding()
         {
-            appNameLabel.Text = "NestG";
-            appSubtitleLabel.Text = "User launcher";
-            toolbarInfoLabel.Text = "Secure desktop access";
-            toolbarModeLabel.Text = "Player Mode";
-            brandChipLabel.Text = "NESTG";
-            launcherChipLabel.Text = "User Launcher";
-            loginTagChipLabel.Text = "NESTG USER";
-            showcaseTitleLabel.Text = "Dang nhap vao NestG,\r\nquan ly game va account cua ban.";
-            showcaseDescriptionLabel.Text = "NestG gom dang nhap, don mua, account game va uu dai vao mot giao dien" +
-                "\r\ndesktop ro rang, gon va de su dung.";
-            featureDescriptionLabel.Text = "NestG giu chat dark premium cua web nhung toi uu lai cho launcher" +
-                "\r\ndesktop de thao tac nhanh va nhin chac chan hon.";
-            supportDescriptionLabel.Text = "Neu user quen mat khau hoac can tro giup, ban co the noi tiep flow OTP" +
-                "\r\nva ticket ho tro ngay tai day.";
-            loginTitleLabel.Text = "Chao mung den NestG";
-            loginDescriptionLabel.Text = "Dang nhap de quan ly tai khoan,\r\ndon mua, account game va uu dai rieng cua ban.";
-            showcaseFooterLabel.Text = "NestG launcher duoc dong bo tu asset logo va theme dark cua he thong.";
-
             LoadBrandLogo();
+        }
+
+        private void SimplifyForUsers()
+        {
+            toolbarInfoLabel.Visible = false;
+            toolbarModeLabel.Visible = false;
+            launcherChipLabel.Visible = false;
+            loginSecurityChipLabel.Visible = false;
+            supportCardPanel.Visible = false;
+            securityNotePanel.Visible = false;
+            registerPromptLabel.Visible = false;
+            registerLink.Visible = false;
+            otpButton.Visible = false;
+            otpButton.Enabled = false;
+            showcaseFooterLabel.Visible = false;
+
+            loginButton.Location = new Point(36, 458);
+            loginButton.Size = new Size(364, 46);
+        }
+
+        private static bool IsInDesignMode()
+        {
+            return LicenseManager.UsageMode == LicenseUsageMode.Designtime;
         }
 
         private void LayoutShell()
@@ -113,25 +122,16 @@ namespace UI_Desktop
             if (string.IsNullOrWhiteSpace(emailTextBox.Text) || string.IsNullOrWhiteSpace(passwordTextBox.Text))
             {
                 MessageBox.Show(
-                    "Vui long nhap day du email/so dien thoai va mat khau.",
-                    "Thieu thong tin",
+                    "Vui lòng nhập đầy đủ email hoặc số điện thoại và mật khẩu.",
+                    "Thiếu thông tin",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;
             }
 
             MessageBox.Show(
-                "Form dang nhap da san sang. Ban co the noi nut nay vao API dang nhap user.",
-                "Dang nhap",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-        }
-
-        private void OtpButton_Click(object? sender, EventArgs e)
-        {
-            MessageBox.Show(
-                "Nut OTP da duoc dat san de ban noi vao luong gui ma sau nay.",
-                "Nhan OTP",
+                "Biểu mẫu đăng nhập đã sẵn sàng để kết nối với API người dùng.",
+                "Đăng nhập",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
@@ -139,17 +139,8 @@ namespace UI_Desktop
         private void ForgotPasswordLink_LinkClicked(object? sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show(
-                "Ban co the noi link nay sang flow quen mat khau.",
-                "Quen mat khau",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-        }
-
-        private void RegisterLink_LinkClicked(object? sender, LinkLabelLinkClickedEventArgs e)
-        {
-            MessageBox.Show(
-                "Ban co the noi link nay sang form dang ky user.",
-                "Tao tai khoan",
+                "Bạn có thể kết nối liên kết này với luồng quên mật khẩu.",
+                "Quên mật khẩu",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
@@ -230,3 +221,4 @@ namespace UI_Desktop
 
     }
 }
+
