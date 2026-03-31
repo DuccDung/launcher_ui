@@ -1,3 +1,5 @@
+using UI_Desktop.Auth;
+
 namespace UI_Desktop
 {
     internal static class Program
