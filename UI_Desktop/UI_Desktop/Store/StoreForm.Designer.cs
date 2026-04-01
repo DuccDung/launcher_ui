@@ -918,7 +918,7 @@ partial class StoreForm
 
         notificationButton.IconKind = StoreIconKind.Notification;
         notificationButton.BadgeText = string.Empty;
-        notificationButton.UseOriginalGlyphColors = true;
+        notificationButton.UseOriginalGlyphColors = false;
         notificationButton.ShowChrome = true;
         notificationButton.GlyphSize = 27F;
         notificationButton.GlyphYOffset = -1;
@@ -932,7 +932,7 @@ partial class StoreForm
 
         cartButton.IconKind = StoreIconKind.Cart;
         cartButton.BadgeText = string.Empty;
-        cartButton.UseOriginalGlyphColors = true;
+        cartButton.UseOriginalGlyphColors = false;
         cartButton.ShowChrome = true;
         cartButton.GlyphSize = 27F;
         cartButton.GlyphYOffset = -1;
@@ -946,7 +946,7 @@ partial class StoreForm
 
         helpButton.IconKind = StoreIconKind.Help;
         helpButton.BadgeText = string.Empty;
-        helpButton.UseOriginalGlyphColors = true;
+        helpButton.UseOriginalGlyphColors = false;
         helpButton.ShowChrome = true;
         helpButton.GlyphSize = 27F;
         helpButton.GlyphStrokeWidth = 1.26F;

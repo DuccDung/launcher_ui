@@ -222,18 +222,8 @@ internal sealed class StoreIconButton : Button
         }
         else
         {
-            using var attributes = new ImageAttributes();
-            attributes.SetColorMatrix(CreateTintMatrix(glyphColor), ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-            graphics.DrawImage(
-                GlyphImage,
-                bounds,
-                sourceBounds.X,
-                sourceBounds.Y,
-                sourceBounds.Width,
-                sourceBounds.Height,
-                GraphicsUnit.Pixel,
-                attributes);
+            using var recoloredGlyph = CreateRecoloredGlyph(GlyphImage, sourceBounds, glyphColor);
+            graphics.DrawImage(recoloredGlyph, bounds);
         }
 
         return true;
@@ -385,6 +375,32 @@ internal sealed class StoreIconButton : Button
             [0F, 0F, 0F, alpha, 0F],
             [0F, 0F, 0F, 0F, 1F]
         ]);
+    }
+
+    private static Bitmap CreateRecoloredGlyph(Image image, Rectangle sourceBounds, Color glyphColor)
+    {
+        var ownsBitmap = image is not Bitmap;
+        using var tempBitmap = ownsBitmap ? new Bitmap(image) : null;
+        var bitmap = tempBitmap ?? (Bitmap)image;
+
+        var recolored = new Bitmap(sourceBounds.Width, sourceBounds.Height);
+
+        for (var y = 0; y < sourceBounds.Height; y++)
+        {
+            for (var x = 0; x < sourceBounds.Width; x++)
+            {
+                var sourcePixel = bitmap.GetPixel(sourceBounds.X + x, sourceBounds.Y + y);
+                var outputPixel = Color.FromArgb(
+                    sourcePixel.A,
+                    glyphColor.R,
+                    glyphColor.G,
+                    glyphColor.B);
+
+                recolored.SetPixel(x, y, outputPixel);
+            }
+        }
+
+        return recolored;
     }
 
     private static Rectangle GetOpaqueBounds(Image image)
