@@ -226,11 +226,13 @@ internal partial class StoreForm : Form
             : Color.FromArgb(29, 55, 103);
         featuredTitleLabel.Text = game.Title;
         featuredSubtitleLabel.Text = $"{game.Subtitle}. Xem nhanh giá, mức giảm và nhóm thể loại trước khi thêm vào thư viện.";
+        featuredSubtitleLabel.Text = game.Subtitle;
         originalPriceValueLabel.Text = game.OriginalPriceText;
         discountValueLabel.Text = game.DiscountPercent > 0 ? $"-{game.DiscountPercent}%" : "0%";
         discountValueLabel.ForeColor = game.DiscountPercent > 0 ? Color.FromArgb(73, 209, 164) : AppTheme.SecondaryText;
         salePriceValueLabel.Text = game.SalePriceText;
         saleLimitValueLabel.Text = game.DiscountPercent > 0 ? "Không giới hạn" : "Giá hiện hành";
+        saleLimitValueLabel.Text = game.DiscountPercent > 0 ? "Khong gioi han" : "Gia hien hanh";
         genresValueLabel.Text = game.GenresText;
 
         RenderFeaturedArtwork();
@@ -312,13 +314,13 @@ internal partial class StoreForm : Form
 
         if (stack)
         {
-            featuredPanel.Height = 568;
+            featuredPanel.Height = 554;
             featuredLayout.ColumnCount = 1;
             featuredLayout.RowCount = 2;
             featuredLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            featuredLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, Math.Max(220, Math.Min(300, featuredPanel.Width / 3))));
+            featuredLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, Math.Max(230, Math.Min(308, featuredPanel.Width / 3))));
             featuredLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            featuredPictureBox.Margin = new Padding(0, 0, 0, 16);
+            featuredPictureBox.Margin = new Padding(0, 0, 0, 14);
             featuredInfoPanel.Margin = new Padding(0);
             featuredLayout.Controls.Add(featuredPictureBox, 0, 0);
             featuredLayout.Controls.Add(featuredInfoPanel, 0, 1);
@@ -328,11 +330,11 @@ internal partial class StoreForm : Form
             featuredPanel.Height = 390;
             featuredLayout.ColumnCount = 2;
             featuredLayout.RowCount = 1;
-            featuredLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 62F));
-            featuredLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 38F));
+            featuredLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64F));
+            featuredLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 36F));
             featuredLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            featuredPictureBox.Margin = new Padding(0, 0, 18, 0);
-            featuredInfoPanel.Margin = new Padding(18, 0, 0, 0);
+            featuredPictureBox.Margin = new Padding(0);
+            featuredInfoPanel.Margin = new Padding(0);
             featuredLayout.Controls.Add(featuredPictureBox, 0, 0);
             featuredLayout.Controls.Add(featuredInfoPanel, 1, 0);
         }

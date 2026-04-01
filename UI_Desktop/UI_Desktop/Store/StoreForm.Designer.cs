@@ -516,46 +516,48 @@ partial class StoreForm
         featuredPanel.Location = new Point(0, 0);
         featuredPanel.Margin = new Padding(0, 0, 0, 28);
         featuredPanel.Name = "featuredPanel";
-        featuredPanel.Padding = new Padding(18);
+        featuredPanel.Padding = new Padding(14);
         featuredPanel.Size = new Size(1404, 390);
         featuredPanel.TabIndex = 0;
         // 
         // featuredLayout
         // 
         featuredLayout.ColumnCount = 2;
-        featuredLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 62F));
-        featuredLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 38F));
+        featuredLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64F));
+        featuredLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 36F));
         featuredLayout.Controls.Add(featuredPictureBox, 0, 0);
         featuredLayout.Controls.Add(featuredInfoPanel, 1, 0);
         featuredLayout.Dock = DockStyle.Fill;
-        featuredLayout.Location = new Point(18, 18);
+        featuredLayout.Location = new Point(14, 14);
         featuredLayout.Margin = new Padding(0);
         featuredLayout.Name = "featuredLayout";
         featuredLayout.RowCount = 1;
         featuredLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        featuredLayout.Size = new Size(1368, 354);
+        featuredLayout.Size = new Size(1376, 362);
         featuredLayout.TabIndex = 0;
         // 
         // featuredPictureBox
         // 
+        featuredPictureBox.BackColor = Color.FromArgb(10, 15, 22);
         featuredPictureBox.Dock = DockStyle.Fill;
         featuredPictureBox.Location = new Point(0, 0);
-        featuredPictureBox.Margin = new Padding(0, 0, 18, 0);
+        featuredPictureBox.Margin = new Padding(0);
         featuredPictureBox.Name = "featuredPictureBox";
-        featuredPictureBox.Size = new Size(830, 354);
+        featuredPictureBox.Size = new Size(880, 362);
         featuredPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
         featuredPictureBox.TabIndex = 0;
         featuredPictureBox.TabStop = false;
         // 
         // featuredInfoPanel
         // 
+        featuredInfoPanel.BackColor = Color.FromArgb(14, 20, 29);
         featuredInfoPanel.Controls.Add(featuredInfoLayout);
         featuredInfoPanel.Dock = DockStyle.Fill;
-        featuredInfoPanel.Location = new Point(866, 0);
-        featuredInfoPanel.Margin = new Padding(18, 0, 0, 0);
+        featuredInfoPanel.Location = new Point(880, 0);
+        featuredInfoPanel.Margin = new Padding(0);
         featuredInfoPanel.Name = "featuredInfoPanel";
-        featuredInfoPanel.Padding = new Padding(4);
-        featuredInfoPanel.Size = new Size(502, 354);
+        featuredInfoPanel.Padding = new Padding(22, 20, 22, 16);
+        featuredInfoPanel.Size = new Size(496, 362);
         featuredInfoPanel.TabIndex = 1;
         // 
         // featuredInfoLayout
@@ -567,7 +569,7 @@ partial class StoreForm
         featuredInfoLayout.Controls.Add(featuredSubtitleLabel, 0, 2);
         featuredInfoLayout.Controls.Add(featuredSpecsLayout, 0, 3);
         featuredInfoLayout.Dock = DockStyle.Fill;
-        featuredInfoLayout.Location = new Point(4, 4);
+        featuredInfoLayout.Location = new Point(22, 20);
         featuredInfoLayout.Margin = new Padding(0);
         featuredInfoLayout.Name = "featuredInfoLayout";
         featuredInfoLayout.RowCount = 4;
@@ -575,53 +577,53 @@ partial class StoreForm
         featuredInfoLayout.RowStyles.Add(new RowStyle());
         featuredInfoLayout.RowStyles.Add(new RowStyle());
         featuredInfoLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        featuredInfoLayout.Size = new Size(494, 346);
+        featuredInfoLayout.Size = new Size(452, 326);
         featuredInfoLayout.TabIndex = 0;
         // 
         // featuredPromoLabel
         // 
         featuredPromoLabel.AutoSize = true;
         featuredPromoLabel.BackColor = Color.FromArgb(30, 82, 67);
-        featuredPromoLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        featuredPromoLabel.Font = new Font("Segoe UI Semibold", 9.2F, FontStyle.Bold);
         featuredPromoLabel.ForeColor = Color.FromArgb(220, 250, 240);
         featuredPromoLabel.Location = new Point(0, 0);
         featuredPromoLabel.Margin = new Padding(0);
         featuredPromoLabel.Name = "featuredPromoLabel";
-        featuredPromoLabel.Padding = new Padding(12, 7, 12, 7);
-        featuredPromoLabel.Size = new Size(99, 34);
+        featuredPromoLabel.Padding = new Padding(12, 6, 12, 6);
+        featuredPromoLabel.Size = new Size(106, 33);
         featuredPromoLabel.TabIndex = 0;
         featuredPromoLabel.Text = "SALE HOT";
         // 
         // featuredTitleLabel
         // 
         featuredTitleLabel.AutoSize = true;
-        featuredTitleLabel.Font = new Font("Segoe UI Semibold", 22F, FontStyle.Bold);
+        featuredTitleLabel.Font = new Font("Segoe UI Semibold", 21F, FontStyle.Bold);
         featuredTitleLabel.ForeColor = Color.FromArgb(239, 243, 248);
-        featuredTitleLabel.Location = new Point(0, 46);
-        featuredTitleLabel.Margin = new Padding(0, 12, 0, 0);
-        featuredTitleLabel.MaximumSize = new Size(460, 0);
+        featuredTitleLabel.Location = new Point(0, 47);
+        featuredTitleLabel.Margin = new Padding(0, 14, 0, 0);
+        featuredTitleLabel.MaximumSize = new Size(430, 0);
         featuredTitleLabel.Name = "featuredTitleLabel";
-        featuredTitleLabel.Size = new Size(247, 50);
+        featuredTitleLabel.Size = new Size(234, 47);
         featuredTitleLabel.TabIndex = 1;
         featuredTitleLabel.Text = "Featured title";
         // 
         // featuredSubtitleLabel
         // 
         featuredSubtitleLabel.AutoSize = true;
-        featuredSubtitleLabel.Font = new Font("Segoe UI", 10.5F);
+        featuredSubtitleLabel.Font = new Font("Segoe UI", 10F);
         featuredSubtitleLabel.ForeColor = Color.FromArgb(162, 174, 191);
-        featuredSubtitleLabel.Location = new Point(0, 110);
-        featuredSubtitleLabel.Margin = new Padding(0, 14, 0, 0);
-        featuredSubtitleLabel.MaximumSize = new Size(470, 0);
+        featuredSubtitleLabel.Location = new Point(0, 102);
+        featuredSubtitleLabel.Margin = new Padding(0, 8, 0, 0);
+        featuredSubtitleLabel.MaximumSize = new Size(430, 0);
         featuredSubtitleLabel.Name = "featuredSubtitleLabel";
-        featuredSubtitleLabel.Size = new Size(278, 25);
+        featuredSubtitleLabel.Size = new Size(268, 23);
         featuredSubtitleLabel.TabIndex = 2;
         featuredSubtitleLabel.Text = "Bản giới thiệu nổi bật trong ngày.";
         // 
         // featuredSpecsLayout
         // 
         featuredSpecsLayout.ColumnCount = 2;
-        featuredSpecsLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 132F));
+        featuredSpecsLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 124F));
         featuredSpecsLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
         featuredSpecsLayout.Controls.Add(originalPriceCaptionLabel, 0, 0);
         featuredSpecsLayout.Controls.Add(originalPriceValueLabel, 1, 0);
@@ -634,16 +636,16 @@ partial class StoreForm
         featuredSpecsLayout.Controls.Add(genresCaptionLabel, 0, 4);
         featuredSpecsLayout.Controls.Add(genresValueLabel, 1, 4);
         featuredSpecsLayout.Dock = DockStyle.Fill;
-        featuredSpecsLayout.Location = new Point(0, 161);
-        featuredSpecsLayout.Margin = new Padding(0, 26, 0, 0);
+        featuredSpecsLayout.Location = new Point(0, 147);
+        featuredSpecsLayout.Margin = new Padding(0, 22, 0, 0);
         featuredSpecsLayout.Name = "featuredSpecsLayout";
         featuredSpecsLayout.RowCount = 5;
-        featuredSpecsLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 46F));
-        featuredSpecsLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 46F));
-        featuredSpecsLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 52F));
-        featuredSpecsLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 44F));
+        featuredSpecsLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
+        featuredSpecsLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
+        featuredSpecsLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+        featuredSpecsLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
         featuredSpecsLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        featuredSpecsLayout.Size = new Size(494, 185);
+        featuredSpecsLayout.Size = new Size(452, 179);
         featuredSpecsLayout.TabIndex = 3;
         // 
         // originalPriceCaptionLabel
@@ -652,7 +654,7 @@ partial class StoreForm
         originalPriceCaptionLabel.AutoSize = true;
         originalPriceCaptionLabel.Font = new Font("Segoe UI", 10F);
         originalPriceCaptionLabel.ForeColor = Color.FromArgb(143, 156, 176);
-        originalPriceCaptionLabel.Location = new Point(0, 11);
+        originalPriceCaptionLabel.Location = new Point(0, 9);
         originalPriceCaptionLabel.Margin = new Padding(0);
         originalPriceCaptionLabel.Name = "originalPriceCaptionLabel";
         originalPriceCaptionLabel.Size = new Size(68, 23);
@@ -665,10 +667,10 @@ partial class StoreForm
         originalPriceValueLabel.AutoSize = true;
         originalPriceValueLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         originalPriceValueLabel.ForeColor = Color.FromArgb(239, 243, 248);
-        originalPriceValueLabel.Location = new Point(132, 11);
+        originalPriceValueLabel.Location = new Point(124, 9);
         originalPriceValueLabel.Margin = new Padding(0);
         originalPriceValueLabel.Name = "originalPriceValueLabel";
-        originalPriceValueLabel.Size = new Size(362, 23);
+        originalPriceValueLabel.Size = new Size(328, 23);
         originalPriceValueLabel.TabIndex = 1;
         originalPriceValueLabel.Text = "117.000 đ";
         originalPriceValueLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -679,7 +681,7 @@ partial class StoreForm
         discountCaptionLabel.AutoSize = true;
         discountCaptionLabel.Font = new Font("Segoe UI", 10F);
         discountCaptionLabel.ForeColor = Color.FromArgb(143, 156, 176);
-        discountCaptionLabel.Location = new Point(0, 57);
+        discountCaptionLabel.Location = new Point(0, 51);
         discountCaptionLabel.Margin = new Padding(0);
         discountCaptionLabel.Name = "discountCaptionLabel";
         discountCaptionLabel.Size = new Size(50, 23);
@@ -692,10 +694,10 @@ partial class StoreForm
         discountValueLabel.AutoSize = true;
         discountValueLabel.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold);
         discountValueLabel.ForeColor = Color.FromArgb(73, 209, 164);
-        discountValueLabel.Location = new Point(132, 51);
+        discountValueLabel.Location = new Point(124, 45);
         discountValueLabel.Margin = new Padding(0);
         discountValueLabel.Name = "discountValueLabel";
-        discountValueLabel.Size = new Size(362, 35);
+        discountValueLabel.Size = new Size(328, 35);
         discountValueLabel.TabIndex = 3;
         discountValueLabel.Text = "-90%";
         discountValueLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -706,7 +708,7 @@ partial class StoreForm
         salePriceCaptionLabel.AutoSize = true;
         salePriceCaptionLabel.Font = new Font("Segoe UI", 10F);
         salePriceCaptionLabel.ForeColor = Color.FromArgb(143, 156, 176);
-        salePriceCaptionLabel.Location = new Point(0, 106);
+        salePriceCaptionLabel.Location = new Point(0, 97);
         salePriceCaptionLabel.Margin = new Padding(0);
         salePriceCaptionLabel.Name = "salePriceCaptionLabel";
         salePriceCaptionLabel.Size = new Size(88, 23);
@@ -719,10 +721,10 @@ partial class StoreForm
         salePriceValueLabel.AutoSize = true;
         salePriceValueLabel.Font = new Font("Segoe UI Semibold", 17F, FontStyle.Bold);
         salePriceValueLabel.ForeColor = Color.FromArgb(82, 138, 255);
-        salePriceValueLabel.Location = new Point(132, 98);
+        salePriceValueLabel.Location = new Point(124, 89);
         salePriceValueLabel.Margin = new Padding(0);
         salePriceValueLabel.Name = "salePriceValueLabel";
-        salePriceValueLabel.Size = new Size(362, 40);
+        salePriceValueLabel.Size = new Size(328, 40);
         salePriceValueLabel.TabIndex = 5;
         salePriceValueLabel.Text = "11.700 đ";
         salePriceValueLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -733,7 +735,7 @@ partial class StoreForm
         saleLimitCaptionLabel.AutoSize = true;
         saleLimitCaptionLabel.Font = new Font("Segoe UI", 10F);
         saleLimitCaptionLabel.ForeColor = Color.FromArgb(143, 156, 176);
-        saleLimitCaptionLabel.Location = new Point(0, 154);
+        saleLimitCaptionLabel.Location = new Point(0, 142);
         saleLimitCaptionLabel.Margin = new Padding(0);
         saleLimitCaptionLabel.Name = "saleLimitCaptionLabel";
         saleLimitCaptionLabel.Size = new Size(72, 23);
@@ -746,10 +748,10 @@ partial class StoreForm
         saleLimitValueLabel.AutoSize = true;
         saleLimitValueLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         saleLimitValueLabel.ForeColor = Color.FromArgb(239, 243, 248);
-        saleLimitValueLabel.Location = new Point(132, 154);
+        saleLimitValueLabel.Location = new Point(124, 142);
         saleLimitValueLabel.Margin = new Padding(0);
         saleLimitValueLabel.Name = "saleLimitValueLabel";
-        saleLimitValueLabel.Size = new Size(362, 23);
+        saleLimitValueLabel.Size = new Size(328, 23);
         saleLimitValueLabel.TabIndex = 7;
         saleLimitValueLabel.Text = "Không giới hạn";
         saleLimitValueLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -760,10 +762,10 @@ partial class StoreForm
         genresCaptionLabel.AutoSize = true;
         genresCaptionLabel.Font = new Font("Segoe UI", 10F);
         genresCaptionLabel.ForeColor = Color.FromArgb(143, 156, 176);
-        genresCaptionLabel.Location = new Point(0, 189);
+        genresCaptionLabel.Location = new Point(0, 175);
         genresCaptionLabel.Margin = new Padding(0, 1, 0, 0);
         genresCaptionLabel.Name = "genresCaptionLabel";
-        genresCaptionLabel.Size = new Size(70, 1);
+        genresCaptionLabel.Size = new Size(70, 4);
         genresCaptionLabel.TabIndex = 8;
         genresCaptionLabel.Text = "Thể loại";
         // 
@@ -773,11 +775,11 @@ partial class StoreForm
         genresValueLabel.AutoSize = true;
         genresValueLabel.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
         genresValueLabel.ForeColor = Color.FromArgb(239, 243, 248);
-        genresValueLabel.Location = new Point(132, 189);
+        genresValueLabel.Location = new Point(124, 175);
         genresValueLabel.Margin = new Padding(0, 1, 0, 0);
-        genresValueLabel.MaximumSize = new Size(362, 0);
+        genresValueLabel.MaximumSize = new Size(328, 0);
         genresValueLabel.Name = "genresValueLabel";
-        genresValueLabel.Size = new Size(362, 1);
+        genresValueLabel.Size = new Size(328, 4);
         genresValueLabel.TabIndex = 9;
         genresValueLabel.Text = "Farming Sim, Indie, Casual";
         genresValueLabel.TextAlign = ContentAlignment.TopRight;
@@ -967,8 +969,8 @@ partial class StoreForm
         cartBadgePanel.BorderThickness = 0;
         cartBadgePanel.CornerRadius = 11;
 
-        featuredPanel.SurfaceColor = Color.FromArgb(17, 24, 33);
-        featuredPanel.BorderColor = AppTheme.CardBorder;
+        featuredPanel.SurfaceColor = Color.FromArgb(15, 22, 31);
+        featuredPanel.BorderColor = Color.FromArgb(47, 63, 82);
         featuredPanel.BorderThickness = 1;
         featuredPanel.CornerRadius = 24;
 
