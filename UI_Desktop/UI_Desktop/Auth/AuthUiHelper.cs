@@ -33,6 +33,16 @@ internal static class AuthUiHelper
 
     internal static void ConfigureInput(UI_Desktop.RoundedPanel shell, TextBox textBox)
     {
+        const int horizontalInset = 20;
+
+        void LayoutTextBox()
+        {
+            var preferredHeight = textBox.PreferredHeight;
+            var y = Math.Max(8, (shell.ClientSize.Height - preferredHeight) / 2);
+            var width = Math.Max(10, shell.ClientSize.Width - (horizontalInset * 2));
+            textBox.SetBounds(horizontalInset, y, width, preferredHeight + 1);
+        }
+
         void UpdateState(bool focused)
         {
             var background = focused ? Color.FromArgb(36, 46, 61) : AppTheme.InputSurface;
@@ -46,17 +56,24 @@ internal static class AuthUiHelper
         shell.BorderThickness = 1;
         shell.CornerRadius = 24;
 
+        textBox.Dock = DockStyle.None;
+        textBox.Multiline = false;
         textBox.BackColor = AppTheme.InputSurface;
+        textBox.BorderStyle = BorderStyle.None;
         textBox.ForeColor = AppTheme.PrimaryText;
+        textBox.Margin = Padding.Empty;
 
         textBox.Enter += (_, _) => UpdateState(true);
         textBox.Leave += (_, _) => UpdateState(false);
         shell.Click += (_, _) => textBox.Focus();
+        shell.Resize += (_, _) => LayoutTextBox();
 
         foreach (Control child in shell.Controls)
         {
             child.Click += (_, _) => textBox.Focus();
         }
+
+        LayoutTextBox();
     }
 
     internal static void UpdateResponsiveLayout(Form form, TableLayoutPanel rootLayout, Control heroPanel)

@@ -14,9 +14,11 @@ internal sealed class GradientButton : Button
             ControlStyles.AllPaintingInWmPaint |
             ControlStyles.OptimizedDoubleBuffer |
             ControlStyles.ResizeRedraw |
+            ControlStyles.SupportsTransparentBackColor |
             ControlStyles.UserPaint,
             true);
 
+        BackColor = Color.Transparent;
         Cursor = Cursors.Hand;
         FlatStyle = FlatStyle.Flat;
         FlatAppearance.BorderSize = 0;
@@ -68,9 +70,43 @@ internal sealed class GradientButton : Button
         Invalidate();
     }
 
+    protected override void OnResize(EventArgs e)
+    {
+        base.OnResize(e);
+
+        if (Width <= 1 || Height <= 1)
+        {
+            return;
+        }
+
+        using var path = RoundedPanel.CreateRoundedPath(new Rectangle(0, 0, Width - 1, Height - 1), CornerRadius);
+        Region = new Region(path);
+    }
+
+    protected override void OnPaintBackground(PaintEventArgs pevent)
+    {
+        if (BackColor.A == 255 || Parent is null)
+        {
+            base.OnPaintBackground(pevent);
+        }
+    }
+
     protected override void OnPaint(PaintEventArgs e)
     {
+        if (Width <= 1 || Height <= 1)
+        {
+            return;
+        }
+
+        var parentColor = Parent is RoundedPanel roundedParent
+            ? roundedParent.SurfaceColor
+            : Parent?.BackColor ?? BackColor;
+
+        e.Graphics.Clear(parentColor);
         e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+        e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
+        e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
         var rect = new Rectangle(0, 0, Width - 1, Height - 1);
 
         using var path = RoundedPanel.CreateRoundedPath(rect, CornerRadius);

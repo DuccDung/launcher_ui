@@ -16,6 +16,7 @@ internal class RoundedPanel : Panel
             ControlStyles.AllPaintingInWmPaint |
             ControlStyles.OptimizedDoubleBuffer |
             ControlStyles.ResizeRedraw |
+            ControlStyles.SupportsTransparentBackColor |
             ControlStyles.UserPaint,
             true);
 
@@ -79,15 +80,22 @@ internal class RoundedPanel : Panel
 
     protected override void OnPaint(PaintEventArgs e)
     {
-        base.OnPaint(e);
-
         if (Width <= 1 || Height <= 1)
         {
             return;
         }
 
+        PaintParentBackground(e.Graphics);
+
         e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-        var rect = new Rectangle(0, 0, Width - 1, Height - 1);
+        e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
+        e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+        var rect = new Rectangle(borderThickness, borderThickness, Width - (borderThickness * 2) - 1, Height - (borderThickness * 2) - 1);
+        if (rect.Width <= 0 || rect.Height <= 0)
+        {
+            return;
+        }
 
         using var path = CreateRoundedPath(rect, cornerRadius);
         using var brush = new SolidBrush(surfaceColor);
@@ -102,6 +110,14 @@ internal class RoundedPanel : Panel
         e.Graphics.DrawPath(pen, path);
     }
 
+    protected override void OnPaintBackground(PaintEventArgs e)
+    {
+        if (BackColor.A == 255 || Parent is null)
+        {
+            base.OnPaintBackground(e);
+        }
+    }
+
     private void UpdateRegion()
     {
         if (Width <= 1 || Height <= 1)
@@ -109,8 +125,23 @@ internal class RoundedPanel : Panel
             return;
         }
 
-        using var path = CreateRoundedPath(new Rectangle(0, 0, Width, Height), cornerRadius);
+        using var path = CreateRoundedPath(new Rectangle(0, 0, Width - 1, Height - 1), cornerRadius);
         Region = new Region(path);
+    }
+
+    private void PaintParentBackground(Graphics graphics)
+    {
+        if (Parent is null)
+        {
+            graphics.Clear(surfaceColor);
+            return;
+        }
+
+        var parentColor = Parent is RoundedPanel roundedParent
+            ? roundedParent.SurfaceColor
+            : Parent.BackColor;
+
+        graphics.Clear(parentColor);
     }
 
     internal static GraphicsPath CreateRoundedPath(Rectangle bounds, int radius)
