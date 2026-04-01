@@ -31,6 +31,11 @@ internal static class AuthUiHelper
         }
     }
 
+    internal static void ApplyWindowIcon(Form form)
+    {
+        AppIconProvider.ApplyIcon(form);
+    }
+
     internal static void ConfigureInput(UI_Desktop.RoundedPanel shell, TextBox textBox)
     {
         const int horizontalInset = 20;

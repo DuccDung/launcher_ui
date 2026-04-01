@@ -170,9 +170,9 @@ partial class LoginForm
         heroMetaLabel.Location = new Point(0, 30);
         heroMetaLabel.Margin = new Padding(0);
         heroMetaLabel.Name = "heroMetaLabel";
-        heroMetaLabel.Size = new Size(248, 21);
+        heroMetaLabel.Size = new Size(162, 21);
         heroMetaLabel.TabIndex = 1;
-        heroMetaLabel.Text = "Desktop authentication workspace";
+        heroMetaLabel.Text = "Cổng tài khoản NestG";
         // 
         // heroAppNameLabel
         // 
@@ -207,9 +207,9 @@ partial class LoginForm
         heroBadgeLabel.Margin = new Padding(0, 30, 0, 0);
         heroBadgeLabel.Name = "heroBadgeLabel";
         heroBadgeLabel.Padding = new Padding(14, 8, 14, 8);
-        heroBadgeLabel.Size = new Size(196, 36);
+        heroBadgeLabel.Size = new Size(208, 36);
         heroBadgeLabel.TabIndex = 1;
-        heroBadgeLabel.Text = "ĐĂNG NHẬP AN TOÀN";
+        heroBadgeLabel.Text = "ĐĂNG NHẬP TÀI KHOẢN";
         // 
         // heroTitleLabel
         // 
@@ -220,61 +220,61 @@ partial class LoginForm
         heroTitleLabel.Margin = new Padding(0, 18, 0, 0);
         heroTitleLabel.MaximumSize = new Size(390, 0);
         heroTitleLabel.Name = "heroTitleLabel";
-        heroTitleLabel.Size = new Size(368, 216);
+        heroTitleLabel.Size = new Size(369, 108);
         heroTitleLabel.TabIndex = 2;
-        heroTitleLabel.Text = "Một điểm truy cập gọn gàng cho tài khoản NestG của bạn.";
+        heroTitleLabel.Text = "Đăng nhập để tiếp tục với NestG.";
         // 
         // heroDescriptionLabel
         // 
         heroDescriptionLabel.AutoSize = true;
         heroDescriptionLabel.Font = new Font("Segoe UI", 10.5F);
         heroDescriptionLabel.ForeColor = Color.FromArgb(162, 174, 191);
-        heroDescriptionLabel.Location = new Point(0, 367);
+        heroDescriptionLabel.Location = new Point(0, 259);
         heroDescriptionLabel.Margin = new Padding(0, 16, 0, 0);
         heroDescriptionLabel.MaximumSize = new Size(398, 0);
         heroDescriptionLabel.Name = "heroDescriptionLabel";
-        heroDescriptionLabel.Size = new Size(378, 75);
+        heroDescriptionLabel.Size = new Size(387, 50);
         heroDescriptionLabel.TabIndex = 3;
-        heroDescriptionLabel.Text = "Thiết kế mới tập trung vào độ rõ ràng, tốc độ thao tác và cảm giác desktop chuyên nghiệp hơn khi đăng nhập hằng ngày.";
+        heroDescriptionLabel.Text = "Nhập email và mật khẩu để vào launcher, kiểm tra tài khoản và tiếp tục phiên làm việc của bạn.";
         // 
         // heroBulletOneLabel
         // 
         heroBulletOneLabel.AutoSize = true;
         heroBulletOneLabel.Font = new Font("Segoe UI", 10.25F);
         heroBulletOneLabel.ForeColor = Color.FromArgb(239, 243, 248);
-        heroBulletOneLabel.Location = new Point(0, 470);
+        heroBulletOneLabel.Location = new Point(0, 337);
         heroBulletOneLabel.Margin = new Padding(0, 28, 0, 0);
         heroBulletOneLabel.MaximumSize = new Size(400, 0);
         heroBulletOneLabel.Name = "heroBulletOneLabel";
-        heroBulletOneLabel.Size = new Size(361, 50);
+        heroBulletOneLabel.Size = new Size(396, 50);
         heroBulletOneLabel.TabIndex = 4;
-        heroBulletOneLabel.Text = "• Theo dõi đơn mua, trạng thái kích hoạt và thông tin thiết bị trong cùng một luồng.";
+        heroBulletOneLabel.Text = "• Theo dõi nhanh tình trạng tài khoản và thiết bị của bạn.";
         // 
         // heroBulletTwoLabel
         // 
         heroBulletTwoLabel.AutoSize = true;
         heroBulletTwoLabel.Font = new Font("Segoe UI", 10.25F);
         heroBulletTwoLabel.ForeColor = Color.FromArgb(239, 243, 248);
-        heroBulletTwoLabel.Location = new Point(0, 536);
+        heroBulletTwoLabel.Location = new Point(0, 403);
         heroBulletTwoLabel.Margin = new Padding(0, 16, 0, 0);
         heroBulletTwoLabel.MaximumSize = new Size(400, 0);
         heroBulletTwoLabel.Name = "heroBulletTwoLabel";
-        heroBulletTwoLabel.Size = new Size(383, 50);
+        heroBulletTwoLabel.Size = new Size(396, 50);
         heroBulletTwoLabel.TabIndex = 5;
-        heroBulletTwoLabel.Text = "• Lưu phiên làm việc gọn gàng để người dùng quay lại nhanh hơn trên desktop.";
+        heroBulletTwoLabel.Text = "• Ghi nhớ đăng nhập an toàn để lần sau truy cập nhanh hơn.";
         // 
         // heroBulletThreeLabel
         // 
         heroBulletThreeLabel.AutoSize = true;
         heroBulletThreeLabel.Font = new Font("Segoe UI", 10.25F);
         heroBulletThreeLabel.ForeColor = Color.FromArgb(239, 243, 248);
-        heroBulletThreeLabel.Location = new Point(0, 602);
+        heroBulletThreeLabel.Location = new Point(0, 469);
         heroBulletThreeLabel.Margin = new Padding(0, 16, 0, 0);
         heroBulletThreeLabel.MaximumSize = new Size(400, 0);
         heroBulletThreeLabel.Name = "heroBulletThreeLabel";
-        heroBulletThreeLabel.Size = new Size(370, 50);
+        heroBulletThreeLabel.Size = new Size(398, 50);
         heroBulletThreeLabel.TabIndex = 6;
-        heroBulletThreeLabel.Text = "• Khôi phục mật khẩu hoặc điều hướng sang đăng ký mà không đổi cửa sổ ứng dụng.";
+        heroBulletThreeLabel.Text = "• Nếu quên mật khẩu, bạn có thể yêu cầu mã xác thực ngay tại đây.";
         // 
         // cardPanel
         // 
@@ -362,9 +362,9 @@ partial class LoginForm
         cardMetaLabel.Location = new Point(0, 28);
         cardMetaLabel.Margin = new Padding(0);
         cardMetaLabel.Name = "cardMetaLabel";
-        cardMetaLabel.Size = new Size(156, 20);
+        cardMetaLabel.Size = new Size(153, 20);
         cardMetaLabel.TabIndex = 1;
-        cardMetaLabel.Text = "Secure desktop access";
+        cardMetaLabel.Text = "Cổng tài khoản NestG";
         // 
         // cardAppNameLabel
         // 
@@ -541,6 +541,7 @@ partial class LoginForm
         // 
         // loginButton
         // 
+        loginButton.BackColor = Color.Transparent;
         loginButton.Dock = DockStyle.Top;
         loginButton.FlatAppearance.BorderSize = 0;
         loginButton.FlatStyle = FlatStyle.Flat;

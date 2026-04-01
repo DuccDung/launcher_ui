@@ -13,6 +13,7 @@ internal partial class LoginForm : Form
 
     private void ConfigureView()
     {
+        AuthUiHelper.ApplyWindowIcon(this);
         AuthUiHelper.EnableDoubleBuffer(this);
         AuthUiHelper.EnableDoubleBuffer(heroPanel);
         AuthUiHelper.EnableDoubleBuffer(cardPanel);

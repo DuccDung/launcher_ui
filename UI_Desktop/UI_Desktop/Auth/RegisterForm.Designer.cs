@@ -78,7 +78,7 @@ partial class RegisterForm
         rootLayout.Padding = new Padding(24);
         rootLayout.RowCount = 1;
         rootLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        rootLayout.Size = new Size(1264, 801);
+        rootLayout.Size = new Size(1264, 761);
         rootLayout.TabIndex = 0;
         // 
         // heroPanel
@@ -97,7 +97,7 @@ partial class RegisterForm
         heroPanel.Location = new Point(24, 24);
         heroPanel.Margin = new Padding(0, 0, 18, 0);
         heroPanel.Name = "heroPanel";
-        heroPanel.Size = new Size(504, 753);
+        heroPanel.Size = new Size(504, 713);
         heroPanel.TabIndex = 0;
         // 
         // heroBulletThreeLabel
@@ -108,7 +108,7 @@ partial class RegisterForm
         heroBulletThreeLabel.Name = "heroBulletThreeLabel";
         heroBulletThreeLabel.Size = new Size(396, 48);
         heroBulletThreeLabel.TabIndex = 8;
-        heroBulletThreeLabel.Text = "• Sẵn sàng nối tiếp sang bước xác thực email hoặc API tạo tài khoản.";
+        heroBulletThreeLabel.Text = "• Hoàn tất đăng ký để đăng nhập và bắt đầu sử dụng ngay.";
         // 
         // heroBulletTwoLabel
         // 
@@ -118,7 +118,7 @@ partial class RegisterForm
         heroBulletTwoLabel.Name = "heroBulletTwoLabel";
         heroBulletTwoLabel.Size = new Size(396, 48);
         heroBulletTwoLabel.TabIndex = 7;
-        heroBulletTwoLabel.Text = "• Bố cục co giãn cơ bản giúp form vẫn dễ đọc ở kích thước cửa sổ nhỏ hơn.";
+        heroBulletTwoLabel.Text = "• Dùng email đang hoạt động để nhận xác thực và hỗ trợ tài khoản.";
         // 
         // heroBulletOneLabel
         // 
@@ -128,7 +128,7 @@ partial class RegisterForm
         heroBulletOneLabel.Name = "heroBulletOneLabel";
         heroBulletOneLabel.Size = new Size(396, 48);
         heroBulletOneLabel.TabIndex = 6;
-        heroBulletOneLabel.Text = "• Tách rõ tên hiển thị và username để thuận tiện đồng bộ hồ sơ về sau.";
+        heroBulletOneLabel.Text = "• Chọn tên hiển thị để mọi người dễ nhận ra bạn.";
         // 
         // heroDescriptionLabel
         // 
@@ -138,7 +138,7 @@ partial class RegisterForm
         heroDescriptionLabel.Name = "heroDescriptionLabel";
         heroDescriptionLabel.Size = new Size(396, 74);
         heroDescriptionLabel.TabIndex = 5;
-        heroDescriptionLabel.Text = "Form đăng ký được giữ tối giản để tập trung vào thông tin cốt lõi, đồng thời vẫn đủ hiện đại để dùng lâu dài trong launcher desktop.";
+        heroDescriptionLabel.Text = "Điền thông tin cơ bản để bắt đầu sử dụng launcher và nhận các thông báo cần thiết từ hệ thống.";
         // 
         // heroTitleLabel
         // 
@@ -148,7 +148,7 @@ partial class RegisterForm
         heroTitleLabel.Name = "heroTitleLabel";
         heroTitleLabel.Size = new Size(390, 112);
         heroTitleLabel.TabIndex = 4;
-        heroTitleLabel.Text = "Thiết lập tài khoản NestG chỉ trong vài bước rõ ràng.";
+        heroTitleLabel.Text = "Tạo tài khoản NestG";
         // 
         // heroBadgeLabel
         // 
@@ -159,9 +159,9 @@ partial class RegisterForm
         heroBadgeLabel.Location = new Point(34, 116);
         heroBadgeLabel.Name = "heroBadgeLabel";
         heroBadgeLabel.Padding = new Padding(14, 8, 14, 8);
-        heroBadgeLabel.Size = new Size(150, 36);
+        heroBadgeLabel.Size = new Size(148, 36);
         heroBadgeLabel.TabIndex = 3;
-        heroBadgeLabel.Text = "TẠO HỒ SƠ MỚI";
+        heroBadgeLabel.Text = "TẠO TÀI KHOẢN";
         // 
         // heroMetaLabel
         // 
@@ -170,9 +170,9 @@ partial class RegisterForm
         heroMetaLabel.ForeColor = Color.FromArgb(162, 174, 191);
         heroMetaLabel.Location = new Point(94, 62);
         heroMetaLabel.Name = "heroMetaLabel";
-        heroMetaLabel.Size = new Size(248, 21);
+        heroMetaLabel.Size = new Size(162, 21);
         heroMetaLabel.TabIndex = 2;
-        heroMetaLabel.Text = "Desktop authentication workspace";
+        heroMetaLabel.Text = "Cổng tài khoản NestG";
         // 
         // heroAppNameLabel
         // 
@@ -218,7 +218,7 @@ partial class RegisterForm
         cardPanel.Location = new Point(546, 24);
         cardPanel.Margin = new Padding(0);
         cardPanel.Name = "cardPanel";
-        cardPanel.Size = new Size(694, 753);
+        cardPanel.Size = new Size(694, 713);
         cardPanel.TabIndex = 1;
         // 
         // loginLinkLabel
@@ -229,7 +229,7 @@ partial class RegisterForm
         loginLinkLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         loginLinkLabel.LinkBehavior = LinkBehavior.HoverUnderline;
         loginLinkLabel.LinkColor = Color.FromArgb(220, 232, 255);
-        loginLinkLabel.Location = new Point(311, 706);
+        loginLinkLabel.Location = new Point(311, 684);
         loginLinkLabel.Name = "loginLinkLabel";
         loginLinkLabel.Size = new Size(161, 23);
         loginLinkLabel.TabIndex = 16;
@@ -244,7 +244,7 @@ partial class RegisterForm
         footerPromptLabel.AutoSize = true;
         footerPromptLabel.Font = new Font("Segoe UI", 10F);
         footerPromptLabel.ForeColor = Color.FromArgb(143, 156, 176);
-        footerPromptLabel.Location = new Point(194, 706);
+        footerPromptLabel.Location = new Point(194, 684);
         footerPromptLabel.Name = "footerPromptLabel";
         footerPromptLabel.Size = new Size(138, 23);
         footerPromptLabel.TabIndex = 15;
@@ -253,11 +253,12 @@ partial class RegisterForm
         // continueButton
         // 
         continueButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        continueButton.BackColor = Color.Transparent;
         continueButton.FlatAppearance.BorderSize = 0;
         continueButton.FlatStyle = FlatStyle.Flat;
         continueButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
         continueButton.ForeColor = Color.White;
-        continueButton.Location = new Point(38, 717);
+        continueButton.Location = new Point(38, 621);
         continueButton.MinimumSize = new Size(0, 56);
         continueButton.Name = "continueButton";
         continueButton.Size = new Size(618, 56);
@@ -274,16 +275,16 @@ partial class RegisterForm
         passwordHintLabel.Location = new Point(38, 668);
         passwordHintLabel.MaximumSize = new Size(520, 0);
         passwordHintLabel.Name = "passwordHintLabel";
-        passwordHintLabel.Size = new Size(496, 42);
+        passwordHintLabel.Size = new Size(0, 21);
         passwordHintLabel.TabIndex = 13;
-        passwordHintLabel.Text = "Mật khẩu nên có ít nhất 6 ký tự để đủ điều kiện cho bước xác thực tiếp theo.";
+        passwordHintLabel.Visible = false;
         // 
         // passwordFieldPanel
         // 
         passwordFieldPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         passwordFieldPanel.BackColor = Color.Transparent;
         passwordFieldPanel.Controls.Add(passwordTextBox);
-        passwordFieldPanel.Location = new Point(38, 606);
+        passwordFieldPanel.Location = new Point(38, 558);
         passwordFieldPanel.Name = "passwordFieldPanel";
         passwordFieldPanel.Padding = new Padding(18, 15, 18, 15);
         passwordFieldPanel.Size = new Size(618, 54);
@@ -308,7 +309,7 @@ partial class RegisterForm
         passwordCaptionLabel.AutoSize = true;
         passwordCaptionLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         passwordCaptionLabel.ForeColor = Color.FromArgb(162, 174, 191);
-        passwordCaptionLabel.Location = new Point(38, 573);
+        passwordCaptionLabel.Location = new Point(38, 525);
         passwordCaptionLabel.Name = "passwordCaptionLabel";
         passwordCaptionLabel.Size = new Size(84, 23);
         passwordCaptionLabel.TabIndex = 11;
@@ -319,7 +320,7 @@ partial class RegisterForm
         emailFieldPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         emailFieldPanel.BackColor = Color.Transparent;
         emailFieldPanel.Controls.Add(emailTextBox);
-        emailFieldPanel.Location = new Point(38, 491);
+        emailFieldPanel.Location = new Point(38, 453);
         emailFieldPanel.Name = "emailFieldPanel";
         emailFieldPanel.Padding = new Padding(18, 15, 18, 15);
         emailFieldPanel.Size = new Size(618, 54);
@@ -343,7 +344,7 @@ partial class RegisterForm
         emailCaptionLabel.AutoSize = true;
         emailCaptionLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         emailCaptionLabel.ForeColor = Color.FromArgb(162, 174, 191);
-        emailCaptionLabel.Location = new Point(38, 458);
+        emailCaptionLabel.Location = new Point(38, 420);
         emailCaptionLabel.Name = "emailCaptionLabel";
         emailCaptionLabel.Size = new Size(108, 23);
         emailCaptionLabel.TabIndex = 9;
@@ -354,7 +355,7 @@ partial class RegisterForm
         usernameFieldPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         usernameFieldPanel.BackColor = Color.Transparent;
         usernameFieldPanel.Controls.Add(usernameTextBox);
-        usernameFieldPanel.Location = new Point(38, 376);
+        usernameFieldPanel.Location = new Point(38, 348);
         usernameFieldPanel.Name = "usernameFieldPanel";
         usernameFieldPanel.Padding = new Padding(18, 15, 18, 15);
         usernameFieldPanel.Size = new Size(618, 54);
@@ -369,7 +370,7 @@ partial class RegisterForm
         usernameTextBox.ForeColor = Color.FromArgb(239, 243, 248);
         usernameTextBox.Location = new Point(18, 15);
         usernameTextBox.Name = "usernameTextBox";
-        usernameTextBox.PlaceholderText = "Ví dụ: nestg.user";
+        usernameTextBox.PlaceholderText = "Ví dụ: nestg123";
         usernameTextBox.Size = new Size(582, 25);
         usernameTextBox.TabIndex = 0;
         // 
@@ -378,18 +379,18 @@ partial class RegisterForm
         usernameCaptionLabel.AutoSize = true;
         usernameCaptionLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         usernameCaptionLabel.ForeColor = Color.FromArgb(162, 174, 191);
-        usernameCaptionLabel.Location = new Point(38, 343);
+        usernameCaptionLabel.Location = new Point(38, 315);
         usernameCaptionLabel.Name = "usernameCaptionLabel";
-        usernameCaptionLabel.Size = new Size(205, 23);
+        usernameCaptionLabel.Size = new Size(124, 23);
         usernameCaptionLabel.TabIndex = 7;
-        usernameCaptionLabel.Text = "Tên tài khoản (username)";
+        usernameCaptionLabel.Text = "Tên đăng nhập";
         // 
         // displayNameFieldPanel
         // 
         displayNameFieldPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         displayNameFieldPanel.BackColor = Color.Transparent;
         displayNameFieldPanel.Controls.Add(displayNameTextBox);
-        displayNameFieldPanel.Location = new Point(38, 261);
+        displayNameFieldPanel.Location = new Point(38, 243);
         displayNameFieldPanel.Name = "displayNameFieldPanel";
         displayNameFieldPanel.Padding = new Padding(18, 15, 18, 15);
         displayNameFieldPanel.Size = new Size(618, 54);
@@ -413,7 +414,7 @@ partial class RegisterForm
         displayNameCaptionLabel.AutoSize = true;
         displayNameCaptionLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         displayNameCaptionLabel.ForeColor = Color.FromArgb(162, 174, 191);
-        displayNameCaptionLabel.Location = new Point(38, 228);
+        displayNameCaptionLabel.Location = new Point(38, 210);
         displayNameCaptionLabel.Name = "displayNameCaptionLabel";
         displayNameCaptionLabel.Size = new Size(99, 23);
         displayNameCaptionLabel.TabIndex = 5;
@@ -426,9 +427,9 @@ partial class RegisterForm
         subtitleLabel.ForeColor = Color.FromArgb(82, 138, 255);
         subtitleLabel.Location = new Point(38, 166);
         subtitleLabel.Name = "subtitleLabel";
-        subtitleLabel.Size = new Size(263, 28);
+        subtitleLabel.Size = new Size(176, 28);
         subtitleLabel.TabIndex = 4;
-        subtitleLabel.Text = "Tham gia cộng đồng NestG";
+        subtitleLabel.Text = "Bắt đầu với NestG";
         // 
         // titleLabel
         // 
@@ -448,9 +449,9 @@ partial class RegisterForm
         cardMetaLabel.ForeColor = Color.FromArgb(162, 174, 191);
         cardMetaLabel.Location = new Point(84, 58);
         cardMetaLabel.Name = "cardMetaLabel";
-        cardMetaLabel.Size = new Size(156, 20);
+        cardMetaLabel.Size = new Size(153, 20);
         cardMetaLabel.TabIndex = 2;
-        cardMetaLabel.Text = "Secure desktop access";
+        cardMetaLabel.Text = "Cổng tài khoản NestG";
         // 
         // cardAppNameLabel
         // 
@@ -476,9 +477,9 @@ partial class RegisterForm
         // 
         AutoScaleMode = AutoScaleMode.None;
         BackColor = Color.FromArgb(13, 18, 25);
-        ClientSize = new Size(1264, 801);
+        ClientSize = new Size(1264, 761);
         Controls.Add(rootLayout);
-        MinimumSize = new Size(980, 760);
+        MinimumSize = new Size(980, 720);
         Name = "RegisterForm";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "NestG Launcher";

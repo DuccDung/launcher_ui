@@ -95,7 +95,7 @@ partial class PasswordRecoveryForm
         heroBulletThreeLabel.Name = "heroBulletThreeLabel";
         heroBulletThreeLabel.Size = new Size(396, 48);
         heroBulletThreeLabel.TabIndex = 8;
-        heroBulletThreeLabel.Text = "• Phần giới thiệu sẽ tự ẩn ở cửa sổ nhỏ để khu vực thao tác luôn đủ rộng.";
+        heroBulletThreeLabel.Text = "• Sau khi xác minh, bạn có thể quay lại đăng nhập ngay.";
         // 
         // heroBulletTwoLabel
         // 
@@ -105,7 +105,7 @@ partial class PasswordRecoveryForm
         heroBulletTwoLabel.Name = "heroBulletTwoLabel";
         heroBulletTwoLabel.Size = new Size(396, 48);
         heroBulletTwoLabel.TabIndex = 7;
-        heroBulletTwoLabel.Text = "• Sẵn sàng nối tiếp sang bước nhập OTP hoặc đặt lại mật khẩu mới.";
+        heroBulletTwoLabel.Text = "• Mã OTP sẽ được gửi về hộp thư của bạn trong ít phút.";
         // 
         // heroBulletOneLabel
         // 
@@ -115,7 +115,7 @@ partial class PasswordRecoveryForm
         heroBulletOneLabel.Name = "heroBulletOneLabel";
         heroBulletOneLabel.Size = new Size(396, 48);
         heroBulletOneLabel.TabIndex = 6;
-        heroBulletOneLabel.Text = "• Giữ đúng tinh thần giao diện mẫu nhưng cải thiện spacing, màu sắc và độ tương phản.";
+        heroBulletOneLabel.Text = "• Kiểm tra đúng email bạn đã dùng khi tạo tài khoản.";
         // 
         // heroDescriptionLabel
         // 
@@ -125,7 +125,7 @@ partial class PasswordRecoveryForm
         heroDescriptionLabel.Name = "heroDescriptionLabel";
         heroDescriptionLabel.Size = new Size(396, 74);
         heroDescriptionLabel.TabIndex = 5;
-        heroDescriptionLabel.Text = "Màn hình khôi phục được tinh giản cho tác vụ chính: nhập email, gửi mã xác thực và quay lại đăng nhập khi cần.";
+        heroDescriptionLabel.Text = "Nhập email đã đăng ký để hệ thống gửi mã xác thực và hướng dẫn bạn tạo mật khẩu mới.";
         // 
         // heroTitleLabel
         // 
@@ -135,7 +135,7 @@ partial class PasswordRecoveryForm
         heroTitleLabel.Name = "heroTitleLabel";
         heroTitleLabel.Size = new Size(390, 112);
         heroTitleLabel.TabIndex = 4;
-        heroTitleLabel.Text = "Đặt lại mật khẩu theo một luồng an toàn và dễ hiểu.";
+        heroTitleLabel.Text = "Nhận mã OTP để đặt lại mật khẩu.";
         // 
         // heroBadgeLabel
         // 
@@ -146,9 +146,9 @@ partial class PasswordRecoveryForm
         heroBadgeLabel.Location = new Point(34, 116);
         heroBadgeLabel.Name = "heroBadgeLabel";
         heroBadgeLabel.Padding = new Padding(14, 8, 14, 8);
-        heroBadgeLabel.Size = new Size(244, 36);
+        heroBadgeLabel.Size = new Size(141, 36);
         heroBadgeLabel.TabIndex = 3;
-        heroBadgeLabel.Text = "KHÔI PHỤC QUYỀN TRUY CẬP";
+        heroBadgeLabel.Text = "NHẬN MÃ OTP";
         // 
         // heroMetaLabel
         // 
@@ -157,9 +157,9 @@ partial class PasswordRecoveryForm
         heroMetaLabel.ForeColor = Color.FromArgb(162, 174, 191);
         heroMetaLabel.Location = new Point(94, 62);
         heroMetaLabel.Name = "heroMetaLabel";
-        heroMetaLabel.Size = new Size(248, 21);
+        heroMetaLabel.Size = new Size(162, 21);
         heroMetaLabel.TabIndex = 2;
-        heroMetaLabel.Text = "Desktop authentication workspace";
+        heroMetaLabel.Text = "Cổng tài khoản NestG";
         // 
         // heroAppNameLabel
         // 
@@ -221,6 +221,7 @@ partial class PasswordRecoveryForm
         // sendCodeButton
         // 
         sendCodeButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        sendCodeButton.BackColor = Color.Transparent;
         sendCodeButton.FlatAppearance.BorderSize = 0;
         sendCodeButton.FlatStyle = FlatStyle.Flat;
         sendCodeButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
@@ -230,7 +231,7 @@ partial class PasswordRecoveryForm
         sendCodeButton.Name = "sendCodeButton";
         sendCodeButton.Size = new Size(618, 56);
         sendCodeButton.TabIndex = 8;
-        sendCodeButton.Text = "Gửi mã xác thực";
+        sendCodeButton.Text = "Gửi mã OTP";
         sendCodeButton.UseVisualStyleBackColor = true;
         sendCodeButton.Click += sendCodeButton_Click;
         // 
@@ -277,7 +278,7 @@ partial class PasswordRecoveryForm
         descriptionLabel.Name = "descriptionLabel";
         descriptionLabel.Size = new Size(552, 48);
         descriptionLabel.TabIndex = 5;
-        descriptionLabel.Text = "Nhập email của bạn để nhận mã xác thực đặt lại mật khẩu.";
+        descriptionLabel.Text = "Nhập email của bạn để nhận mã OTP đặt lại mật khẩu.";
         // 
         // subtitleLabel
         // 
@@ -286,9 +287,9 @@ partial class PasswordRecoveryForm
         subtitleLabel.ForeColor = Color.FromArgb(82, 138, 255);
         subtitleLabel.Location = new Point(38, 166);
         subtitleLabel.Name = "subtitleLabel";
-        subtitleLabel.Size = new Size(238, 28);
+        subtitleLabel.Size = new Size(233, 28);
         subtitleLabel.TabIndex = 4;
-        subtitleLabel.Text = "Đặt lại mật khẩu của bạn";
+        subtitleLabel.Text = "Nhận mã OTP qua email";
         // 
         // titleLabel
         // 
@@ -308,9 +309,9 @@ partial class PasswordRecoveryForm
         cardMetaLabel.ForeColor = Color.FromArgb(162, 174, 191);
         cardMetaLabel.Location = new Point(84, 58);
         cardMetaLabel.Name = "cardMetaLabel";
-        cardMetaLabel.Size = new Size(156, 20);
+        cardMetaLabel.Size = new Size(153, 20);
         cardMetaLabel.TabIndex = 2;
-        cardMetaLabel.Text = "Secure desktop access";
+        cardMetaLabel.Text = "Cổng tài khoản NestG";
         // 
         // cardAppNameLabel
         // 

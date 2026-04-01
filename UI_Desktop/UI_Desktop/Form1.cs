@@ -22,6 +22,7 @@ namespace UI_Desktop
 
         private void ConfigureForm()
         {
+            AppIconProvider.ApplyIcon(this);
             DoubleBuffered = true;
             BackColor = formBackColor;
             Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
