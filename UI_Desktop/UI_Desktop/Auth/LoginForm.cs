@@ -1,4 +1,4 @@
-using UI_Desktop;
+using UI_Desktop.Store;
 
 namespace UI_Desktop.Auth;
 
@@ -50,11 +50,7 @@ internal partial class LoginForm : Form
             return;
         }
 
-        MessageBox.Show(
-            "Giao diện đăng nhập đã sẵn sàng để nối với API xác thực của hệ thống.",
-            "Đăng nhập",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information);
+        AuthUiHelper.Navigate(this, new StoreForm());
     }
 
     private void forgotPasswordLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

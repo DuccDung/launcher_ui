@@ -1,4 +1,5 @@
 using UI_Desktop.Auth;
+using UI_Desktop.Store;
 
 namespace UI_Desktop
 {
@@ -11,7 +12,8 @@ namespace UI_Desktop
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginForm());
+            //Application.Run(new LoginForm());
+            Application.Run(new StoreForm());
         }
     }
 }
