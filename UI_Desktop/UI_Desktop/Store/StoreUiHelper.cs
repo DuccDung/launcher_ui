@@ -35,6 +35,25 @@ internal static class StoreUiHelper
         }
     }
 
+    internal static Image? LoadAssetImage(string fileName)
+    {
+        try
+        {
+            var assetPath = Path.Combine(AppContext.BaseDirectory, "Assets", fileName);
+            if (!File.Exists(assetPath))
+            {
+                return null;
+            }
+
+            using var image = Image.FromFile(assetPath);
+            return new Bitmap(image);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     internal static void ConfigureSearchInput(RoundedPanel shell, Label iconLabel, TextBox textBox)
     {
         const int horizontalInset = 18;

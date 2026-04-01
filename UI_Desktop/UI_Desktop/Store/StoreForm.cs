@@ -6,6 +6,9 @@ internal partial class StoreForm : Form
     private readonly List<StoreNavButton> navButtons = [];
     private readonly List<StoreGameCard> visibleCards = [];
     private Image? featuredArtwork;
+    private Image? notificationGlyphImage;
+    private Image? cartGlyphImage;
+    private Image? infoGlyphImage;
     private StoreGame? selectedGame;
     private bool isBindingCategory;
 
@@ -21,6 +24,9 @@ internal partial class StoreForm : Form
     protected override void OnFormClosed(FormClosedEventArgs e)
     {
         featuredArtwork?.Dispose();
+        notificationGlyphImage?.Dispose();
+        cartGlyphImage?.Dispose();
+        infoGlyphImage?.Dispose();
         base.OnFormClosed(e);
     }
 
@@ -34,11 +40,68 @@ internal partial class StoreForm : Form
 
         StoreUiHelper.LoadLogo(headerLogoPictureBox);
         StoreUiHelper.ConfigureSearchInput(searchPanel, searchIconLabel, searchTextBox);
+        notificationGlyphImage = StoreUiHelper.LoadAssetImage("icons8-bell-48.png");
+        cartGlyphImage = StoreUiHelper.LoadAssetImage("online-shopping.png");
+        infoGlyphImage = StoreUiHelper.LoadAssetImage("info.png");
+        var iconAccentColor = Color.FromArgb(163, 183, 226);
+        var iconAccentHoverColor = Color.FromArgb(210, 223, 248);
+        var actionSurface = Color.FromArgb(19, 25, 34);
+        var actionHoverSurface = Color.FromArgb(24, 31, 42);
+        var actionOutline = Color.FromArgb(39, 53, 70);
+        var actionHoverOutline = Color.FromArgb(59, 77, 101);
+        notificationButton.IconKind = StoreIconKind.Notification;
+        notificationButton.BadgeText = string.Empty;
+        notificationButton.GlyphImage = notificationGlyphImage;
+        notificationButton.UseOriginalGlyphColors = true;
+        notificationButton.GlyphSize = 22F;
+        notificationButton.GlyphYOffset = -1;
+        notificationButton.GlyphStrokeWidth = 1.34F;
+        notificationButton.SurfaceColor = actionSurface;
+        notificationButton.HoverSurfaceColor = actionHoverSurface;
+        notificationButton.OutlineColor = actionOutline;
+        notificationButton.HoverOutlineColor = actionHoverOutline;
+        notificationButton.GlyphColor = iconAccentColor;
+        notificationButton.HoverGlyphColor = iconAccentHoverColor;
+        cartButton.IconKind = StoreIconKind.Cart;
+        cartButton.BadgeText = string.Empty;
+        cartButton.GlyphImage = cartGlyphImage;
+        cartButton.UseOriginalGlyphColors = true;
+        cartButton.GlyphSize = 22F;
+        cartButton.GlyphYOffset = -1;
+        cartButton.GlyphStrokeWidth = 1.32F;
+        cartButton.SurfaceColor = actionSurface;
+        cartButton.HoverSurfaceColor = actionHoverSurface;
+        cartButton.OutlineColor = actionOutline;
+        cartButton.HoverOutlineColor = actionHoverOutline;
+        cartButton.GlyphColor = iconAccentColor;
+        cartButton.HoverGlyphColor = iconAccentHoverColor;
+        helpButton.IconKind = StoreIconKind.Help;
+        helpButton.BadgeText = string.Empty;
+        helpButton.GlyphImage = infoGlyphImage;
+        helpButton.UseOriginalGlyphColors = true;
+        helpButton.GlyphSize = 22F;
+        helpButton.GlyphStrokeWidth = 1.26F;
+        helpButton.SurfaceColor = Color.FromArgb(44, 40, 37);
+        helpButton.HoverSurfaceColor = Color.FromArgb(61, 54, 49);
+        helpButton.OutlineColor = Color.FromArgb(82, 72, 64);
+        helpButton.HoverOutlineColor = Color.FromArgb(109, 95, 84);
+        helpButton.GlyphColor = iconAccentColor;
+        helpButton.HoverGlyphColor = iconAccentHoverColor;
 
-        accountPanel.SurfaceColor = Color.FromArgb(20, 28, 39);
-        accountPanel.BorderColor = Color.FromArgb(42, 55, 72);
+        accountPanel.SurfaceColor = Color.FromArgb(21, 29, 40);
+        accountPanel.BorderColor = Color.FromArgb(53, 72, 95);
         accountPanel.BorderThickness = 1;
-        accountPanel.CornerRadius = 22;
+        accountPanel.CornerRadius = 24;
+        cartBadgePanel.SurfaceColor = AppTheme.Accent;
+        cartBadgePanel.BorderColor = AppTheme.Accent;
+        cartBadgePanel.BorderThickness = 0;
+        cartBadgePanel.CornerRadius = 11;
+        cartBadgeLabel.ForeColor = Color.White;
+        cartBadgeLabel.Text = "0";
+        cartBadgePanel.BringToFront();
+        cartBadgeLabel.BringToFront();
+
+        WindowState = FormWindowState.Maximized;
 
         featuredPanel.SurfaceColor = Color.FromArgb(17, 24, 33);
         featuredPanel.BorderColor = AppTheme.CardBorder;
@@ -50,6 +113,11 @@ internal partial class StoreForm : Form
 
         addGameButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(28, 35, 46);
         addGameButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(24, 31, 42);
+        notificationButton.Invalidate();
+        cartButton.Invalidate();
+        helpButton.Invalidate();
+        cartBadgePanel.Click += (_, _) => cartButton.PerformClick();
+        cartBadgeLabel.Click += (_, _) => cartButton.PerformClick();
 
         notificationButton.Click += (_, _) => MessageBox.Show("Khu vực thông báo đang ở bản xem trước.", "NestG Launcher", MessageBoxButtons.OK, MessageBoxIcon.Information);
         cartButton.Click += (_, _) => MessageBox.Show("Giỏ hàng mẫu hiện chưa kết nối dữ liệu thật.", "NestG Launcher", MessageBoxButtons.OK, MessageBoxIcon.Information);

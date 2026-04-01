@@ -89,7 +89,7 @@ internal class RoundedPanel : Panel
 
         e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
         e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
-        e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+        e.Graphics.PixelOffsetMode = PixelOffsetMode.Default;
 
         var rect = new Rectangle(borderThickness, borderThickness, Width - (borderThickness * 2) - 1, Height - (borderThickness * 2) - 1);
         if (rect.Width <= 0 || rect.Height <= 0)
@@ -106,7 +106,11 @@ internal class RoundedPanel : Panel
             return;
         }
 
-        using var pen = new Pen(borderColor, borderThickness) { Alignment = PenAlignment.Inset };
+        using var pen = new Pen(borderColor, borderThickness)
+        {
+            Alignment = PenAlignment.Inset,
+            LineJoin = LineJoin.Round
+        };
         e.Graphics.DrawPath(pen, path);
     }
 

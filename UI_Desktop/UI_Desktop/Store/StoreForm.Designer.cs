@@ -28,11 +28,15 @@ partial class StoreForm
         navFlowPanel = new FlowLayoutPanel();
         actionFlowPanel = new FlowLayoutPanel();
         notificationButton = new StoreIconButton();
+        cartHostPanel = new Panel();
         cartButton = new StoreIconButton();
+        cartBadgePanel = new RoundedPanel();
+        cartBadgeLabel = new Label();
         helpButton = new StoreIconButton();
         accountPanel = new RoundedPanel();
         accountLayout = new TableLayoutPanel();
         accountNameLabel = new Label();
+        accountSeparatorLabel = new Label();
         balanceLabel = new Label();
         toolbarPanel = new Panel();
         toolbarLayout = new TableLayoutPanel();
@@ -74,6 +78,8 @@ partial class StoreForm
         brandLayout.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)headerLogoPictureBox).BeginInit();
         actionFlowPanel.SuspendLayout();
+        cartHostPanel.SuspendLayout();
+        cartBadgePanel.SuspendLayout();
         accountPanel.SuspendLayout();
         accountLayout.SuspendLayout();
         toolbarPanel.SuspendLayout();
@@ -203,7 +209,7 @@ partial class StoreForm
         navFlowPanel.Margin = new Padding(24, 0, 0, 0);
         navFlowPanel.Name = "navFlowPanel";
         navFlowPanel.Padding = new Padding(0, 2, 0, 0);
-        navFlowPanel.Size = new Size(767, 52);
+        navFlowPanel.Size = new Size(691, 52);
         navFlowPanel.TabIndex = 1;
         navFlowPanel.WrapContents = false;
         // 
@@ -212,15 +218,15 @@ partial class StoreForm
         actionFlowPanel.AutoSize = true;
         actionFlowPanel.BackColor = Color.FromArgb(16, 21, 29);
         actionFlowPanel.Controls.Add(notificationButton);
-        actionFlowPanel.Controls.Add(cartButton);
+        actionFlowPanel.Controls.Add(cartHostPanel);
         actionFlowPanel.Controls.Add(helpButton);
         actionFlowPanel.Controls.Add(accountPanel);
         actionFlowPanel.Dock = DockStyle.Fill;
-        actionFlowPanel.Location = new Point(1058, 0);
+        actionFlowPanel.Location = new Point(982, 0);
         actionFlowPanel.Margin = new Padding(10, 0, 0, 0);
         actionFlowPanel.Name = "actionFlowPanel";
-        actionFlowPanel.Padding = new Padding(0, 3, 0, 0);
-        actionFlowPanel.Size = new Size(362, 52);
+        actionFlowPanel.Padding = new Padding(0, 2, 0, 0);
+        actionFlowPanel.Size = new Size(438, 52);
         actionFlowPanel.TabIndex = 2;
         actionFlowPanel.WrapContents = false;
         // 
@@ -229,36 +235,70 @@ partial class StoreForm
         notificationButton.BackColor = Color.Transparent;
         notificationButton.FlatAppearance.BorderSize = 0;
         notificationButton.FlatStyle = FlatStyle.Flat;
-        notificationButton.Location = new Point(0, 3);
-        notificationButton.Margin = new Padding(0, 0, 10, 0);
+        notificationButton.Location = new Point(0, 2);
+        notificationButton.Margin = new Padding(0, 0, 12, 0);
         notificationButton.Name = "notificationButton";
-        notificationButton.Size = new Size(42, 42);
+        notificationButton.Size = new Size(44, 44);
         notificationButton.TabIndex = 0;
         notificationButton.TabStop = false;
         notificationButton.UseVisualStyleBackColor = false;
+        // 
+        // cartHostPanel
+        // 
+        cartHostPanel.BackColor = Color.FromArgb(16, 21, 29);
+        cartHostPanel.Controls.Add(cartButton);
+        cartHostPanel.Controls.Add(cartBadgePanel);
+        cartHostPanel.Location = new Point(56, 2);
+        cartHostPanel.Margin = new Padding(0, 0, 12, 0);
+        cartHostPanel.Name = "cartHostPanel";
+        cartHostPanel.Size = new Size(64, 44);
+        cartHostPanel.TabIndex = 1;
         // 
         // cartButton
         // 
         cartButton.BackColor = Color.Transparent;
         cartButton.FlatAppearance.BorderSize = 0;
         cartButton.FlatStyle = FlatStyle.Flat;
-        cartButton.Location = new Point(52, 3);
-        cartButton.Margin = new Padding(0, 0, 10, 0);
+        cartButton.Location = new Point(0, 0);
+        cartButton.Margin = new Padding(0);
         cartButton.Name = "cartButton";
-        cartButton.Size = new Size(42, 42);
-        cartButton.TabIndex = 1;
+        cartButton.Size = new Size(44, 44);
+        cartButton.TabIndex = 0;
         cartButton.TabStop = false;
         cartButton.UseVisualStyleBackColor = false;
+        // 
+        // cartBadgePanel
+        // 
+        cartBadgePanel.BackColor = Color.Transparent;
+        cartBadgePanel.Controls.Add(cartBadgeLabel);
+        cartBadgePanel.Location = new Point(38, 1);
+        cartBadgePanel.Margin = new Padding(0);
+        cartBadgePanel.Name = "cartBadgePanel";
+        cartBadgePanel.Size = new Size(22, 22);
+        cartBadgePanel.TabIndex = 1;
+        // 
+        // cartBadgeLabel
+        // 
+        cartBadgeLabel.Dock = DockStyle.Fill;
+        cartBadgeLabel.Font = new Font("Segoe UI Semibold", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cartBadgeLabel.ForeColor = Color.White;
+        cartBadgeLabel.Location = new Point(0, 0);
+        cartBadgeLabel.Margin = new Padding(0);
+        cartBadgeLabel.Name = "cartBadgeLabel";
+        cartBadgeLabel.Size = new Size(22, 22);
+        cartBadgeLabel.TabIndex = 0;
+        cartBadgeLabel.Text = "0";
+        cartBadgeLabel.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // helpButton
         // 
         helpButton.BackColor = Color.Transparent;
         helpButton.FlatAppearance.BorderSize = 0;
         helpButton.FlatStyle = FlatStyle.Flat;
-        helpButton.Location = new Point(104, 3);
-        helpButton.Margin = new Padding(0, 0, 12, 0);
+        helpButton.Location = new Point(132, 2);
+        helpButton.Margin = new Padding(0, 0, 14, 0);
         helpButton.Name = "helpButton";
-        helpButton.Size = new Size(42, 42);
+        helpButton.Size = new Size(44, 44);
         helpButton.TabIndex = 2;
         helpButton.TabStop = false;
         helpButton.UseVisualStyleBackColor = false;
@@ -267,27 +307,29 @@ partial class StoreForm
         // 
         accountPanel.BackColor = Color.Transparent;
         accountPanel.Controls.Add(accountLayout);
-        accountPanel.Location = new Point(158, 4);
+        accountPanel.Location = new Point(190, 3);
         accountPanel.Margin = new Padding(0, 1, 0, 0);
         accountPanel.Name = "accountPanel";
         accountPanel.Padding = new Padding(16, 8, 16, 8);
-        accountPanel.Size = new Size(204, 44);
+        accountPanel.Size = new Size(248, 44);
         accountPanel.TabIndex = 3;
         // 
         // accountLayout
         // 
-        accountLayout.ColumnCount = 2;
+        accountLayout.ColumnCount = 3;
         accountLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
         accountLayout.ColumnStyles.Add(new ColumnStyle());
+        accountLayout.ColumnStyles.Add(new ColumnStyle());
         accountLayout.Controls.Add(accountNameLabel, 0, 0);
-        accountLayout.Controls.Add(balanceLabel, 1, 0);
+        accountLayout.Controls.Add(accountSeparatorLabel, 1, 0);
+        accountLayout.Controls.Add(balanceLabel, 2, 0);
         accountLayout.Dock = DockStyle.Fill;
         accountLayout.Location = new Point(16, 8);
         accountLayout.Margin = new Padding(0);
         accountLayout.Name = "accountLayout";
         accountLayout.RowCount = 1;
         accountLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        accountLayout.Size = new Size(172, 28);
+        accountLayout.Size = new Size(216, 28);
         accountLayout.TabIndex = 0;
         // 
         // accountNameLabel
@@ -300,8 +342,21 @@ partial class StoreForm
         accountNameLabel.Margin = new Padding(0, 0, 12, 0);
         accountNameLabel.Name = "accountNameLabel";
         accountNameLabel.Size = new Size(91, 21);
-        accountNameLabel.TabIndex = 0;
+        accountNameLabel.TabIndex = 1;
         accountNameLabel.Text = "nguyenduc";
+        // 
+        // accountSeparatorLabel
+        // 
+        accountSeparatorLabel.Anchor = AnchorStyles.None;
+        accountSeparatorLabel.AutoSize = true;
+        accountSeparatorLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+        accountSeparatorLabel.ForeColor = Color.FromArgb(91, 106, 127);
+        accountSeparatorLabel.Location = new Point(156, 2);
+        accountSeparatorLabel.Margin = new Padding(0, 0, 12, 0);
+        accountSeparatorLabel.Name = "accountSeparatorLabel";
+        accountSeparatorLabel.Size = new Size(15, 23);
+        accountSeparatorLabel.TabIndex = 2;
+        accountSeparatorLabel.Text = "|";
         // 
         // balanceLabel
         // 
@@ -309,11 +364,11 @@ partial class StoreForm
         balanceLabel.AutoSize = true;
         balanceLabel.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
         balanceLabel.ForeColor = Color.FromArgb(181, 244, 121);
-        balanceLabel.Location = new Point(139, 3);
+        balanceLabel.Location = new Point(183, 3);
         balanceLabel.Margin = new Padding(0);
         balanceLabel.Name = "balanceLabel";
         balanceLabel.Size = new Size(33, 21);
-        balanceLabel.TabIndex = 1;
+        balanceLabel.TabIndex = 3;
         balanceLabel.Text = "0 đ";
         // 
         // toolbarPanel
@@ -818,6 +873,8 @@ partial class StoreForm
         brandLayout.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)headerLogoPictureBox).EndInit();
         actionFlowPanel.ResumeLayout(false);
+        cartHostPanel.ResumeLayout(false);
+        cartBadgePanel.ResumeLayout(false);
         accountPanel.ResumeLayout(false);
         accountLayout.ResumeLayout(false);
         accountLayout.PerformLayout();
@@ -855,11 +912,15 @@ partial class StoreForm
     private FlowLayoutPanel navFlowPanel;
     private FlowLayoutPanel actionFlowPanel;
     private StoreIconButton notificationButton;
+    private Panel cartHostPanel;
     private StoreIconButton cartButton;
+    private UI_Desktop.RoundedPanel cartBadgePanel;
+    private Label cartBadgeLabel;
     private StoreIconButton helpButton;
     private UI_Desktop.RoundedPanel accountPanel;
     private TableLayoutPanel accountLayout;
     private Label accountNameLabel;
+    private Label accountSeparatorLabel;
     private Label balanceLabel;
     private Panel toolbarPanel;
     private TableLayoutPanel toolbarLayout;
