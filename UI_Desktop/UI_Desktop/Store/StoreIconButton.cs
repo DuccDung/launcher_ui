@@ -87,6 +87,10 @@ internal sealed class StoreIconButton : Button
 
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public bool ShowChrome { get; set; } = true;
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public Color GlyphColor { get; set; } = Color.FromArgb(149, 161, 175);
 
     [Browsable(false)]
@@ -157,16 +161,19 @@ internal sealed class StoreIconButton : Button
         e.Graphics.PixelOffsetMode = PixelOffsetMode.Default;
 
         var chromeRect = GetChromeBounds();
-        using var chromePath = RoundedPanel.CreateRoundedPath(chromeRect, Math.Min(CornerRadius, Math.Min(chromeRect.Width, chromeRect.Height) / 2));
-        using var backgroundBrush = new SolidBrush(isHovered ? HoverSurfaceColor : SurfaceColor);
-        using var borderPen = new Pen(isHovered ? HoverOutlineColor : OutlineColor, 1F)
+        if (ShowChrome)
         {
-            Alignment = PenAlignment.Inset,
-            LineJoin = LineJoin.Round
-        };
+            using var chromePath = RoundedPanel.CreateRoundedPath(chromeRect, Math.Min(CornerRadius, Math.Min(chromeRect.Width, chromeRect.Height) / 2));
+            using var backgroundBrush = new SolidBrush(isHovered ? HoverSurfaceColor : SurfaceColor);
+            using var borderPen = new Pen(isHovered ? HoverOutlineColor : OutlineColor, 1F)
+            {
+                Alignment = PenAlignment.Inset,
+                LineJoin = LineJoin.Round
+            };
 
-        e.Graphics.FillPath(backgroundBrush, chromePath);
-        e.Graphics.DrawPath(borderPen, chromePath);
+            e.Graphics.FillPath(backgroundBrush, chromePath);
+            e.Graphics.DrawPath(borderPen, chromePath);
+        }
 
         var glyphColor = isHovered ? HoverGlyphColor : GlyphColor;
 
@@ -198,12 +205,20 @@ internal sealed class StoreIconButton : Button
             chromeRect.Y + ((chromeRect.Height - drawSize) / 2) + GlyphYOffset,
             drawSize,
             drawSize);
+        var sourceBounds = GetOpaqueBounds(GlyphImage);
 
         graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
         if (UseOriginalGlyphColors)
         {
-            graphics.DrawImage(GlyphImage, bounds);
+            graphics.DrawImage(
+                GlyphImage,
+                bounds,
+                sourceBounds.X,
+                sourceBounds.Y,
+                sourceBounds.Width,
+                sourceBounds.Height,
+                GraphicsUnit.Pixel);
         }
         else
         {
@@ -213,10 +228,10 @@ internal sealed class StoreIconButton : Button
             graphics.DrawImage(
                 GlyphImage,
                 bounds,
-                0,
-                0,
-                GlyphImage.Width,
-                GlyphImage.Height,
+                sourceBounds.X,
+                sourceBounds.Y,
+                sourceBounds.Width,
+                sourceBounds.Height,
                 GraphicsUnit.Pixel,
                 attributes);
         }
@@ -289,6 +304,11 @@ internal sealed class StoreIconButton : Button
 
     private Rectangle GetChromeBounds()
     {
+        if (!ShowChrome)
+        {
+            return new Rectangle(0, 0, Width, Height);
+        }
+
         var chromeWidth = ChromeWidth > 0 ? Math.Min(ChromeWidth, Width - 2) : Width - 3;
         chromeWidth = Math.Max(Height - 3, chromeWidth);
 
@@ -299,6 +319,12 @@ internal sealed class StoreIconButton : Button
     {
         if (Width <= 1 || Height <= 1)
         {
+            return;
+        }
+
+        if (!ShowChrome && string.IsNullOrWhiteSpace(BadgeText))
+        {
+            Region = null;
             return;
         }
 
@@ -359,5 +385,40 @@ internal sealed class StoreIconButton : Button
             [0F, 0F, 0F, alpha, 0F],
             [0F, 0F, 0F, 0F, 1F]
         ]);
+    }
+
+    private static Rectangle GetOpaqueBounds(Image image)
+    {
+        var ownsBitmap = image is not Bitmap;
+        using var tempBitmap = ownsBitmap ? new Bitmap(image) : null;
+        var bitmap = tempBitmap ?? (Bitmap)image;
+
+        var minX = bitmap.Width;
+        var minY = bitmap.Height;
+        var maxX = -1;
+        var maxY = -1;
+
+        for (var y = 0; y < bitmap.Height; y++)
+        {
+            for (var x = 0; x < bitmap.Width; x++)
+            {
+                if (bitmap.GetPixel(x, y).A <= 10)
+                {
+                    continue;
+                }
+
+                minX = Math.Min(minX, x);
+                minY = Math.Min(minY, y);
+                maxX = Math.Max(maxX, x);
+                maxY = Math.Max(maxY, y);
+            }
+        }
+
+        if (maxX < minX || maxY < minY)
+        {
+            return new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+        }
+
+        return Rectangle.FromLTRB(minX, minY, maxX + 1, maxY + 1);
     }
 }

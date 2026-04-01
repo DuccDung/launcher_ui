@@ -40,92 +40,39 @@ internal partial class StoreForm : Form
 
         StoreUiHelper.LoadLogo(headerLogoPictureBox);
         StoreUiHelper.ConfigureSearchInput(searchPanel, searchIconLabel, searchTextBox);
+
         notificationGlyphImage = StoreUiHelper.LoadAssetImage("icons8-bell-48.png");
         cartGlyphImage = StoreUiHelper.LoadAssetImage("online-shopping.png");
         infoGlyphImage = StoreUiHelper.LoadAssetImage("info.png");
-        var iconAccentColor = Color.FromArgb(163, 183, 226);
-        var iconAccentHoverColor = Color.FromArgb(210, 223, 248);
-        var actionSurface = Color.FromArgb(19, 25, 34);
-        var actionHoverSurface = Color.FromArgb(24, 31, 42);
-        var actionOutline = Color.FromArgb(39, 53, 70);
-        var actionHoverOutline = Color.FromArgb(59, 77, 101);
-        notificationButton.IconKind = StoreIconKind.Notification;
-        notificationButton.BadgeText = string.Empty;
+
         notificationButton.GlyphImage = notificationGlyphImage;
-        notificationButton.UseOriginalGlyphColors = true;
-        notificationButton.GlyphSize = 22F;
-        notificationButton.GlyphYOffset = -1;
-        notificationButton.GlyphStrokeWidth = 1.34F;
-        notificationButton.SurfaceColor = actionSurface;
-        notificationButton.HoverSurfaceColor = actionHoverSurface;
-        notificationButton.OutlineColor = actionOutline;
-        notificationButton.HoverOutlineColor = actionHoverOutline;
-        notificationButton.GlyphColor = iconAccentColor;
-        notificationButton.HoverGlyphColor = iconAccentHoverColor;
-        cartButton.IconKind = StoreIconKind.Cart;
-        cartButton.BadgeText = string.Empty;
         cartButton.GlyphImage = cartGlyphImage;
-        cartButton.UseOriginalGlyphColors = true;
-        cartButton.GlyphSize = 22F;
-        cartButton.GlyphYOffset = -1;
-        cartButton.GlyphStrokeWidth = 1.32F;
-        cartButton.SurfaceColor = actionSurface;
-        cartButton.HoverSurfaceColor = actionHoverSurface;
-        cartButton.OutlineColor = actionOutline;
-        cartButton.HoverOutlineColor = actionHoverOutline;
-        cartButton.GlyphColor = iconAccentColor;
-        cartButton.HoverGlyphColor = iconAccentHoverColor;
-        helpButton.IconKind = StoreIconKind.Help;
-        helpButton.BadgeText = string.Empty;
         helpButton.GlyphImage = infoGlyphImage;
-        helpButton.UseOriginalGlyphColors = true;
-        helpButton.GlyphSize = 22F;
-        helpButton.GlyphStrokeWidth = 1.26F;
-        helpButton.SurfaceColor = Color.FromArgb(44, 40, 37);
-        helpButton.HoverSurfaceColor = Color.FromArgb(61, 54, 49);
-        helpButton.OutlineColor = Color.FromArgb(82, 72, 64);
-        helpButton.HoverOutlineColor = Color.FromArgb(109, 95, 84);
-        helpButton.GlyphColor = iconAccentColor;
-        helpButton.HoverGlyphColor = iconAccentHoverColor;
-
-        accountPanel.SurfaceColor = Color.FromArgb(21, 29, 40);
-        accountPanel.BorderColor = Color.FromArgb(53, 72, 95);
-        accountPanel.BorderThickness = 1;
-        accountPanel.CornerRadius = 24;
-        cartBadgePanel.SurfaceColor = AppTheme.Accent;
-        cartBadgePanel.BorderColor = AppTheme.Accent;
-        cartBadgePanel.BorderThickness = 0;
-        cartBadgePanel.CornerRadius = 11;
-        cartBadgeLabel.ForeColor = Color.White;
-        cartBadgeLabel.Text = "0";
-        cartBadgePanel.BringToFront();
-        cartBadgeLabel.BringToFront();
-
-        WindowState = FormWindowState.Maximized;
-
-        featuredPanel.SurfaceColor = Color.FromArgb(17, 24, 33);
-        featuredPanel.BorderColor = AppTheme.CardBorder;
-        featuredPanel.BorderThickness = 1;
-        featuredPanel.CornerRadius = 24;
-
-        categoryComboBox.Cursor = Cursors.Hand;
-        categoryComboBox.DropDownHeight = 240;
-
-        addGameButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(28, 35, 46);
-        addGameButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(24, 31, 42);
-        notificationButton.Invalidate();
-        cartButton.Invalidate();
-        helpButton.Invalidate();
-        cartBadgePanel.Click += (_, _) => cartButton.PerformClick();
-        cartBadgeLabel.Click += (_, _) => cartButton.PerformClick();
-
-        notificationButton.Click += (_, _) => MessageBox.Show("Khu vực thông báo đang ở bản xem trước.", "NestG Launcher", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        cartButton.Click += (_, _) => MessageBox.Show("Giỏ hàng mẫu hiện chưa kết nối dữ liệu thật.", "NestG Launcher", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        helpButton.Click += (_, _) => MessageBox.Show("Đây là bản dựng demo của giao diện cửa hàng.", "NestG Launcher", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     private void BindEvents()
     {
+        notificationButton.Click += (_, _) => MessageBox.Show(
+            "Khu vực thông báo đang ở bản xem trước.",
+            "NestG Launcher",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+
+        cartButton.Click += (_, _) => MessageBox.Show(
+            "Giỏ hàng mẫu hiện chưa kết nối dữ liệu thật.",
+            "NestG Launcher",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+
+        helpButton.Click += (_, _) => MessageBox.Show(
+            "Đây là bản dựng demo của giao diện cửa hàng.",
+            "NestG Launcher",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+
+        cartBadgePanel.Click += (_, _) => cartButton.PerformClick();
+        cartBadgeLabel.Click += (_, _) => cartButton.PerformClick();
+
         Resize += (_, _) => UpdateResponsiveLayout();
         scrollContentPanel.SizeChanged += (_, _) => UpdateResponsiveLayout();
         featuredPictureBox.SizeChanged += (_, _) => RenderFeaturedArtwork();
@@ -145,6 +92,7 @@ internal partial class StoreForm : Form
         versionLabel.Text = pageData.VersionText;
         accountNameLabel.Text = pageData.UserName;
         balanceLabel.Text = pageData.BalanceText;
+        cartBadgeLabel.Text = "0";
 
         BuildNavigation();
 
@@ -324,9 +272,7 @@ internal partial class StoreForm : Form
     private void UpdateResponsiveLayout()
     {
         toolbarLayout.ColumnStyles[0].Width = ClientSize.Width < 1220 ? 148F : 170F;
-
-        var hideResultCount = ClientSize.Width < 1120;
-        resultCountLabel.Visible = !hideResultCount;
+        resultCountLabel.Visible = ClientSize.Width >= 1120;
 
         for (var index = 0; index < navButtons.Count; index++)
         {
@@ -435,5 +381,10 @@ internal partial class StoreForm : Form
             "NestG Launcher",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information);
+    }
+
+    private void notificationButton_Click(object sender, EventArgs e)
+    {
+
     }
 }

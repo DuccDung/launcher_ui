@@ -235,6 +235,8 @@ partial class StoreForm
         notificationButton.BackColor = Color.Transparent;
         notificationButton.FlatAppearance.BorderSize = 0;
         notificationButton.FlatStyle = FlatStyle.Flat;
+        notificationButton.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        notificationButton.ForeColor = SystemColors.ButtonFace;
         notificationButton.Location = new Point(0, 2);
         notificationButton.Margin = new Padding(0, 0, 12, 0);
         notificationButton.Name = "notificationButton";
@@ -242,6 +244,7 @@ partial class StoreForm
         notificationButton.TabIndex = 0;
         notificationButton.TabStop = false;
         notificationButton.UseVisualStyleBackColor = false;
+        notificationButton.Click += notificationButton_Click;
         // 
         // cartHostPanel
         // 
@@ -289,6 +292,7 @@ partial class StoreForm
         cartBadgeLabel.TabIndex = 0;
         cartBadgeLabel.Text = "0";
         cartBadgeLabel.TextAlign = ContentAlignment.MiddleCenter;
+        cartBadgeLabel.UseCompatibleTextRendering = true;
         // 
         // helpButton
         // 
@@ -472,6 +476,7 @@ partial class StoreForm
         scrollContentPanel.BackColor = Color.FromArgb(13, 18, 25);
         scrollContentPanel.Controls.Add(contentLayout);
         scrollContentPanel.Dock = DockStyle.Fill;
+        scrollContentPanel.ForeColor = SystemColors.ControlLight;
         scrollContentPanel.Location = new Point(0, 134);
         scrollContentPanel.Margin = new Padding(0);
         scrollContentPanel.Name = "scrollContentPanel";
@@ -898,6 +903,80 @@ partial class StoreForm
         sectionHeaderFlowPanel.ResumeLayout(false);
         sectionHeaderFlowPanel.PerformLayout();
         ResumeLayout(false);
+    }
+
+    private void InitializeVisualState()
+    {
+        WindowState = FormWindowState.Maximized;
+
+        var iconAccentColor = Color.FromArgb(255, 255, 255);
+        var iconAccentHoverColor = Color.FromArgb(255, 255, 255);
+        var actionSurface = Color.FromArgb(19, 25, 34);
+        var actionHoverSurface = Color.FromArgb(24, 31, 42);
+        var actionOutline = Color.FromArgb(39, 53, 70);
+        var actionHoverOutline = Color.FromArgb(59, 77, 101);
+
+        notificationButton.IconKind = StoreIconKind.Notification;
+        notificationButton.BadgeText = string.Empty;
+        notificationButton.UseOriginalGlyphColors = true;
+        notificationButton.ShowChrome = true;
+        notificationButton.GlyphSize = 27F;
+        notificationButton.GlyphYOffset = -1;
+        notificationButton.GlyphStrokeWidth = 1.34F;
+        notificationButton.SurfaceColor = actionSurface;
+        notificationButton.HoverSurfaceColor = actionHoverSurface;
+        notificationButton.OutlineColor = actionOutline;
+        notificationButton.HoverOutlineColor = actionHoverOutline;
+        notificationButton.GlyphColor = iconAccentColor;
+        notificationButton.HoverGlyphColor = iconAccentHoverColor;
+
+        cartButton.IconKind = StoreIconKind.Cart;
+        cartButton.BadgeText = string.Empty;
+        cartButton.UseOriginalGlyphColors = true;
+        cartButton.ShowChrome = true;
+        cartButton.GlyphSize = 27F;
+        cartButton.GlyphYOffset = -1;
+        cartButton.GlyphStrokeWidth = 1.32F;
+        cartButton.SurfaceColor = actionSurface;
+        cartButton.HoverSurfaceColor = actionHoverSurface;
+        cartButton.OutlineColor = actionOutline;
+        cartButton.HoverOutlineColor = actionHoverOutline;
+        cartButton.GlyphColor = iconAccentColor;
+        cartButton.HoverGlyphColor = iconAccentHoverColor;
+
+        helpButton.IconKind = StoreIconKind.Help;
+        helpButton.BadgeText = string.Empty;
+        helpButton.UseOriginalGlyphColors = true;
+        helpButton.ShowChrome = true;
+        helpButton.GlyphSize = 27F;
+        helpButton.GlyphStrokeWidth = 1.26F;
+        helpButton.SurfaceColor = Color.FromArgb(44, 40, 37);
+        helpButton.HoverSurfaceColor = Color.FromArgb(61, 54, 49);
+        helpButton.OutlineColor = Color.FromArgb(82, 72, 64);
+        helpButton.HoverOutlineColor = Color.FromArgb(109, 95, 84);
+        helpButton.GlyphColor = iconAccentColor;
+        helpButton.HoverGlyphColor = iconAccentHoverColor;
+
+        accountPanel.SurfaceColor = Color.FromArgb(21, 29, 40);
+        accountPanel.BorderColor = Color.FromArgb(53, 72, 95);
+        accountPanel.BorderThickness = 1;
+        accountPanel.CornerRadius = 24;
+
+        cartBadgePanel.SurfaceColor = AppTheme.Accent;
+        cartBadgePanel.BorderColor = AppTheme.Accent;
+        cartBadgePanel.BorderThickness = 0;
+        cartBadgePanel.CornerRadius = 11;
+
+        featuredPanel.SurfaceColor = Color.FromArgb(17, 24, 33);
+        featuredPanel.BorderColor = AppTheme.CardBorder;
+        featuredPanel.BorderThickness = 1;
+        featuredPanel.CornerRadius = 24;
+
+        categoryComboBox.Cursor = Cursors.Hand;
+        categoryComboBox.DropDownHeight = 240;
+
+        addGameButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(28, 35, 46);
+        addGameButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(24, 31, 42);
     }
 
     #endregion
