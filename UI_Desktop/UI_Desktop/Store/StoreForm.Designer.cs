@@ -197,27 +197,30 @@ partial class StoreForm
         // navFlowPanel
         // 
         navFlowPanel.AutoSize = true;
+        navFlowPanel.BackColor = Color.FromArgb(16, 21, 29);
         navFlowPanel.Dock = DockStyle.Fill;
         navFlowPanel.Location = new Point(281, 0);
         navFlowPanel.Margin = new Padding(24, 0, 0, 0);
         navFlowPanel.Name = "navFlowPanel";
         navFlowPanel.Padding = new Padding(0, 2, 0, 0);
-        navFlowPanel.Size = new Size(940, 52);
+        navFlowPanel.Size = new Size(767, 52);
         navFlowPanel.TabIndex = 1;
         navFlowPanel.WrapContents = false;
         // 
         // actionFlowPanel
         // 
         actionFlowPanel.AutoSize = true;
+        actionFlowPanel.BackColor = Color.FromArgb(16, 21, 29);
         actionFlowPanel.Controls.Add(notificationButton);
         actionFlowPanel.Controls.Add(cartButton);
         actionFlowPanel.Controls.Add(helpButton);
         actionFlowPanel.Controls.Add(accountPanel);
         actionFlowPanel.Dock = DockStyle.Fill;
-        actionFlowPanel.Location = new Point(1231, 0);
+        actionFlowPanel.Location = new Point(1058, 0);
         actionFlowPanel.Margin = new Padding(10, 0, 0, 0);
         actionFlowPanel.Name = "actionFlowPanel";
-        actionFlowPanel.Size = new Size(189, 52);
+        actionFlowPanel.Padding = new Padding(0, 3, 0, 0);
+        actionFlowPanel.Size = new Size(362, 52);
         actionFlowPanel.TabIndex = 2;
         actionFlowPanel.WrapContents = false;
         // 
@@ -226,26 +229,25 @@ partial class StoreForm
         notificationButton.BackColor = Color.Transparent;
         notificationButton.FlatAppearance.BorderSize = 0;
         notificationButton.FlatStyle = FlatStyle.Flat;
-        notificationButton.IconKind = StoreIconKind.Notification;
-        notificationButton.Location = new Point(0, 5);
-        notificationButton.Margin = new Padding(0, 5, 10, 0);
+        notificationButton.Location = new Point(0, 3);
+        notificationButton.Margin = new Padding(0, 0, 10, 0);
         notificationButton.Name = "notificationButton";
         notificationButton.Size = new Size(42, 42);
         notificationButton.TabIndex = 0;
+        notificationButton.TabStop = false;
         notificationButton.UseVisualStyleBackColor = false;
         // 
         // cartButton
         // 
         cartButton.BackColor = Color.Transparent;
-        cartButton.BadgeText = "0";
         cartButton.FlatAppearance.BorderSize = 0;
         cartButton.FlatStyle = FlatStyle.Flat;
-        cartButton.IconKind = StoreIconKind.Cart;
-        cartButton.Location = new Point(52, 5);
-        cartButton.Margin = new Padding(0, 5, 10, 0);
+        cartButton.Location = new Point(52, 3);
+        cartButton.Margin = new Padding(0, 0, 10, 0);
         cartButton.Name = "cartButton";
         cartButton.Size = new Size(42, 42);
         cartButton.TabIndex = 1;
+        cartButton.TabStop = false;
         cartButton.UseVisualStyleBackColor = false;
         // 
         // helpButton
@@ -253,23 +255,23 @@ partial class StoreForm
         helpButton.BackColor = Color.Transparent;
         helpButton.FlatAppearance.BorderSize = 0;
         helpButton.FlatStyle = FlatStyle.Flat;
-        helpButton.IconKind = StoreIconKind.Help;
-        helpButton.Location = new Point(104, 5);
-        helpButton.Margin = new Padding(0, 5, 12, 0);
+        helpButton.Location = new Point(104, 3);
+        helpButton.Margin = new Padding(0, 0, 12, 0);
         helpButton.Name = "helpButton";
         helpButton.Size = new Size(42, 42);
         helpButton.TabIndex = 2;
+        helpButton.TabStop = false;
         helpButton.UseVisualStyleBackColor = false;
         // 
         // accountPanel
         // 
         accountPanel.BackColor = Color.Transparent;
         accountPanel.Controls.Add(accountLayout);
-        accountPanel.Location = new Point(158, 0);
-        accountPanel.Margin = new Padding(0);
+        accountPanel.Location = new Point(158, 4);
+        accountPanel.Margin = new Padding(0, 1, 0, 0);
         accountPanel.Name = "accountPanel";
-        accountPanel.Padding = new Padding(16, 9, 16, 9);
-        accountPanel.Size = new Size(189, 47);
+        accountPanel.Padding = new Padding(16, 8, 16, 8);
+        accountPanel.Size = new Size(204, 44);
         accountPanel.TabIndex = 3;
         // 
         // accountLayout
@@ -280,12 +282,12 @@ partial class StoreForm
         accountLayout.Controls.Add(accountNameLabel, 0, 0);
         accountLayout.Controls.Add(balanceLabel, 1, 0);
         accountLayout.Dock = DockStyle.Fill;
-        accountLayout.Location = new Point(16, 9);
+        accountLayout.Location = new Point(16, 8);
         accountLayout.Margin = new Padding(0);
         accountLayout.Name = "accountLayout";
         accountLayout.RowCount = 1;
         accountLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        accountLayout.Size = new Size(157, 29);
+        accountLayout.Size = new Size(172, 28);
         accountLayout.TabIndex = 0;
         // 
         // accountNameLabel
@@ -294,7 +296,7 @@ partial class StoreForm
         accountNameLabel.AutoSize = true;
         accountNameLabel.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
         accountNameLabel.ForeColor = Color.FromArgb(239, 243, 248);
-        accountNameLabel.Location = new Point(0, 4);
+        accountNameLabel.Location = new Point(0, 3);
         accountNameLabel.Margin = new Padding(0, 0, 12, 0);
         accountNameLabel.Name = "accountNameLabel";
         accountNameLabel.Size = new Size(91, 21);
@@ -307,7 +309,7 @@ partial class StoreForm
         balanceLabel.AutoSize = true;
         balanceLabel.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
         balanceLabel.ForeColor = Color.FromArgb(181, 244, 121);
-        balanceLabel.Location = new Point(124, 4);
+        balanceLabel.Location = new Point(139, 3);
         balanceLabel.Margin = new Padding(0);
         balanceLabel.Name = "balanceLabel";
         balanceLabel.Size = new Size(33, 21);

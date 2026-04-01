@@ -55,6 +55,20 @@ internal sealed class StoreIconButton : Button
         Invalidate();
     }
 
+    protected override void OnResize(EventArgs e)
+    {
+        base.OnResize(e);
+
+        if (Width <= 1 || Height <= 1)
+        {
+            return;
+        }
+
+        var radius = Math.Min(Width, Height) / 2;
+        using var path = RoundedPanel.CreateRoundedPath(new Rectangle(0, 0, Width - 1, Height - 1), radius);
+        Region = new Region(path);
+    }
+
     protected override void OnPaintBackground(PaintEventArgs pevent)
     {
         pevent.Graphics.Clear(Parent?.BackColor ?? AppTheme.WindowBackground);
@@ -67,7 +81,7 @@ internal sealed class StoreIconButton : Button
         e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
         var rect = new Rectangle(0, 0, Width - 1, Height - 1);
-        using var path = RoundedPanel.CreateRoundedPath(rect, 21);
+        using var path = RoundedPanel.CreateRoundedPath(rect, Math.Min(Width, Height) / 2);
         using var backgroundBrush = new SolidBrush(isHovered ? Color.FromArgb(28, 36, 48) : Color.FromArgb(19, 25, 34));
         using var borderPen = new Pen(Color.FromArgb(40, 55, 72));
 
@@ -115,27 +129,27 @@ internal sealed class StoreIconButton : Button
 
     private static void DrawBell(Graphics graphics, Pen pen)
     {
-        graphics.DrawArc(pen, 13, 12, 16, 14, 200, 140);
+        graphics.DrawArc(pen, 12.5F, 11.5F, 16.5F, 15F, 200, 140);
         graphics.DrawLine(pen, 15, 20, 15, 24);
         graphics.DrawLine(pen, 27, 20, 27, 24);
-        graphics.DrawArc(pen, 16, 22, 10, 6, 0, 180);
+        graphics.DrawArc(pen, 16.2F, 22.3F, 9.6F, 5.8F, 0, 180);
         graphics.DrawLine(pen, 19, 29, 23, 29);
     }
 
     private static void DrawCart(Graphics graphics, Pen pen)
     {
-        graphics.DrawLine(pen, 11, 14, 15, 14);
-        graphics.DrawLine(pen, 15, 14, 18, 23);
-        graphics.DrawLine(pen, 18, 23, 28, 23);
-        graphics.DrawLine(pen, 28, 23, 30, 17);
-        graphics.DrawLine(pen, 17, 18, 31, 18);
-        graphics.DrawEllipse(pen, 18, 26, 3.5F, 3.5F);
-        graphics.DrawEllipse(pen, 25, 26, 3.5F, 3.5F);
+        graphics.DrawLine(pen, 10.5F, 13.5F, 14.5F, 13.5F);
+        graphics.DrawLine(pen, 14.5F, 13.5F, 18F, 22.5F);
+        graphics.DrawLine(pen, 18F, 22.5F, 28F, 22.5F);
+        graphics.DrawLine(pen, 28F, 22.5F, 30F, 17F);
+        graphics.DrawLine(pen, 17F, 17.5F, 31F, 17.5F);
+        graphics.DrawEllipse(pen, 18.3F, 25.7F, 3.4F, 3.4F);
+        graphics.DrawEllipse(pen, 25.2F, 25.7F, 3.4F, 3.4F);
     }
 
     private static void DrawHelp(Graphics graphics)
     {
-        using var font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        using var font = new Font("Segoe UI Semibold", 11.5F, FontStyle.Bold, GraphicsUnit.Point);
         TextRenderer.DrawText(
             graphics,
             "?",
