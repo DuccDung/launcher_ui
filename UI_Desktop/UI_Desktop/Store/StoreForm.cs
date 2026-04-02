@@ -2,6 +2,9 @@ namespace UI_Desktop.Store;
 
 internal partial class StoreForm : Form
 {
+    private const int FeaturedDesktopMaxWidth = 1320;
+    private const int FeaturedDesktopMinWidth = 980;
+
     private readonly StorePageData pageData;
     private readonly List<StoreNavButton> navButtons = [];
     private readonly List<StoreGameCard> visibleCards = [];
@@ -36,10 +39,21 @@ internal partial class StoreForm : Form
         StoreUiHelper.EnableDoubleBuffer(scrollContentPanel);
         StoreUiHelper.EnableDoubleBuffer(contentLayout);
         StoreUiHelper.EnableDoubleBuffer(featuredPanel);
+        StoreUiHelper.EnableDoubleBuffer(featuredSpecsLayout);
         StoreUiHelper.EnableDoubleBuffer(catalogFlowPanel);
 
         StoreUiHelper.LoadLogo(headerLogoPictureBox);
         StoreUiHelper.ConfigureSearchInput(searchPanel, searchIconLabel, searchTextBox);
+
+        featuredPanel.Dock = DockStyle.None;
+        featuredPanel.Anchor = AnchorStyles.Top;
+        featuredPanel.SurfaceColor = Color.FromArgb(14, 19, 28);
+        featuredPanel.BorderColor = Color.FromArgb(49, 70, 98);
+        featuredPanel.BorderThickness = 1;
+        featuredPanel.CornerRadius = 28;
+        featuredInfoPanel.BackColor = Color.FromArgb(14, 20, 29);
+        salePriceCaptionLabel.Text = "Giá sau sale";
+        saleLimitCaptionLabel.Text = "Hạn sale";
 
         notificationGlyphImage = StoreUiHelper.LoadAssetImage("icons8-bell-48.png");
         cartGlyphImage = StoreUiHelper.LoadAssetImage("online-shopping.png");
@@ -76,6 +90,7 @@ internal partial class StoreForm : Form
         Resize += (_, _) => UpdateResponsiveLayout();
         scrollContentPanel.SizeChanged += (_, _) => UpdateResponsiveLayout();
         featuredPictureBox.SizeChanged += (_, _) => RenderFeaturedArtwork();
+        featuredSpecsLayout.Paint += FeaturedSpecsLayout_Paint;
         categoryComboBox.SelectedIndexChanged += (_, _) =>
         {
             if (!isBindingCategory)
@@ -164,9 +179,10 @@ internal partial class StoreForm : Form
 
         ClearVisibleCards();
 
+        var availableWidth = GetScrollableContentWidth();
         if (filteredGames.Count == 0)
         {
-            UpdateCatalogLayout();
+            UpdateCatalogLayout(availableWidth);
             return;
         }
 
@@ -181,7 +197,7 @@ internal partial class StoreForm : Form
         }
 
         catalogFlowPanel.ResumeLayout();
-        UpdateCatalogLayout();
+        UpdateCatalogLayout(availableWidth);
     }
 
     private IEnumerable<StoreGame> GetFilteredGames()
@@ -225,14 +241,15 @@ internal partial class StoreForm : Form
             ? Color.FromArgb(30, 82, 67)
             : Color.FromArgb(29, 55, 103);
         featuredTitleLabel.Text = game.Title;
-        featuredSubtitleLabel.Text = $"{game.Subtitle}. Xem nhanh giá, mức giảm và nhóm thể loại trước khi thêm vào thư viện.";
         featuredSubtitleLabel.Text = game.Subtitle;
         originalPriceValueLabel.Text = game.OriginalPriceText;
+        originalPriceValueLabel.ForeColor = game.DiscountPercent > 0
+            ? AppTheme.SecondaryText
+            : AppTheme.PrimaryText;
         discountValueLabel.Text = game.DiscountPercent > 0 ? $"-{game.DiscountPercent}%" : "0%";
         discountValueLabel.ForeColor = game.DiscountPercent > 0 ? Color.FromArgb(73, 209, 164) : AppTheme.SecondaryText;
         salePriceValueLabel.Text = game.SalePriceText;
         saleLimitValueLabel.Text = game.DiscountPercent > 0 ? "Không giới hạn" : "Giá hiện hành";
-        saleLimitValueLabel.Text = game.DiscountPercent > 0 ? "Khong gioi han" : "Gia hien hanh";
         genresValueLabel.Text = game.GenresText;
 
         RenderFeaturedArtwork();
@@ -281,8 +298,9 @@ internal partial class StoreForm : Form
             navButtons[index].Visible = ShouldShowNavigation(index);
         }
 
-        ConfigureFeaturedLayout(ClientSize.Width < 1180);
-        UpdateCatalogLayout();
+        var availableWidth = GetScrollableContentWidth();
+        ConfigureFeaturedLayout(availableWidth < 1180, availableWidth);
+        UpdateCatalogLayout(availableWidth);
     }
 
     private bool ShouldShowNavigation(int index)
@@ -305,8 +323,12 @@ internal partial class StoreForm : Form
         return index < 2;
     }
 
-    private void ConfigureFeaturedLayout(bool stack)
+    private void ConfigureFeaturedLayout(bool stack, int availableWidth)
     {
+        featuredPanel.Width = GetFeaturedCardWidth(availableWidth, stack);
+        featuredPanel.Height = stack ? 560 : 438;
+        featuredPanel.Padding = stack ? new Padding(12) : new Padding(16);
+
         featuredLayout.SuspendLayout();
         featuredLayout.Controls.Clear();
         featuredLayout.ColumnStyles.Clear();
@@ -314,27 +336,27 @@ internal partial class StoreForm : Form
 
         if (stack)
         {
-            featuredPanel.Height = 554;
             featuredLayout.ColumnCount = 1;
             featuredLayout.RowCount = 2;
             featuredLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            featuredLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, Math.Max(230, Math.Min(308, featuredPanel.Width / 3))));
+            featuredLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, Math.Max(238, Math.Min(326, (int)(featuredPanel.Width * 0.42F)))));
             featuredLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            featuredPictureBox.Margin = new Padding(0, 0, 0, 14);
+            featuredPictureBox.Margin = new Padding(0, 0, 0, 16);
             featuredInfoPanel.Margin = new Padding(0);
+            featuredInfoPanel.Padding = new Padding(18, 18, 18, 16);
             featuredLayout.Controls.Add(featuredPictureBox, 0, 0);
             featuredLayout.Controls.Add(featuredInfoPanel, 0, 1);
         }
         else
         {
-            featuredPanel.Height = 390;
             featuredLayout.ColumnCount = 2;
             featuredLayout.RowCount = 1;
-            featuredLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64F));
-            featuredLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 36F));
+            featuredLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 61.8F));
+            featuredLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 38.2F));
             featuredLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             featuredPictureBox.Margin = new Padding(0);
             featuredInfoPanel.Margin = new Padding(0);
+            featuredInfoPanel.Padding = new Padding(22, 18, 22, 16);
             featuredLayout.Controls.Add(featuredPictureBox, 0, 0);
             featuredLayout.Controls.Add(featuredInfoPanel, 1, 0);
         }
@@ -343,15 +365,8 @@ internal partial class StoreForm : Form
         RenderFeaturedArtwork();
     }
 
-    private void UpdateCatalogLayout()
+    private void UpdateCatalogLayout(int availableWidth)
     {
-        var availableWidth = scrollContentPanel.ClientSize.Width - scrollContentPanel.Padding.Horizontal - 4;
-        if (scrollContentPanel.VerticalScroll.Visible)
-        {
-            availableWidth -= SystemInformation.VerticalScrollBarWidth;
-        }
-
-        availableWidth = Math.Max(320, availableWidth);
         catalogFlowPanel.Width = availableWidth;
 
         if (visibleCards.Count == 0)
@@ -376,6 +391,49 @@ internal partial class StoreForm : Form
         }
     }
 
+    private int GetScrollableContentWidth()
+    {
+        var availableWidth = scrollContentPanel.ClientSize.Width - scrollContentPanel.Padding.Horizontal - 4;
+        if (scrollContentPanel.VerticalScroll.Visible)
+        {
+            availableWidth -= SystemInformation.VerticalScrollBarWidth;
+        }
+
+        return Math.Max(320, availableWidth);
+    }
+
+    private static int GetFeaturedCardWidth(int availableWidth, bool stack)
+    {
+        if (stack)
+        {
+            return availableWidth;
+        }
+
+        return Math.Min(FeaturedDesktopMaxWidth, Math.Max(FeaturedDesktopMinWidth, availableWidth - 160));
+    }
+
+    private void FeaturedSpecsLayout_Paint(object? sender, PaintEventArgs e)
+    {
+        if (sender is not TableLayoutPanel layout)
+        {
+            return;
+        }
+
+        var rowHeights = layout.GetRowHeights();
+        if (rowHeights.Length < 2)
+        {
+            return;
+        }
+
+        using var pen = new Pen(Color.FromArgb(34, 50, 69), 1F);
+        var y = 0;
+        for (var index = 0; index < Math.Min(4, rowHeights.Length - 1); index++)
+        {
+            y += rowHeights[index];
+            e.Graphics.DrawLine(pen, 0, y - 1, layout.Width - 1, y - 1);
+        }
+    }
+
     private void addGameButton_Click(object sender, EventArgs e)
     {
         MessageBox.Show(
@@ -387,6 +445,5 @@ internal partial class StoreForm : Form
 
     private void notificationButton_Click(object sender, EventArgs e)
     {
-
     }
 }

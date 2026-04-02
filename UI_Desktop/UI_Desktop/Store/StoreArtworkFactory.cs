@@ -88,8 +88,8 @@ internal static class StoreArtworkFactory
 
     private static Bitmap CreateBannerArtwork(StoreGame game, Size size)
     {
-        var width = Math.Max(220, size.Width);
-        var height = Math.Max(180, size.Height);
+        var width = Math.Max(260, size.Width);
+        var height = Math.Max(220, size.Height);
         var bitmap = new Bitmap(width, height);
 
         using var graphics = Graphics.FromImage(bitmap);
@@ -102,16 +102,16 @@ internal static class StoreArtworkFactory
         var bounds = new Rectangle(0, 0, width, height);
         graphics.Clear(Color.FromArgb(10, 14, 20));
 
-        using var baseBrush = new LinearGradientBrush(bounds, Color.Black, Color.Black, 18F);
+        using var baseBrush = new LinearGradientBrush(bounds, Color.Black, Color.Black, 0F);
         baseBrush.InterpolationColors = new ColorBlend
         {
-            Positions = [0F, 0.26F, 0.68F, 1F],
+            Positions = [0F, 0.38F, 0.74F, 1F],
             Colors =
             [
-                Darken(game.PrimaryColor, 0.52F),
-                Blend(game.PrimaryColor, game.SecondaryColor, 0.28F),
-                Blend(game.PrimaryColor, game.SecondaryColor, 0.64F),
-                Darken(game.SecondaryColor, 0.42F)
+                Darken(Blend(game.PrimaryColor, game.AccentColor, 0.14F), 0.42F),
+                Blend(game.PrimaryColor, game.SecondaryColor, 0.24F),
+                Blend(game.SecondaryColor, game.AccentColor, 0.2F),
+                Darken(game.SecondaryColor, 0.4F)
             ]
         };
         graphics.FillRectangle(baseBrush, bounds);
@@ -119,43 +119,261 @@ internal static class StoreArtworkFactory
         using var atmosphereBrush = new LinearGradientBrush(
             new PointF(0, 0),
             new PointF(0, height),
-            Color.FromArgb(34, 255, 255, 255),
-            Color.FromArgb(120, 6, 10, 17));
+            Color.FromArgb(26, 255, 255, 255),
+            Color.FromArgb(132, 5, 8, 14));
         graphics.FillRectangle(atmosphereBrush, bounds);
 
         DrawGlow(
             graphics,
-            new RectangleF(-width * 0.08F, height * 0.48F, width * 0.58F, height * 0.68F),
-            Blend(game.PrimaryColor, game.AccentColor, 0.42F),
-            122);
+            new RectangleF(-width * 0.08F, height * 0.54F, width * 0.34F, height * 0.44F),
+            Blend(game.PrimaryColor, game.AccentColor, 0.35F),
+            88);
         DrawGlow(
             graphics,
-            new RectangleF(width * 0.44F, -height * 0.18F, width * 0.44F, height * 0.54F),
-            Blend(game.SecondaryColor, Color.White, 0.16F),
-            92);
-        DrawGlow(
-            graphics,
-            new RectangleF(width * 0.62F, height * 0.22F, width * 0.24F, height * 0.44F),
-            Blend(game.AccentColor, Color.White, 0.22F),
-            68);
+            new RectangleF(width * 0.58F, -height * 0.16F, width * 0.28F, height * 0.34F),
+            Blend(game.SecondaryColor, Color.White, 0.1F),
+            74);
 
-        DrawLightSweep(graphics, width, height);
-        DrawBottomVignette(graphics, width, height);
+        var posterWidth = Math.Max(220, (int)(width * 0.44F));
+        var posterBounds = new Rectangle(0, 0, posterWidth, height);
+        var mosaicBounds = new Rectangle(posterWidth, 0, width - posterWidth, height);
+
+        DrawFeaturedPoster(graphics, posterBounds, game);
+        DrawFeaturedMosaic(graphics, mosaicBounds, game);
+        DrawFeaturedEyebrow(graphics, width, game);
         DrawFraming(graphics, width, height);
 
-        using var chipFont = new Font("Segoe UI Semibold", 9.8F, FontStyle.Bold, GraphicsUnit.Point);
-        using var eyebrowFont = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-        using var titleFont = new Font("Segoe UI Semibold", 31F, FontStyle.Bold, GraphicsUnit.Point);
-        using var subtitleFont = new Font("Segoe UI", 11.5F, FontStyle.Regular, GraphicsUnit.Point);
-        using var chipTextBrush = new SolidBrush(Color.FromArgb(236, 246, 252));
-        using var eyebrowBrush = new SolidBrush(Color.FromArgb(238, 242, 247));
-        using var titleBrush = new SolidBrush(Color.White);
-        using var subtitleBrush = new SolidBrush(Color.FromArgb(222, 230, 238));
-        using var titleShadowBrush = new SolidBrush(Color.FromArgb(88, 0, 0, 0));
-        using var chipFill = new SolidBrush(Color.FromArgb(160, Blend(game.AccentColor, Color.FromArgb(34, 56, 84), 0.38F)));
-        using var chipOutline = new Pen(Color.FromArgb(126, 168, 209, 255), 1.1F);
+        using var dividerPen = new Pen(Color.FromArgb(82, 255, 255, 255), 1.1F);
+        graphics.DrawLine(dividerPen, posterBounds.Right - 1, 0, posterBounds.Right - 1, height);
 
-        var chipBounds = new Rectangle(22, 20, Math.Min(96, Math.Max(82, (int)(width * 0.11F))), 32);
+        return bitmap;
+    }
+
+    private static void DrawFeaturedPoster(Graphics graphics, Rectangle bounds, StoreGame game)
+    {
+        using var posterBrush = new LinearGradientBrush(
+            bounds,
+            Blend(game.PrimaryColor, Color.White, 0.08F),
+            Darken(game.PrimaryColor, 0.16F),
+            LinearGradientMode.Vertical);
+        graphics.FillRectangle(posterBrush, bounds);
+
+        using var softOverlay = new LinearGradientBrush(
+            new Point(bounds.Left, bounds.Top),
+            new Point(bounds.Right, bounds.Bottom),
+            Color.FromArgb(30, 255, 255, 255),
+            Color.FromArgb(110, 9, 12, 18));
+        graphics.FillRectangle(softOverlay, bounds);
+
+        DrawGlow(
+            graphics,
+            new RectangleF(bounds.X - (bounds.Width * 0.08F), bounds.Y + (bounds.Height * 0.56F), bounds.Width * 0.54F, bounds.Height * 0.34F),
+            Blend(game.PrimaryColor, game.AccentColor, 0.42F),
+            96);
+        DrawGlow(
+            graphics,
+            new RectangleF(bounds.X + (bounds.Width * 0.28F), bounds.Y + (bounds.Height * 0.26F), bounds.Width * 0.42F, bounds.Height * 0.34F),
+            Blend(game.AccentColor, Color.White, 0.12F),
+            82);
+
+        DrawPosterSweep(graphics, bounds, Color.FromArgb(78, 255, 255, 255));
+        DrawPosterRings(graphics, bounds, game);
+
+        using var titleShadowBrush = new SolidBrush(Color.FromArgb(120, 0, 0, 0));
+        using var titleBrush = new SolidBrush(Color.White);
+        using var subtitleBrush = new SolidBrush(Color.FromArgb(228, 236, 242));
+        using var titleFont = new Font("Segoe UI Semibold", Math.Max(22F, Math.Min(34F, bounds.Width * 0.078F)), FontStyle.Bold, GraphicsUnit.Point);
+        using var subtitleFont = new Font("Segoe UI", Math.Max(10.5F, Math.Min(13F, bounds.Width * 0.026F)), FontStyle.Regular, GraphicsUnit.Point);
+        using var centeredFormat = new StringFormat
+        {
+            Alignment = StringAlignment.Center,
+            LineAlignment = StringAlignment.Center,
+            Trimming = StringTrimming.EllipsisWord
+        };
+
+        var titleBounds = new RectangleF(
+            bounds.X + (bounds.Width * 0.11F),
+            bounds.Y + (bounds.Height * 0.28F),
+            bounds.Width * 0.62F,
+            bounds.Height * 0.42F);
+        var titleShadowBounds = titleBounds with { X = titleBounds.X + 4, Y = titleBounds.Y + 4 };
+        graphics.DrawString(game.Title, titleFont, titleShadowBrush, titleShadowBounds, centeredFormat);
+        graphics.DrawString(game.Title, titleFont, titleBrush, titleBounds, centeredFormat);
+
+        var subtitleBounds = new RectangleF(
+            bounds.X + 28,
+            bounds.Bottom - 44,
+            bounds.Width * 0.56F,
+            24);
+        graphics.DrawString(game.Subtitle, subtitleFont, subtitleBrush, subtitleBounds);
+    }
+
+    private static void DrawFeaturedMosaic(Graphics graphics, Rectangle bounds, StoreGame game)
+    {
+        var colors = new[]
+        {
+            Blend(game.PrimaryColor, Color.White, 0.18F),
+            Blend(game.SecondaryColor, Color.White, 0.14F),
+            Blend(game.AccentColor, Color.White, 0.12F),
+            Darken(game.PrimaryColor, 0.06F),
+            Darken(game.SecondaryColor, 0.02F),
+            Blend(game.AccentColor, game.SecondaryColor, 0.45F)
+        };
+
+        var modes = new[]
+        {
+            LinearGradientMode.ForwardDiagonal,
+            LinearGradientMode.BackwardDiagonal,
+            LinearGradientMode.Vertical,
+            LinearGradientMode.Horizontal,
+            LinearGradientMode.ForwardDiagonal,
+            LinearGradientMode.BackwardDiagonal
+        };
+
+        const int rows = 3;
+        const int columns = 2;
+        const int gap = 2;
+        var tileWidth = (bounds.Width - (gap * (columns - 1))) / columns;
+        var tileHeight = (bounds.Height - (gap * (rows - 1))) / rows;
+
+        for (var row = 0; row < rows; row++)
+        {
+            for (var column = 0; column < columns; column++)
+            {
+                var index = (row * columns) + column;
+                var tileBounds = new Rectangle(
+                    bounds.X + (column * (tileWidth + gap)),
+                    bounds.Y + (row * (tileHeight + gap)),
+                    tileWidth,
+                    tileHeight);
+
+                using var tileBrush = new LinearGradientBrush(
+                    tileBounds,
+                    colors[index],
+                    Blend(colors[(index + 1) % colors.Length], Color.Black, 0.18F),
+                    modes[index]);
+                graphics.FillRectangle(tileBrush, tileBounds);
+
+                using var tileVignette = new LinearGradientBrush(
+                    new Point(tileBounds.Left, tileBounds.Top),
+                    new Point(tileBounds.Left, tileBounds.Bottom),
+                    Color.FromArgb(12, 255, 255, 255),
+                    Color.FromArgb(118, 7, 10, 16));
+                graphics.FillRectangle(tileVignette, tileBounds);
+
+                DrawFeaturedTileAccent(graphics, tileBounds, game, index);
+            }
+        }
+    }
+
+    private static void DrawFeaturedTileAccent(Graphics graphics, Rectangle bounds, StoreGame game, int index)
+    {
+        var accent = Blend(game.AccentColor, Color.White, 0.14F);
+        var highlight = Color.FromArgb(118, 255, 255, 255);
+
+        switch (index)
+        {
+            case 0:
+            {
+                using var slashBrush = new SolidBrush(Color.FromArgb(52, highlight));
+                graphics.FillPolygon(slashBrush,
+                [
+                    new PointF(bounds.Left, bounds.Bottom),
+                    new PointF(bounds.Left + (bounds.Width * 0.56F), bounds.Top),
+                    new PointF(bounds.Left + (bounds.Width * 0.82F), bounds.Top),
+                    new PointF(bounds.Left + (bounds.Width * 0.18F), bounds.Bottom)
+                ]);
+                DrawGlow(
+                    graphics,
+                    new RectangleF(bounds.Right - (bounds.Width * 0.42F), bounds.Top - 10, bounds.Width * 0.36F, bounds.Height * 0.42F),
+                    accent,
+                    70);
+                break;
+            }
+            case 1:
+            {
+                using var starPen = new Pen(Color.FromArgb(220, Blend(accent, Color.White, 0.2F)), 2.4F)
+                {
+                    StartCap = LineCap.Round,
+                    EndCap = LineCap.Round
+                };
+                var center = new PointF(bounds.Left + (bounds.Width * 0.66F), bounds.Top + (bounds.Height * 0.24F));
+                graphics.DrawLine(starPen, center.X - 26, center.Y, center.X + 26, center.Y);
+                graphics.DrawLine(starPen, center.X, center.Y - 26, center.X, center.Y + 26);
+                graphics.DrawLine(starPen, center.X - 18, center.Y - 18, center.X + 18, center.Y + 18);
+                graphics.DrawLine(starPen, center.X - 18, center.Y + 18, center.X + 18, center.Y - 18);
+                break;
+            }
+            case 2:
+            {
+                using var wavePen = new Pen(Color.FromArgb(170, accent), 3.2F)
+                {
+                    StartCap = LineCap.Round,
+                    EndCap = LineCap.Round
+                };
+                var path = new GraphicsPath();
+                path.AddBezier(
+                    bounds.Left - 10, bounds.Bottom - 12,
+                    bounds.Left + (bounds.Width * 0.24F), bounds.Top + (bounds.Height * 0.28F),
+                    bounds.Left + (bounds.Width * 0.56F), bounds.Bottom - 6,
+                    bounds.Right + 8, bounds.Top + 10);
+                graphics.DrawPath(wavePen, path);
+                break;
+            }
+            case 3:
+            {
+                using var shardBrush = new SolidBrush(Color.FromArgb(80, highlight));
+                graphics.FillPolygon(shardBrush,
+                [
+                    new PointF(bounds.Left, bounds.Top + (bounds.Height * 0.68F)),
+                    new PointF(bounds.Left + (bounds.Width * 0.34F), bounds.Top),
+                    new PointF(bounds.Right, bounds.Top),
+                    new PointF(bounds.Right - (bounds.Width * 0.28F), bounds.Bottom)
+                ]);
+                break;
+            }
+            case 4:
+            {
+                using var boltPen = new Pen(Color.FromArgb(210, Blend(accent, Color.White, 0.16F)), 3.2F)
+                {
+                    StartCap = LineCap.Round,
+                    EndCap = LineCap.Round
+                };
+                graphics.DrawLines(boltPen,
+                [
+                    new PointF(bounds.Left + (bounds.Width * 0.48F), bounds.Top + 10),
+                    new PointF(bounds.Left + (bounds.Width * 0.40F), bounds.Top + (bounds.Height * 0.42F)),
+                    new PointF(bounds.Left + (bounds.Width * 0.54F), bounds.Top + (bounds.Height * 0.42F)),
+                    new PointF(bounds.Left + (bounds.Width * 0.34F), bounds.Bottom - 10)
+                ]);
+                break;
+            }
+            default:
+            {
+                using var ringPen = new Pen(Color.FromArgb(156, accent), 2F);
+                using var eyeBrush = new SolidBrush(Color.FromArgb(128, highlight));
+                var ringBounds = new RectangleF(
+                    bounds.Left + (bounds.Width * 0.32F),
+                    bounds.Top + (bounds.Height * 0.30F),
+                    bounds.Width * 0.34F,
+                    bounds.Height * 0.34F);
+                graphics.DrawEllipse(ringPen, ringBounds);
+                graphics.FillEllipse(eyeBrush, ringBounds.X + (ringBounds.Width * 0.33F), ringBounds.Y + (ringBounds.Height * 0.33F), ringBounds.Width * 0.34F, ringBounds.Height * 0.34F);
+                break;
+            }
+        }
+    }
+
+    private static void DrawFeaturedEyebrow(Graphics graphics, int width, StoreGame game)
+    {
+        using var chipFont = new Font("Segoe UI Semibold", 9.6F, FontStyle.Bold, GraphicsUnit.Point);
+        using var eyebrowFont = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        using var chipFill = new SolidBrush(Color.FromArgb(116, 68, 115, 196));
+        using var chipOutline = new Pen(Color.FromArgb(142, 129, 185, 255), 1F);
+        using var chipTextBrush = new SolidBrush(Color.FromArgb(236, 246, 252));
+        using var eyebrowBrush = new SolidBrush(Color.FromArgb(236, 240, 244));
+
+        var chipBounds = new Rectangle(22, 18, Math.Min(96, Math.Max(82, (int)(width * 0.105F))), 32);
         using (var chipPath = RoundedPanel.CreateRoundedPath(chipBounds, 16))
         {
             graphics.FillPath(chipFill, chipPath);
@@ -163,7 +381,7 @@ internal static class StoreArtworkFactory
         }
 
         graphics.DrawString(
-            game.PromoLabel,
+            "SALE NOW",
             chipFont,
             chipTextBrush,
             chipBounds,
@@ -174,24 +392,49 @@ internal static class StoreArtworkFactory
             });
 
         var eyebrowBounds = new RectangleF(chipBounds.Right + 14, chipBounds.Top + 3, width * 0.22F, chipBounds.Height);
-        graphics.DrawString("Uu dai noi bat", eyebrowFont, eyebrowBrush, eyebrowBounds);
+        graphics.DrawString("Ưu đãi nổi bật", eyebrowFont, eyebrowBrush, eyebrowBounds);
+    }
 
-        var titleBounds = new RectangleF(28, height * 0.53F, width * 0.56F, height * 0.24F);
-        var subtitleBounds = new RectangleF(30, height * 0.82F, width * 0.40F, 28);
-        var titleShadowBounds = titleBounds with { X = titleBounds.X + 3, Y = titleBounds.Y + 3 };
+    private static void DrawPosterSweep(Graphics graphics, Rectangle bounds, Color color)
+    {
+        var state = graphics.Save();
+        graphics.TranslateTransform(bounds.Left + (bounds.Width * 0.10F), bounds.Top + (bounds.Height * 0.08F));
+        graphics.RotateTransform(-18F);
 
-        using var leftAlignedFormat = new StringFormat
+        var sweepBounds = new Rectangle(0, 0, (int)(bounds.Width * 0.78F), (int)(bounds.Height * 0.12F));
+        using var sweepPath = RoundedPanel.CreateRoundedPath(sweepBounds, Math.Max(18, sweepBounds.Height / 2));
+        using var sweepBrush = new LinearGradientBrush(
+            new Point(0, 0),
+            new Point(0, sweepBounds.Height),
+            color,
+            Color.FromArgb(0, color));
+        graphics.FillPath(sweepBrush, sweepPath);
+
+        graphics.Restore(state);
+    }
+
+    private static void DrawPosterRings(Graphics graphics, Rectangle bounds, StoreGame game)
+    {
+        using var outerPen = new Pen(Color.FromArgb(224, Blend(game.AccentColor, Color.Orange, 0.34F)), Math.Max(4.2F, bounds.Width * 0.014F))
         {
-            Alignment = StringAlignment.Near,
-            LineAlignment = StringAlignment.Near,
-            Trimming = StringTrimming.EllipsisWord
+            StartCap = LineCap.Round,
+            EndCap = LineCap.Round
         };
+        using var innerPen = new Pen(Color.FromArgb(108, 255, 255, 255), Math.Max(1.4F, bounds.Width * 0.004F));
 
-        graphics.DrawString(game.Title, titleFont, titleShadowBrush, titleShadowBounds, leftAlignedFormat);
-        graphics.DrawString(game.Title, titleFont, titleBrush, titleBounds, leftAlignedFormat);
-        graphics.DrawString(game.Subtitle, subtitleFont, subtitleBrush, subtitleBounds, leftAlignedFormat);
+        var outerBounds = new RectangleF(
+            bounds.Left + (bounds.Width * 0.14F),
+            bounds.Top + (bounds.Height * 0.23F),
+            bounds.Width * 0.42F,
+            bounds.Width * 0.42F);
+        var innerBounds = new RectangleF(
+            outerBounds.X + (outerBounds.Width * 0.12F),
+            outerBounds.Y + (outerBounds.Height * 0.12F),
+            outerBounds.Width * 0.76F,
+            outerBounds.Height * 0.76F);
 
-        return bitmap;
+        graphics.DrawArc(outerPen, outerBounds, 196, 284);
+        graphics.DrawArc(innerPen, innerBounds, 204, 268);
     }
 
     private static void DrawOrbs(Graphics graphics, int width, int height, StoreGame game)
@@ -243,36 +486,6 @@ internal static class StoreArtworkFactory
             SurroundColors = [Color.FromArgb(0, color)]
         };
         graphics.FillPath(brush, path);
-    }
-
-    private static void DrawLightSweep(Graphics graphics, int width, int height)
-    {
-        var state = graphics.Save();
-        graphics.TranslateTransform(width * 0.16F, height * 0.16F);
-        graphics.RotateTransform(-20F);
-
-        var sweepBounds = new Rectangle(0, 0, (int)(width * 0.72F), (int)(height * 0.17F));
-        using (var sweepPath = RoundedPanel.CreateRoundedPath(sweepBounds, Math.Max(18, sweepBounds.Height / 2)))
-        using (var sweepBrush = new LinearGradientBrush(
-            new Point(0, 0),
-            new Point(0, sweepBounds.Height),
-            Color.FromArgb(54, 255, 255, 255),
-            Color.FromArgb(0, 255, 255, 255)))
-        {
-            graphics.FillPath(sweepBrush, sweepPath);
-        }
-
-        graphics.Restore(state);
-    }
-
-    private static void DrawBottomVignette(Graphics graphics, int width, int height)
-    {
-        using var bottomBrush = new LinearGradientBrush(
-            new Point(0, (int)(height * 0.58F)),
-            new Point(0, height),
-            Color.FromArgb(0, 6, 9, 14),
-            Color.FromArgb(148, 5, 8, 14));
-        graphics.FillRectangle(bottomBrush, 0, height * 0.56F, width, height * 0.44F);
     }
 
     private static Color Darken(Color color, float amount)
