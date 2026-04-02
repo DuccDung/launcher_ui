@@ -12,8 +12,6 @@ const workspaceElements = {
   versionStandardPrice: document.getElementById("versionStandardPrice"),
   versionFullEnabled: document.getElementById("versionFullEnabled"),
   versionFullName: document.getElementById("versionFullName"),
-  versionFullExtraPrice: document.getElementById("versionFullExtraPrice"),
-  versionFullDiscount: document.getElementById("versionFullDiscount"),
   versionFullPrice: document.getElementById("versionFullPrice"),
   steamFetchButton: document.getElementById("steamFetchButton"),
   steamFetchStatus: document.getElementById("steamFetchStatus"),
@@ -42,6 +40,7 @@ let steamDraft = createEmptySteamDraft();
 let storeGames = loadStoreGames();
 let selectedRecordId = null;
 let slugTouched = false;
+let fullPriceTouched = false;
 
 function createEmptySteamDraft() {
   return {
@@ -96,6 +95,11 @@ function clampNumber(value, min, max) {
 function parseMoneyInput(value) {
   const numericValue = Number.parseFloat(value);
   return Number.isFinite(numericValue) ? Math.max(0, numericValue) : 0;
+}
+
+function parseCurrencyInput(value) {
+  const normalizedValue = String(value || "").replace(/[^\d]/g, "");
+  return normalizedValue ? Number.parseInt(normalizedValue, 10) : 0;
 }
 
 function formatMoney(value, currency = "VND") {
@@ -156,11 +160,10 @@ function getVersionState() {
   const baseSteamPrice = steamDraft.salePriceValue || 0;
   const storeDiscount = clampNumber(workspaceElements.globalDiscountInput.value, 0, 100);
   const standardPriceValue = applyDiscount(baseSteamPrice, storeDiscount);
-
-  const fullExtraPriceValue = parseMoneyInput(workspaceElements.versionFullExtraPrice.value);
-  const fullDiscount = clampNumber(workspaceElements.versionFullDiscount.value, 0, 100);
-  const fullBasePriceValue = baseSteamPrice + fullExtraPriceValue;
-  const fullPriceValue = applyDiscount(fullBasePriceValue, fullDiscount);
+  const defaultFullPriceValue = standardPriceValue;
+  const fullPriceValue = fullPriceTouched
+    ? parseCurrencyInput(workspaceElements.versionFullPrice.value)
+    : defaultFullPriceValue;
 
   return {
     storeDiscount,
@@ -175,8 +178,6 @@ function getVersionState() {
       code: "full_dlc",
       enabled: workspaceElements.versionFullEnabled.checked,
       name: workspaceElements.versionFullName.value.trim() || "Bản full DLC",
-      extraPriceValue: fullExtraPriceValue,
-      discount: fullDiscount,
       finalPriceValue: fullPriceValue,
       finalPriceText: formatMoney(fullPriceValue, "VND"),
     },
@@ -240,9 +241,18 @@ function renderPricePreview() {
   workspaceElements.versionStandardPrice.value = standardVersion.enabled
     ? standardVersion.finalPriceText
     : "Đang tắt";
-  workspaceElements.versionFullPrice.value = fullVersion.enabled
-    ? fullVersion.finalPriceText
-    : "Đang tắt";
+
+  if (fullVersion.enabled) {
+    if (
+      !fullPriceTouched ||
+      !workspaceElements.versionFullPrice.value.trim() ||
+      workspaceElements.versionFullPrice.value === "Đang tắt"
+    ) {
+      workspaceElements.versionFullPrice.value = fullVersion.finalPriceText;
+    }
+  } else {
+    workspaceElements.versionFullPrice.value = "Đang tắt";
+  }
 }
 
 function getFilteredStoreGames() {
@@ -351,6 +361,7 @@ function resetForm(keepFilters = true) {
   steamDraft = createEmptySteamDraft();
   selectedRecordId = null;
   slugTouched = false;
+  fullPriceTouched = false;
 
   workspaceElements.steamAppIdInput.value = "";
   workspaceElements.gameStatusInput.value = "Draft";
@@ -361,8 +372,7 @@ function resetForm(keepFilters = true) {
   workspaceElements.versionStandardName.value = "Bản thường";
   workspaceElements.versionFullEnabled.checked = true;
   workspaceElements.versionFullName.value = "Bản full DLC";
-  workspaceElements.versionFullExtraPrice.value = "120000";
-  workspaceElements.versionFullDiscount.value = "5";
+  workspaceElements.versionFullPrice.value = "";
   workspaceElements.saveGameButton.innerHTML =
     '<i class="bi bi-plus-circle"></i> Thêm vào store';
 
@@ -394,8 +404,6 @@ function buildRecordPayload() {
       code: fullVersion.code,
       enabled: true,
       name: fullVersion.name,
-      extraPriceValue: fullVersion.extraPriceValue,
-      discount: fullVersion.discount,
       finalPriceValue: fullVersion.finalPriceValue,
       finalPriceText: fullVersion.finalPriceText,
     });
@@ -500,6 +508,7 @@ function loadRecordIntoForm(recordId) {
 
   selectedRecordId = record.id;
   slugTouched = true;
+  fullPriceTouched = Boolean(record.versions.find((version) => version.code === "full_dlc"));
   steamDraft = {
     appId: record.steamAppId,
     name: record.title,
@@ -528,8 +537,7 @@ function loadRecordIntoForm(recordId) {
   workspaceElements.versionStandardName.value = standardVersion?.name || "Bản thường";
   workspaceElements.versionFullEnabled.checked = Boolean(fullVersion?.enabled);
   workspaceElements.versionFullName.value = fullVersion?.name || "Bản full DLC";
-  workspaceElements.versionFullExtraPrice.value = String(fullVersion?.extraPriceValue ?? 120000);
-  workspaceElements.versionFullDiscount.value = String(fullVersion?.discount ?? 5);
+  workspaceElements.versionFullPrice.value = fullVersion?.finalPriceText || "";
 
   workspaceElements.saveGameButton.innerHTML =
     '<i class="bi bi-check2-circle"></i> Cập nhật game';
@@ -602,8 +610,8 @@ async function handleSteamFetch() {
 
     workspaceElements.gameTitleInput.value = steamDraft.name;
     workspaceElements.gameSlugInput.value = slugify(steamDraft.name || appId);
-    workspaceElements.versionFullDiscount.value = workspaceElements.globalDiscountInput.value;
     slugTouched = false;
+    fullPriceTouched = false;
 
     setFetchStatus("Đã lấy dữ liệu từ Steam.", "success");
     updateWorkspaceView();
@@ -667,8 +675,20 @@ function bindWorkspaceEvents() {
   workspaceElements.versionStandardName?.addEventListener("input", renderPricePreview);
   workspaceElements.versionFullEnabled?.addEventListener("change", renderPricePreview);
   workspaceElements.versionFullName?.addEventListener("input", renderPricePreview);
-  workspaceElements.versionFullExtraPrice?.addEventListener("input", renderPricePreview);
-  workspaceElements.versionFullDiscount?.addEventListener("input", renderPricePreview);
+  workspaceElements.versionFullPrice?.addEventListener("input", () => {
+    fullPriceTouched = true;
+  });
+  workspaceElements.versionFullPrice?.addEventListener("blur", () => {
+    if (!workspaceElements.versionFullPrice.value.trim()) {
+      fullPriceTouched = false;
+      renderPricePreview();
+      return;
+    }
+
+    const parsedValue = parseCurrencyInput(workspaceElements.versionFullPrice.value);
+    workspaceElements.versionFullPrice.value = formatMoney(parsedValue, "VND");
+    renderPricePreview();
+  });
 
   workspaceElements.saveGameButton?.addEventListener("click", upsertStoreGame);
   workspaceElements.resetFormButton?.addEventListener("click", () => resetForm());
