@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gift Codes | NestG Admin</title>
+    <link rel="icon" type="image/png" href="./assets/img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&family=Sora:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+  <body class="admin-body admin-gift-code-page">
+    <div class="admin-app-shell">
+      <aside class="admin-sidebar" data-admin-sidebar>
+        <div class="admin-sidebar__head">
+          <div class="admin-sidebar__brand">
+            <div class="admin-sidebar__brand-mark">
+              <img src="./assets/img/logo.png" alt="NestG" />
+            </div>
+            <div class="admin-sidebar__brand-copy">
+              <strong>NestG</strong>
+              <span>Gift Codes</span>
+            </div>
+          </div>
+          <button
+            class="admin-icon-button admin-sidebar-close"
+            type="button"
+            aria-label="Đóng menu quản trị"
+            data-admin-sidebar-close
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="admin-sidebar__group">
+          <div class="admin-sidebar__label">Điều hướng</div>
+          <nav class="admin-nav">
+            <a href="./admin_dashboard.html"><i class="bi bi-grid-1x2-fill"></i>Dashboard</a>
+            <a href="./admin_games.html"><i class="bi bi-controller"></i>Game catalog</a>
+            <a href="./admin_game_workspace.html"><i class="bi bi-bezier2"></i>Game workspace</a>
+            <a href="./admin_gift_codes.html" class="is-active"
+              ><i class="bi bi-gift-fill"></i>Gift codes</a
+            >
+            <a href="./admin_vouchers.html"><i class="bi bi-ticket-perforated"></i>Vouchers</a>
+            <a href="./admin_user_support.html"><i class="bi bi-headset"></i>User support</a>
+          </nav>
+        </div>
+
+        <div class="admin-sidebar__group">
+          <div class="admin-sidebar__label">Nghiệp vụ</div>
+          <nav class="admin-nav">
+            <a href="#gift-code-create" class="is-active"
+              ><i class="bi bi-plus-square"></i>Tạo mã</a
+            >
+            <a href="#gift-code-list"><i class="bi bi-card-checklist"></i>Danh sách mã</a>
+          </nav>
+        </div>
+
+        <div class="admin-sidebar-card">
+          <span class="admin-sidebar-card__eyebrow">Gift workflow</span>
+          <h3>Tạo mã quà tặng và theo dõi người dùng</h3>
+          <p>
+            Trang này dành riêng cho gift code game, ví, vật phẩm và các quà tặng
+            phát hành theo chiến dịch.
+          </p>
+          <strong>Gift-first</strong>
+        </div>
+      </aside>
+
+      <div class="admin-content-shell">
+        <header class="admin-topbar">
+          <div class="admin-topbar__left">
+            <button
+              class="admin-icon-button admin-sidebar-toggle"
+              type="button"
+              aria-label="Mở menu quản trị"
+              data-admin-sidebar-toggle
+            >
+              <i class="bi bi-list"></i>
+            </button>
+            <div class="admin-topbar__title">
+              <strong>Gift code studio</strong>
+              <span>Tạo mã quà tặng, quản lý lượt dùng và theo dõi người sử dụng.</span>
+            </div>
+          </div>
+          <div class="admin-topbar__right">
+            <a class="admin-button admin-button--secondary" href="./admin_vouchers.html">
+              <i class="bi bi-ticket-perforated"></i>
+              Về vouchers
+            </a>
+          </div>
+        </header>
+
+        <main class="admin-main">
+          <section class="admin-page-intro">
+            <div>
+              <h1>Trang mã quà tặng</h1>
+              <p>Tạo mã theo game hoặc quà tặng, sau đó quản lý người đã sử dụng ở cùng một nơi.</p>
+            </div>
+          </section>
+
+          <section class="admin-gift-code-layout">
+            <article class="admin-panel admin-gift-code-panel" id="gift-code-create">
+              <div class="admin-panel__head">
+                <div>
+                  <h2 class="admin-panel__title">Tạo mã quà tặng</h2>
+                </div>
+              </div>
+
+              <form class="admin-gift-code-form" id="giftCodeForm">
+                <div class="admin-field">
+                  <label for="giftTypeInput">Loại quà tặng</label>
+                  <select id="giftTypeInput">
+                    <option value="game" selected>Trò chơi (Game)</option>
+                    <option value="wallet">Ví điện tử / số dư</option>
+                    <option value="item">Vật phẩm</option>
+                    <option value="other">Khác</option>
+                  </select>
+                </div>
+
+                <div class="admin-field">
+                  <label for="giftItemInput" id="giftItemLabel">Chọn game (Tên hoặc AppID)</label>
+                  <input
+                    id="giftItemInput"
+                    type="text"
+                    placeholder="Nhập tên hoặc AppID game..."
+                  />
+                </div>
+
+                <div class="admin-form-grid">
+                  <div class="admin-field">
+                    <label for="giftQuantityInput">Số lượng mã cần tạo</label>
+                    <input id="giftQuantityInput" type="number" min="1" max="100" value="1" />
+                  </div>
+                  <div class="admin-field">
+                    <label for="giftUsageLimitInput">Số lượt dùng mỗi mã</label>
+                    <input id="giftUsageLimitInput" type="number" min="1" max="50" value="1" />
+                  </div>
+                </div>
+
+                <div class="admin-field">
+                  <label for="giftAccountLimitInput">Giới hạn mỗi tài khoản</label>
+                  <input id="giftAccountLimitInput" type="number" min="1" max="20" value="1" />
+                </div>
+
+                <div class="admin-field">
+                  <label for="giftExpireAtInput">Thời gian hết hạn (tùy chọn)</label>
+                  <input id="giftExpireAtInput" type="datetime-local" />
+                </div>
+
+                <div class="admin-gift-code-form__actions">
+                  <button class="admin-button admin-button--primary" type="submit">
+                    Tạo mã
+                  </button>
+                </div>
+
+                <div
+                  class="admin-gift-code-status is-idle"
+                  id="giftCodeStatus"
+                  role="status"
+                  aria-live="polite"
+                >
+                  Chưa tạo mã nào.
+                </div>
+              </form>
+            </article>
+
+            <article class="admin-panel admin-gift-code-panel admin-gift-code-panel--wide" id="gift-code-list">
+              <div class="admin-panel__head">
+                <div>
+                  <h2 class="admin-panel__title">Danh sách mã & người sử dụng</h2>
+                </div>
+              </div>
+
+              <div class="admin-gift-code-toolbar">
+                <div class="admin-topbar-search admin-gift-code-search">
+                  <input
+                    id="giftCodeKeywordInput"
+                    type="search"
+                    placeholder="Tìm mã quà tặng..."
+                  />
+                  <i class="bi bi-search"></i>
+                </div>
+
+                <select class="admin-select" id="giftCodeTypeFilter" aria-label="Lọc loại quà tặng">
+                  <option value="all">Tất cả loại</option>
+                  <option value="game">Trò chơi</option>
+                  <option value="wallet">Ví điện tử</option>
+                  <option value="item">Vật phẩm</option>
+                  <option value="other">Khác</option>
+                </select>
+              </div>
+
+              <div class="admin-table-wrap admin-gift-code-table-wrap">
+                <table class="admin-data-table admin-gift-code-table">
+                  <thead>
+                    <tr>
+                      <th>Mã</th>
+                      <th>Nội dung</th>
+                      <th>Lượt dùng</th>
+                      <th>Người sử dụng</th>
+                      <th>Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody id="giftCodeTableBody"></tbody>
+                </table>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="admin-sidebar-backdrop" data-admin-sidebar-backdrop></div>
+
+    <script src="./admin.js"></script>
+    <script src="./admin_gift_codes.js"></script>
+  </body>
+</html>
